@@ -1,4 +1,17 @@
-# sms
+# sms ui (School Information Management System User Interface) 
+
+## About the project
+
+This is a user interface for a school information management system developed using vue js and tailwindcss.
+It is one hundred purcent responsive
+
+It contains: 
+  -Tables, 
+  -Forms, 
+  -Graphics, 
+  -Font awesome, 
+  -Dashboard : this present a clear vivualization of data. 
+
 
 ## Project setup
 ```
