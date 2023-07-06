@@ -37,7 +37,7 @@
                     </div>
 
                     <div class="ml-5 p-1 rounded bg-[#111827] text-white px-6 " style="margin-top: -5px; margin-right: 12px;">
-                        <a href="" class=""> <router-link :to="{ }"> <i class="fa fa-print"></i></router-link></a>
+                        <a href="" class=""> <router-link :to="{}"> <i class="fa fa-print"></i></router-link></a>
 
                         <a href="" class="ml-5"> <router-link :to="{ }"> <i class="fa fa-file-excel"></i></router-link></a>
 

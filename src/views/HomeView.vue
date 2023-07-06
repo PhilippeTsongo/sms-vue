@@ -15,13 +15,13 @@
             </div>
             <div class="rounded-md bg-white py-7 flex items-stretch ">
 
-                  <a href="" class="text-gray-500 flex-1 text-center"><i class="fa fa-users"></i> Etudiants</a>
+                  <a href="" class="text-gray-500 flex-1 text-center"><router-link :to="{ name: 'student' }"> <i class="fa fa-users"></i> Etudiants </router-link></a>
 
-                  <a href="" class="text-gray-500 flex-1 text-center"><i class="fa fa-screen-user"></i> Classes</a>
+                  <a href="" class="text-gray-500 flex-1 text-center"><router-link :to="{ name: 'student' }"> <i class="fa fa-screen-user"></i> Classes </router-link></a>
 
-                  <a href="" class="text-gray-500 flex-1 text-center"><i class="fa fa-chalkboard"></i> Enseignants</a>
+                  <a href="" class="text-gray-500 flex-1 text-center"><router-link :to="{ name: 'student' }"> <i class="fa fa-chalkboard"></i> Enseignants </router-link></a>
 
-                  <a href="" class="text-gray-500 flex-1 text-center"> <i class="fa fa-wallet"></i> Paiements</a>
+                  <a href="" class="text-gray-500 flex-1 text-center"><router-link :to="{ name: 'student' }"> <i class="fa fa-wallet"></i> Paiements </router-link></a> 
 
             </div>
 
@@ -78,7 +78,7 @@
                      <div class="text-center mt-4">
                         <div class="radial-progress text-green-500 border-green-500" style="--value:70;">70%</div>
                         <div class="m-4">
-                           <a href="" class="w-60 rounded-md text-white bg-green-500 p-2">Voir plus</a>
+                           <a href="" class="w-60 rounded-md text-white bg-green-500 p-2"><router-link :to="{ name: 'student' }">Voir plus</router-link></a>
                         </div>
                      </div>
                   </div>
@@ -112,11 +112,11 @@
                         <h2 class="">Nombre d'Etudiants</h2>
                         <div class="flex mt-5 pl-20 flex justify-between">
                            <div class="border-r">
-                              <a href="" class="text-pink-500 font-bold"> <i class="fa fa-times-circle"></i> 10 Abandons </a>
+                              <a href="" class="text-pink-500 font-bold"> <router-link :to="{ name: 'student' }"> <i class="fa fa-times-circle"></i> 10 Abandons </router-link></a>
                            </div>
 
                            <div class="w-40 ml-20 mr-10">
-                              <a href="" class="text-blue-500 font-bold"><i class="fa fa-check text-blue-500"></i>  500 Actifs </a>
+                              <a href="" class="text-blue-500 font-bold"> <router-link :to="{ name: 'student' }"> <i class="fa fa-check text-blue-500"></i>  500 Actifs </router-link></a>
                            </div>
                         </div>
                      </div>
@@ -135,35 +135,42 @@
                   </div>
                </div>   
 
-
-                  <div class="flex-1">
-                     <div class="rounded-md bg-green-100 p-4 ml-5 w-60">
-                        <div class="flex">
-                           <h2 class="">Paiements</h2>
-                           <div >
-                              <p class="text-white bg-green-500 p-1 rounded-md ml-24 " >70%</p>
-                           </div>
-                        </div>
-                        <div class="text-center mt-4">
-                           <div class="radial-progress text-green-500 border-green-500" style="--value:70;">70%</div>
-                           <div class="m-4">
-                              <a href="" class="w-60 rounded-md text-white bg-green-500 p-2">Voir plus</a>
-                           </div>
+               <div class="grid grid-flow-col flex-streched">
+                  <div class="rounded-md bg-green-100 p-4 ml-5">
+                     <div class="flex">
+                        <h2 class="">Horreur</h2>
+                     </div>
+                     <div class="text-center mt-4">
+                        <div class="m-4">
+                           <a href="" class="w-60 rounded-md text-white bg-green-500 p-2"><router-link :to="{name: 'student' }"> Voir plus </router-link></a>
                         </div>
                      </div>
-
-                     <div class="rounded-md bg-green-100 p-4 ml-5 w-60 mt-5">
-                       
-                        <div class="text-center mt-4">
-                           <div class="radial-progress text-green-500 border-green-500" style="--value:70;">70%</div>
-                           <div class="m-4">
-                              <a href="" class="w-60 rounded-md text-white bg-green-500 p-2">Voir plus</a>
-                           </div>
-                        </div>
-                     </div>
-
-
                   </div>
+
+                  <div class="rounded-md bg-green-100 p-4 ml-5">
+                     <div class="flex">
+                        <h2 class="">Points</h2>
+                     </div>
+                     <div class="text-center mt-4">
+                        <div class="m-4">
+                           <a href="" class="w-60 rounded-md text-white bg-green-500 p-2"><router-link :to="{ name: 'student' }"> Voir plus </router-link></a>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="rounded-md bg-green-100 p-4 ml-5">
+                     <div class="flex">
+                        <h2 class="">Activités académiques</h2>
+                     </div>
+                     <div class="text-center mt-4">
+                        <div class="m-4">
+                           <a href="" class="w-60 rounded-md text-white bg-green-500 p-2"><router-link :to="{ name: 'student' }"> Voir plus </router-link></a>
+                        </div>
+                     </div>
+                  </div>
+
+
+               </div>
 
 
             </div>
