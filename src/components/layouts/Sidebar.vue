@@ -1,58 +1,58 @@
 <template>
-    <div class="sidebar pt-5 pl-3 pr-3 w-60 ml-1 bg-[#F5F7FB]">
+    <div class="sidebar pt-5 pl-3 pr-3 md:w-48 bg-gray-900">
 
-        <ul class="mt-12">
+        <h1 class="bg-gray-900 font-bold border-b text-center text-5xl">SMS</h1>
+
+        <ul class="mt-8">
             <li class="">
-                <a href=""> <router-link :to="{ name: 'home' }"> <i class="fa fa-home"></i>Dashboard </router-link> </a>
+                <a href=""> <router-link :to="{ name: 'home' }"><i class="fa fa-home mr-2"></i> Dashboard </router-link> </a>
             </li>
         </ul>
-        <ul class="mt-5">
+        <ul class="mt-8">
             Etudiants
-
-            <li class="ml-0 mt-5">
-                <a href=""> <router-link :to="{ name: 'student' }"><i class="fa fa-users"></i>Etudiants</router-link>    </a>
+            <li class="ml-0 mt-3">
+                <a href=""> <router-link :to="{ name: 'student' }"><i class="fa fa-users mr-2"></i> Etudiants</router-link>    </a>
             </li>
-            <li class="ml-0 mt-5">
-                <a href=""> <router-link :to="{ name: 'student' }"><i class="fa fa-book"></i>Cours</router-link></a>
+            <li class="ml-0 mt-3">
+                <a href=""> <router-link :to="{ name: 'student' }"><i class="fa fa-book mr-2"></i> Cours</router-link></a>
             </li>
-            
         </ul>
-        <ul class="mt-5">
+        <ul class="mt-8">
+            Enseignant
+            <li class="ml-0 mt-3">
+                <a href=""> <router-link :to="{ name: 'lecturer' }"><i class="fa fa-users mr-2"></i> Enseignant</router-link>    </a>
+            </li>
+        </ul>
+        <ul class="mt-8">
             Finance
-            <li class="ml-0 mt-5">
-                <a href=""> <router-link :to="{ name: 'student' }"><i class="fa fa-wallet"></i>Paiements </router-link></a>
+            <li class="ml-0 mt-3">
+                <a href=""> <router-link :to="{ name: 'student' }"><i class="fa fa-wallet mr-2"></i> Paiements </router-link></a>
             </li>
-            <li class="ml-0 mt-5">
-                <a href=""> <router-link :to="{ name: 'student' }"><i class="fa fa-coins"></i>Budget </router-link></a>
+            <li class="ml-0 mt-3">
+                <a href=""> <router-link :to="{ name: 'student' }"><i class="fa fa-coins mr-2"></i> Budget </router-link></a>
             </li>
         </ul>
-            <ul class="mt-5">
+            <ul class="mt-8">
             Activités
-            <li class="ml-0 mt-5">
-                <a href=""> <router-link :to="{ name: 'student' }"> <i class="fa fa-clock"></i>Horaires</router-link></a>
-            </li>
-            <li class="ml-0 mt-5">
-                <a href=""> <router-link :to="{ name: 'student' }"><i class="fa fa-coins"></i>Activités</router-link></a>
+            <li class="ml-0 mt-3">
+                <a href=""> <router-link :to="{ name: 'student' }"><i class="fa fa-coins mr-2"></i> Activités</router-link></a>
             </li>
         </ul>
 
-        <ul class="mt-5">
+        <ul class="mt-8">
             Paramètres
-            <li class="ml-0 mt-5">
-                <a href=""> <router-link :to="{ name: 'student' }"> <i class="fa fa-wrench"></i>Paramètres</router-link></a>
-            </li>
-            <li class="ml-0 mt-5">
-                <a href=""> <router-link :to="{ name: 'student' }"> <i class="fa fa-user"></i>Profile</router-link></a>
+            <li class="ml-0 mt-3">
+                <a href=""> <router-link :to="{ name: 'student' }"> <i class="fa fa-wrench mr-2"></i> Paramètres</router-link></a>
             </li>
         </ul>
 
-        <ul class="mt-5">
-            <li class="ml-0 mt-5">
-                <a href=""> <router-link :to="{ name: 'student' }"> <i class="fa fa-users"></i>Utilisateurs</router-link></a>
+        <ul class="mt-8">
+            <li class="ml-0 mt-3">
+                <a href=""> <router-link :to="{ name: 'student' }"> <i class="fa fa-users mr-2"></i> Utilisateurs</router-link></a>
             </li>
             
-            <li class="ml-0 mt-2">
-                <a href=""> <router-link :to="{ name: 'student' }"> <i class="fa fa-power-off"></i>econnexion</router-link></a>
+            <li class="ml-0 mt-3">
+                <a href=""> <router-link :to="{ name: 'student' }"> <i class="fa fa-power-off mr-2"></i> econnexion</router-link></a>
             </li>
         </ul>
     </div>
@@ -68,7 +68,7 @@ export default {
 <style>
 
 .sidebar{
-    color: silver;
+    color: gray;
     letter-spacing: 1px;
     font-size: 13px;
     /* position: fixed; */
@@ -80,8 +80,8 @@ export default {
  } */
 
 .sidebar ul li a{
-    color: #111827;
     letter-spacing: 1px;
+    color: white;
  }
 
 

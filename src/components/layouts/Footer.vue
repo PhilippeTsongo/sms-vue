@@ -1,11 +1,10 @@
 <template>
-    <div></div>
+    <div class="text-center p-5">copyright 2023 Philippe Tsongo</div>
 </template>
 
 
 <script>
 
-import '../../public/js/chart.js'
 
 export default{
 name: 'Footer',

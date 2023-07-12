@@ -2,15 +2,15 @@
    <div class="m-0">
       <Head/>
       
-      <Header/>
-
       <div class="flex">
 
          <Sidebar/>
 
-         <div class="content p-5 rounded-md bg-[#F5F7FB] mt-12">
+         <div class="content p-5 rounded-md bg-[#F5F7FB] mt-0">
 
-            <div class="mb-2 flex">
+            <Header/>
+
+            <div class="mb-2 mt-8 flex">
                <h1 class="mr-24"><i class="fa fa-home text-[#111827]"></i> Dashboard</h1>
             </div>
             <div class="rounded-md bg-white py-7 flex items-stretch ">
@@ -135,9 +135,9 @@
                   </div>
                </div>   
 
-               <div class="grid grid-flow-col flex-streched">
-                  <div class="rounded-md bg-green-100 p-4 ml-5">
-                     <div class="flex">
+               <div class="md:grid grid-flow-col justify-stretch gap-5">
+                  <div class="rounded-md bg-green-100 p-4 mt-5">
+                     <div class="flex1">
                         <h2 class="">Horreur</h2>
                      </div>
                      <div class="text-center mt-4">
@@ -147,8 +147,8 @@
                      </div>
                   </div>
 
-                  <div class="rounded-md bg-green-100 p-4 ml-5">
-                     <div class="flex">
+                  <div class="rounded-md bg-green-100 p-4 mt-5">
+                     <div class="flex1">
                         <h2 class="">Points</h2>
                      </div>
                      <div class="text-center mt-4">
@@ -158,7 +158,7 @@
                      </div>
                   </div>
 
-                  <div class="rounded-md bg-green-100 p-4 ml-5">
+                  <div class="rounded-md bg-green-100 p-4 mt-5">
                      <div class="flex">
                         <h2 class="">Activités académiques</h2>
                      </div>
@@ -168,12 +168,12 @@
                         </div>
                      </div>
                   </div>
-
-
                </div>
 
 
             </div>
+
+            <Footer/>
          </div>
 
       </div>
@@ -185,10 +185,11 @@
 import Head from "../components/layouts/head.vue";
 import Header from "../components/layouts/Header.vue";
 import Sidebar from "../components/layouts/Sidebar.vue";
+import Footer from "../components/layouts/Footer.vue";
 
 export default {
   name: "HomeView",
-  components: { Head, Header, Sidebar }
+  components: { Head, Header, Sidebar, Footer }
 };
 </script>
 

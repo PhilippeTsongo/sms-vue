@@ -11,7 +11,7 @@
             <div class="content p-5 rounded-md bg-[#F5F7FB] mt-12">
     
                 <div class="mb-2 flex">
-                    <h1 class="flex-1 "><i class="fa fa-users text-[#111827]"></i> Etudiants</h1>
+                    <h1 class="flex-1 "><i class="fa fa-users text-[#111827]"></i> Enseignants</h1>
 
                     <div class="">
                         <a href="" class="bg-[#111827] p-1 rounded text-white"> <router-link :to="{ name: 'create_student'}"> <i class="fa fa-plus-circle"></i> Nouvel étudiant  </router-link></a>
@@ -26,7 +26,7 @@
                 <div class="rounded-md bg-white pt-6 pl-6 pr-6 pb-2 mt-2">
                     <div class="bg-[#111827]-100 flex">
                         <div class="title flex-1">
-                            <h2 class="font-bolder"><i class="fa fa-list-ol"></i> Liste d'étudiants</h2>
+                            <h2 class="font-bolder"><i class="fa fa-list-ol"></i> Liste d'enseignants</h2>
                         </div>
 
                         <div class="" style="margin-top: -5px;">
@@ -53,9 +53,7 @@
                                             <tr class="">
                                                 <th scope="col" class=" px-3 py-3">#</th>
                                                 <th scope="col" class=" px-3 py-3">Matricule</th>
-                                                <th scope="col" class=" px-3 py-3">Images</th>
                                                 <th scope="col" class=" px-3 py-3">Nom & Post Nom</th>
-                                                <th scope="col" class=" px-3 py-3">Classe</th>
                                                 <th scope="col" class=" px-3 py-3">Statut</th>
                                                 <th scope="col" class=" px-3 py-3">Action</th>
                                             </tr>

@@ -1,11 +1,8 @@
 <template>
-    <div class="header pt-3 pb-3 bg-[#F5F7FB]">
+    <div class="header pb-3 bg-[#F5F7FB]">
       <div class="flex">
-         <h1 class="mt-1 ml-4 pr-2 md:w-40">SMS</h1>
-
-        <div class="flex">
-          <form action="" class="absolute ml-0">
-              <input type="search" class="pl-2 p-1 rounded-md search" placeholder="recherchez...">
+          <form action="" class="absolute">
+              <input type="search" class="pl-2 p-2 rounded-md search" placeholder="recherchez...">
                 <i class="fa fa-search search-icon"></i>
           </form>
 
@@ -24,9 +21,7 @@
                 <img src="../../../public/images/profiles/phil.jpeg" class="rounded-full ml-2 w-8 h-8" alt="Philippe Tsongo THKV">
               </div>
           </div>
-        </div>
       </div>
-
     </div>
 </template>
 
@@ -49,7 +44,6 @@ export default {
 
 .header {
   display: flex;
-  position: fixed;
   width: 100%;
 }
 
@@ -65,7 +59,7 @@ export default {
 
 .search-icon {
   position: absolute;
-  margin: 5px 0px 0px -25px;
+  margin: 11px 0px 0px -25px;
 }
 
 @media (max-width: 900px) {
