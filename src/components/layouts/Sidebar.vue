@@ -9,12 +9,12 @@
             </li>
         </ul>
         <ul class="mt-8">
-            Etudiants
+            Staff
             <li class="ml-0 mt-3">
-                <a href=""> <router-link :to="{ name: 'student' }"><i class="fa fa-users mr-2"></i> Etudiants</router-link>    </a>
+                <a href=""> <router-link :to="{ name: 'staff' }"><i class="fa fa-users mr-2"></i> Staff</router-link>    </a>
             </li>
             <li class="ml-0 mt-3">
-                <a href=""> <router-link :to="{ name: 'student' }"><i class="fa fa-book mr-2"></i> Cours</router-link></a>
+                <a href=""> <router-link :to="{ name: 'course' }"><i class="fa fa-book mr-2"></i> Cours</router-link></a>
             </li>
         </ul>
         <ul class="mt-8">
@@ -26,33 +26,33 @@
         <ul class="mt-8">
             Finance
             <li class="ml-0 mt-3">
-                <a href=""> <router-link :to="{ name: 'student' }"><i class="fa fa-wallet mr-2"></i> Paiements </router-link></a>
-            </li>
-            <li class="ml-0 mt-3">
-                <a href=""> <router-link :to="{ name: 'student' }"><i class="fa fa-coins mr-2"></i> Budget </router-link></a>
+                <a href=""> <router-link :to="{ name: 'finance' }"><i class="fa fa-wallet mr-2"></i> Finance </router-link></a>
             </li>
         </ul>
             <ul class="mt-8">
             Activités
             <li class="ml-0 mt-3">
-                <a href=""> <router-link :to="{ name: 'student' }"><i class="fa fa-coins mr-2"></i> Activités</router-link></a>
+                <a href=""> <router-link :to="{ name: 'activities' }"><i class="fa fa-coins mr-2"></i> Activités</router-link></a>
             </li>
         </ul>
 
         <ul class="mt-8">
             Paramètres
             <li class="ml-0 mt-3">
-                <a href=""> <router-link :to="{ name: 'student' }"> <i class="fa fa-wrench mr-2"></i> Paramètres</router-link></a>
+                <a href=""> <router-link :to="{ name: 'setup' }"> <i class="fa fa-wrench mr-2"></i> Paramètres</router-link></a>
             </li>
         </ul>
 
         <ul class="mt-8">
             <li class="ml-0 mt-3">
-                <a href=""> <router-link :to="{ name: 'student' }"> <i class="fa fa-users mr-2"></i> Utilisateurs</router-link></a>
+                <a href=""> <router-link :to="{ name: 'user' }"> <i class="fa fa-users mr-2"></i> Utilisateurs</router-link></a>
             </li>
             
             <li class="ml-0 mt-3">
-                <a href=""> <router-link :to="{ name: 'student' }"> <i class="fa fa-power-off mr-2"></i> econnexion</router-link></a>
+                <a href=""> <router-link :to="{ name: 'login' }"> <i class="fa fa-power-off mr-2"></i> Connexion</router-link></a>
+            </li>
+            <li class="ml-0 mt-3">
+                <a href=""> <router-link :to="{ name: 'logout' }"> <i class="fa fa-power-off mr-2"></i> Déconnexion</router-link></a>
             </li>
         </ul>
     </div>

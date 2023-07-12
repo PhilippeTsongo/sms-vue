@@ -34,6 +34,18 @@ const routes = [
     component: Create
   },
 
+  //staff
+  {
+    path: '/staff',
+    name: 'staff',
+    component: Index
+  },
+  {
+    path: '/staff/create',
+    name: 'create_staff',
+    component: Create
+  },
+
   //lecturer
   {
     path: '/lecturer',
