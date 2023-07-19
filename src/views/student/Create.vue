@@ -10,18 +10,18 @@
 
            <Header/>
 
-           <div class="content rounded-md bg-[#F5F7FB] mt-12">
+            <div class="content rounded-md bg-[#F5F7FB] mt-12">
    
-               <div class="mb-2 flex">
-                   <h1 class="flex-1 "><i class="fa fa-users text-[#111827]"></i> Etudiants</h1>
+                <div class="mb-2 flex">
+                    <h1 class="flex-1 text-[#111827]"><i class="fa fa-users"></i> Etudiants</h1>
 
-                   <div class="">
-                       <a href="" class="border bg-white p-1 rounded  hover:text-white hover:bg-[#111827] hover:border-none"> <router-link :to="{ name: 'IndexStudent'}"> <i class="fa fa-plus-circle"></i> Liste d'étudiants  </router-link></a>
-                   </div>
-               </div>
+                    <div class="">
+                        <a href="" class="border bg-white p-1 rounded  hover:text-white hover:bg-[#111827] hover:border-none"> <router-link :to="{ name: 'IndexStudent'}"> <i class="fa fa-plus-circle"></i> Liste d'étudiants  </router-link></a>
+                    </div>
+                </div>
              
-               <div class="flex">
-                   <div class="">
+                <div class="flex">
+                    <div class="">
                        <div class="rounded-md bg-white w-48 p-5 mt-2 ">
                            <div class="title">
                                <h2 class="font-bolder"><i class="fa fa-list-ol"></i> Détails</h2>
@@ -48,15 +48,15 @@
                                <h2 class="font-bolder"><i class="fa fa-list-ul"></i> Relatifs</h2>
                            </div>
                            <ul class="mt-5">
-                               <li class="py-2 px-2 w-100 mt-2 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white font-bold"><router-link :to="{ name: 'IndexFaculty'}"> <i class="fa-solid fa-rectangle-list"></i> Faculté</router-link></li>
-                               <li class="py-2 px-2 w-100 mt-2 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white font-bold"><router-link :to="{ name: 'IndexDepartment'}"> <i class="fa-solid fa-table-list"></i> Departement</router-link></li>
-                               <li class="py-2 px-2 w-100 mt-2 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white font-bold"><router-link :to="{ name: 'IndexPromotion'}"> <i class="fa-solid fa-list"></i> Promotion </router-link></li>
+                               <li class="py-2 px-2 w-100 mt-3 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white font-bold"><router-link :to="{ name: 'IndexFaculty'}"> <i class="fa-solid fa-rectangle-list"></i> Faculté</router-link></li>
+                               <li class="py-2 px-2 w-100 mt-3 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white font-bold"><router-link :to="{ name: 'IndexDepartment'}"> <i class="fa-solid fa-table-list"></i> Departement</router-link></li>
+                               <li class="py-2 px-2 w-100 mt-3 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white font-bold"><router-link :to="{ name: 'IndexPromotion'}"> <i class="fa-solid fa-list"></i> Promotion </router-link></li>
                            </ul>
 
                        </div>
-                   </div>
+                    </div>
                    
-                   <div class="flex-1 rounded-md bg-white pt-6 pl-6 pr-6 pb-2 ml-5 mt-2 w-100 ">
+                    <div class="flex-1 rounded-md bg-white pt-6 pl-6 pr-6 pb-2 ml-5 mt-2 w-100 ">
                        <div class="bg-[#111827]-100 flex">
                            <div class="title flex-1">
                                <h2 class="font-bolder"><i class="fa fa-list-ol"></i> Nouvel étudiant</h2>
@@ -121,11 +121,11 @@
                                </div>
                            </div>
                        </div>
-                   </div>
-               </div>
+                    </div>
+                </div>
                
-               <Footer/>
-           </div>
+                <Footer/>
+            </div>
 
       </div>    
    </div>

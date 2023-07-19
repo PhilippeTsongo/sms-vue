@@ -10,14 +10,11 @@
 
             <Header/>
 
-            
-
-
             <div class="content rounded-md bg-[#F5F7FB] mt-12">
     
                 <div class="mb-2 flex">
-                    <h1 class="flex-1 "><i class="fa fa-users text-[#111827]"></i> Etudiants</h1>
-
+                    <h1 class="flex-1 text-gray-400"><i class="fa fa-users"></i> Etudiants</h1>
+                    
                     <div class="">
                         <button v-if="showModal == false" class="border bg-white p-1 rounded  hover:text-white hover:bg-[#111827]" @click="toggleModal"><i class="fa fa-plus-circle"></i> Nouvel étudiant</button>
                     </div>
@@ -25,64 +22,210 @@
               
                 <!-- modal -->
                 <div v-if="showModal">
-                        <div class="backdrop grid grid-flow-col mt-2 bg-white rounded">
+                        <div class="backdrop grid grid-flow-col bg-white rounded">
                             <div class> 
-                                <div class="flex mx-20 p-5 w-3/4">
-                                    <h1 class="flex-1 transform-uppercase">Nouvel étudiant</h1>
-                                    <div class="">
+                                <div class="flex ml-14 my-5 md:w-3/4">
+                                    <div class="title flex-1">
+                                        <h2 class="font-bolde uppercase text-xl"><i class="fa fa-list-ol"></i> Nouvel étudiant</h2>
+                                    </div>
+                                    <div class="close">
                                         <button v-if="showModal" class="bg-white px-2 py-1 rounded text-red-600" @click="toggleModal"><i class="fa fa-xmark"></i> </button>
                                     </div>
                                 </div>
 
-                                <form action="" class="border mt-5 ml-20 mr-20 p-5 w-3/4">
-                                    <div class="">
-                                        <div class="md:grid grid-flow-col justify-stretch gap-5">
-                                            <div class="w-2/4" >
-                                                <div>
-                                                    <label for="firstName" class="block">Nom*</label>
+                                <!-- <div class="border px-20 py-5"> -->
+                                    <div class="register-form rounded-md border p-10 border-gray-300 md:absolute md:ml-auto md:mr-auto md:w-3/4 lg:ml-14">
+
+                                        <form @submit.prevent="handleSubmit">
+                                            <!-- tab1 -->
+                                            <div  v-if="pageOne" class="">
+                                                <h2>Identité de l'étudiant</h2>
+                                                
+                                                <div class="md:grid grid-flow-col flex-stretch gap-10">
+                                                    <div class="block md:inline">
+                                                        <label for="" class="block text-sm uppercase">Nom</label>
+                                                        <input type="text" v-model="firstName" class="block border-b p-2 border-gray-300 w-full" required >
+                                                    </div>
+
+                                                    <div class="block md:inline">
+                                                        <label for="" class="block text-sm uppercase">Post-nom</label>
+                                                        <input type="text"  v-model="familyName" class="block border-b p-2 border-gray-300 w-full" required>
+                                                    </div>
+
+                                                    <div class="block md:inline">
+                                                        <label for="" class="block text-sm uppercase">Prénom</label>
+                                                        <input type="password" v-model="lastName" class="block border-b p-2 border-gray-300 w-full" required>
+                                                    </div>
                                                 </div>
-                                                <div>
-                                                    <input type="text" id="firstName" class="border-b p-5">
+                                                <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+                                                    <div class="block md:inline">
+                                                        <label for="" class="block text-sm uppercase">Genre</label>
+                                                        <select v-model="gender" class="block border-b p-2 border-gray-300 w-full" required>
+                                                            <option class="select" value="Homme">H</option>
+                                                            <option class="select" value="Femme">F</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="block md:inline">
+                                                        <label for="" class="block text-sm uppercase">Lieu de naissance</label>
+                                                        <input type="text" v-model="placeBirth" class="block border-b p-2 border-gray-300 w-full">
+                                                    </div>
+
+                                                    <div class="block md:inline">
+                                                        <label for="" class="block text-sm uppercase">Date de naissance</label>
+                                                        <input type="date" v-model="dateBirth" class="block border-b p-2 border-gray-300 w-full" >
+                                                    </div>
+                                                </div>
+                                                <div class="mt-10 text-right">
+                                                    <div class="inline">
+                                                        <span href="" @click="showTab2" class="text-white rounded-md px-3 py-2 bg-[#111827] ml-5 hover:cursor-pointer"> Suivant</span>
+                                                    </div>
                                                 </div>
                                             </div>
 
-                                            <div class="w-2/4">
-                                                <div>
-                                                    <label for="FamilyName">Post Nom*</label>
+                                            <!-- tab2 -->
+
+                                            <div v-if="pageTwo" class="" >
+                                                <h2>Adresse de l'étudiant</h2>
+                                                
+                                                <div class="md:grid grid-flow-col flex-stretch gap-10">
+                                                    <div class="block md:inline">
+                                                        <label for="" class="block text-sm uppercase">Nationalité</label>
+                                                        <input type="text" v-model="country" class="block border-b p-2 border-gray-300 w-full" required >
+                                                    </div>
+
+                                                    <div class="block md:inline">
+                                                        <label for="" class="block text-sm uppercase">Province</label>
+                                                        <input type="text" v-model="province" class="block border-b p-2 border-gray-300 w-full" required>
+                                                    </div>
+
+                                                    <div class="block md:inline">
+                                                        <label for="" class="block text-sm uppercase">Ville</label>
+                                                        <input type="text" v-model="city" class="block border-b p-2 border-gray-300 w-full" required>
+                                                    </div>
                                                 </div>
-                                                <div>
-                                                    <input type="text" class="border-b p-5">
+                                                <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+
+                                                    <div class="block md:inline">
+                                                        <label for="" class="block text-sm uppercase">Commune</label>
+                                                        <input type="text" v-model="commune" class="block border-b p-2 border-gray-300 w-full">
+                                                    </div>
+
+                                                    <div class="block md:inline">
+                                                        <label for="" class="block text-sm uppercase">Quartier</label>
+                                                        <input type="text" v-model="quarter" class="block border-b p-2 border-gray-300 w-full" >
+                                                    </div>
+
+                                                    <div class="block md:inline">
+                                                        <label for="" class="block text-sm uppercase">Cellule</label>
+                                                        <input type="text" v-model="cel" class="block border-b p-2 border-gray-300 w-full" >
+                                                    </div>
+                                                </div>
+                                                <div class="mt-10 text-right">
+                                                    <div class="inline">
+                                                        <span @click="showTab1" class="text-white rounded-md px-3 py-2 bg-[#111827] ml-5 hover:cursor-pointer"> Retour</span>
+                                                        <span @click="showTab3" class="text-white rounded-md px-3 py-2 bg-[#111827] ml-5 hover:cursor-pointer"> Suivant </span>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                       
-                                    </div>
-                                    <div class="flex">
-                                        <div class="">
-                                            <div>
-                                                <label for="FamilyName">Post Nom*</label>
-                                                <input type="text" class=" p-5">
+
+                                            <!-- tab3 -->
+
+                                            <div v-if="pageThree" class="" >
+                                                <h2>Informations des parents de l'étudiant</h2>
+                                                
+                                                <div class="md:grid grid-flow-col flex-stretch gap-10">
+                                                    <div class="block md:inline">
+                                                        <label for="" class="block text-sm uppercase">Nom du père</label>
+                                                        <input type="text" v-model="fatherName" class="block border-b p-2 border-gray-300 w-full" required >
+                                                    </div>
+
+                                                    <div class="block md:inline">
+                                                        <label for="" class="block text-sm uppercase">Nom de la mère</label>
+                                                        <input type="text" v-model="motherName" class="block border-b p-2 border-gray-300 w-full" required>
+                                                    </div>
+
+                                                </div>
+                                                <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+
+                                                    <div class="block md:inline">
+                                                        <label for="" class="block text-sm uppercase">Téléphone</label>
+                                                        <input type="text" v-model="fatherTel" class="block border-b p-2 border-gray-300 w-full">
+                                                    </div>
+
+                                                    <div class="block md:inline">
+                                                        <label for="" class="block text-sm uppercase">Professsion</label>
+                                                        <input type="text" v-model="fatherTitle" class="block border-b p-2 border-gray-300 w-full">
+                                                    </div>
+
+                                                    <div class="block md:inline">
+                                                        <label for="" class="block text-sm uppercase">Téléphone</label>
+                                                        <input type="text" v-model="motherTel" class="block border-b p-2 border-gray-300 w-full" >
+                                                    </div>
+
+                                                    <div class="block md:inline">
+                                                        <label for="" class="block text-sm uppercase">Professsion</label>
+                                                        <input type="text" v-model="motherTitle" class="block border-b p-2 border-gray-300 w-full">
+                                                    </div>
+                                                </div>
+
+                                                <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+                                                    <div class="block md:inline">
+                                                        <label for="" class="block text-sm uppercase">Adresse</label>
+                                                        <input type="text" v-model="parentAddress" class="block border-b p-2 border-gray-300 w-full" required >
+                                                    </div>
+                                                </div>
+                                                <div class="mt-10 text-right">
+                                                    <div class="inline">
+                                                        <span @click="showTab2" class="text-white rounded-md px-3 py-2 bg-[#111827] ml-5 hover:cursor-pointer"> Retour</span>
+                                                        <span @click="showTab4" class="text-white rounded-md px-3 py-2 bg-[#111827] ml-5 hover:cursor-pointer"> Suivant</span>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
 
-                                    <div class="">
-                                        <div>
-                                            <label for="FamilyName">Email*</label>
-                                            <input type="text" class=" p-5">
-                                        </div>
-                                    </div>
-                                </form>
+                                             <!-- tab4 -->
 
-                                
+                                             <div v-if="pageFour" class="" >
+                                                <h2>Affectation de l'étudiant</h2>
+                                                
+                                                <div class="md:grid grid-flow-col flex-stretch gap-10">
+                                                    <div class="block md:inline">
+                                                        <label for="" class="block text-sm uppercase">Faculté</label>
+                                                        <input type="text" v-model="faculty" class="block border-b p-2 border-gray-300 w-full" required >
+                                                    </div>
+
+                                                    <div class="block md:inline">
+                                                        <label for="" class="block text-sm uppercase">Departement</label>
+                                                        <input type="text" v-model="department" class="block border-b p-2 border-gray-300 w-full" required>
+                                                    </div>
+
+                                                    <div class="block md:inline">
+                                                        <label for="" class="block text-sm uppercase">Promotion</label>
+                                                        <input type="text" v-model="promotion" class="block border-b p-2 border-gray-300 w-full" required>
+                                                    </div>
+
+                                                </div>
+                                                
+                                                <div class="mt-10 text-right">
+                                                    <div class="inline">
+                                                        <span @click="firstLastTab" class="text-white rounded-md px-3 py-2 bg-[#111827] ml-5 hover:cursor-pointer"> Retour</span>
+                                                        <button class="text-white rounded-md px-3 py-2 bg-[#111827] ml-5 hover:cursor-pointer"> Enregistrer</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </form>
+                                    </div>
+                                <!-- </div> -->
+
                             </div>
-
 
                         </div>
                 </div>
 
-                <div class="flex">
+                <div v-if="showModal == false" class="flex">
                     <div class="">
                         <div class="rounded-md bg-white w-48 p-5 mt-2 ">
                             <div class="title">
@@ -110,9 +253,9 @@
                                 <h2 class="font-bolder"><i class="fa fa-list-ul"></i> Relatifs</h2>
                             </div>
                             <ul class="mt-5">
-                                <li class="py-2 px-2 w-100 mt-2 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white font-bold"><router-link :to="{ name: 'IndexFaculty'}"> <i class="fa-solid fa-rectangle-list"></i> Faculté</router-link></li>
-                                <li class="py-2 px-2 w-100 mt-2 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white font-bold"><router-link :to="{ name: 'IndexDepartment'}"> <i class="fa-solid fa-table-list"></i> Departement</router-link></li>
-                                <li class="py-2 px-2 w-100 mt-2 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white font-bold"><router-link :to="{ name: 'IndexPromotion'}"> <i class="fa-solid fa-list"></i> Promotion </router-link></li>
+                                <li class="py-2 px-2 w-100 mt-4 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white font-bold"><router-link :to="{ name: 'IndexFaculty'}"> <i class="fa-solid fa-rectangle-list"></i> Faculté</router-link></li>
+                                <li class="py-2 px-2 w-100 mt-4 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white font-bold"><router-link :to="{ name: 'IndexDepartment'}"> <i class="fa-solid fa-table-list"></i> Departement</router-link></li>
+                                <li class="py-2 px-2 w-100 mt-4 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white font-bold"><router-link :to="{ name: 'IndexPromotion'}"> <i class="fa-solid fa-list"></i> Promotion </router-link></li>
                             </ul>
 
                         </div>
@@ -126,9 +269,9 @@
 
                             <div class="" style="margin-top: -5px;">
                                 <input  type="search" class="p-1 rounded-md border border-gray-200"> 
-                                <span class="search-icon-table">
+                                <!-- <span class="search-icon-table">
                                     <i class="fa fa-search"></i>
-                                </span>
+                                </span> -->
                             </div>
 
                             <div class="ml-5 p-1 rounded" style="margin-top: -5px; margin-right: -3px;">
@@ -285,22 +428,74 @@ export default {
   components: { Head, Header, Sidebar, Footer },
 
   data() {
-    return {
-      text: "Required field are marked *",
-      showModal: false
-    };
+        return {
+            text: "Required field are marked *",
+            showModal: false,
+            pageOne: true,
+            pageTwo: false,
+            pageThree: false,
+            pageFour: false,
+
+
+            //form fields
+            firstName: '',
+            familyName: '',
+            lastName: '',
+            gender: '',
+            placeBirth: '',
+            dateBirth: '',
+            country: '',
+            province: '',
+            city: '',
+            commune: '',
+            quarter: '',
+            cel: '',
+            fatherName: '',
+            motherName: '',
+            fatherTitle: '',
+            motherTitle: '',
+            fatherTel: '',
+            motherTel: '',
+            parentAddress: ''
+
+        };
   },
 
   // show and close modal
   methods: {
+    
     toggleModal() {
-      this.showModal = !this.showModal;
-      console.log(this.showModal);
+        this.showModal = !this.showModal;
     },
 
     closeToggleModal() {
       this.showModal = !this.showModal;
+    },
+
+    showTab1(){
+        this.pageOne = !this.pageOne;
+        this.pageTwo = !this.pageTwo;
+    },
+
+    showTab2(){
+        this.pageTwo = !this.pageTwo;
+        this.pageOne = !this.pageOne;
+    },
+
+    showTab3(){
+        this.pageThree = !this.pageThree;
+        this.pageTwo = !this.pageTwo;
+    },
+
+    showTab4(){
+        this.pageFour = !this.pageFour;
+        this.pageThree = !this.pageThree;
+    },
+
+    firstLastTab(){
+        this.pageThree = !this.pageThree;
     }
+    
 
     // closeEvent() {
     //     this.$emit('close')
@@ -328,23 +523,30 @@ export default {
   font-weight: bolder;
 }
 
-/* added */
-
-/* .modal{
-    width: 40%;
-    padding: 20px;
-    margin: 100px auto;
-    background: white;
-    border-radius: 10px;
-    position: absolute;
-
-} */
-
 .backdrop{
-    top: 60;
+    top: 0;
     position: fixed;
-    /* background: rgba(0,0,0,0.5); */
     width: 100%;
     height: 100%;
 }
+
+/* added */
+.register-form{
+    margin: 30px auto;
+}
+label{
+    letter-spacing: 1px;
+}
+
+@media (max-width: 900px) {
+    .register-form{
+        width: 65%;
+        margin: 0% 5%;
+    }
+    .close{
+        position: absolute;
+        margin-left: 45%;
+    }
+}
+
 </style>
