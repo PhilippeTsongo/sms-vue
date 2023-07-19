@@ -6,27 +6,27 @@
 
          <Sidebar/>
 
-         <div class="content p-5 rounded-md bg-[#F5F7FB] mt-0">
+         <div class="content px-5 py-3 bg-[#F5F7FB] mt-0">
 
             <Header/>
 
-            <div class="mb-2 mt-8 flex">
+            <!-- <div class="mb-2 mt-3 flex">
                <h1 class="mr-24"><i class="fa fa-home text-[#111827]"></i> Dashboard</h1>
+            </div> -->
+            <div class="rounded-md bg-white py-7 flex items-stretch mt-10 ">
+
+                  <a href="" class="text-gray-500 flex-1 text-center"><router-link :to="{ name: 'IndexStudent' }"> <i class="fa fa-users"></i> Etudiants </router-link></a>
+
+                  <a href="" class="text-gray-500 flex-1 text-center"><router-link :to="{ name: 'IndexPromotion' }"> <i class="fa fa-screen-user"></i> Classes </router-link></a>
+
+                  <a href="" class="text-gray-500 flex-1 text-center"><router-link :to="{ name: 'IndexLecturer' }"> <i class="fa fa-chalkboard"></i> Enseignants </router-link></a>
+
+                  <a href="" class="text-gray-500 flex-1 text-center"><router-link :to="{ name: 'IndexPayment' }"> <i class="fa fa-wallet"></i> Paiements </router-link></a> 
+
             </div>
-            <div class="rounded-md bg-white py-7 flex items-stretch ">
-
-                  <a href="" class="text-gray-500 flex-1 text-center"><router-link :to="{ name: 'student' }"> <i class="fa fa-users"></i> Etudiants </router-link></a>
-
-                  <a href="" class="text-gray-500 flex-1 text-center"><router-link :to="{ name: 'student' }"> <i class="fa fa-screen-user"></i> Classes </router-link></a>
-
-                  <a href="" class="text-gray-500 flex-1 text-center"><router-link :to="{ name: 'student' }"> <i class="fa fa-chalkboard"></i> Enseignants </router-link></a>
-
-                  <a href="" class="text-gray-500 flex-1 text-center"><router-link :to="{ name: 'student' }"> <i class="fa fa-wallet"></i> Paiements </router-link></a> 
-
-            </div>
 
 
-            <div class="rounded-md bg-white p-5 mt-5">
+            <div class="rounded-md mt-5">
                
                <div class="md:grid grid-flow-col justify-stretch gap-5">
                   <div class="">
@@ -37,7 +37,7 @@
                               <h1 class="text-2xl">200</h1>
                            </div>
                            <div class="mt-1 absolute right-0">
-                              <span class="bg-pink-600 rounded-full text-white text-xs p-1" ><i class="fa fa-check"></i> Actif 10</span>
+                              <span class="bg-white rounded-full text-xs p-1 " ><i class="fa fa-check"></i> Actif 10</span>
                            </div>
                         </div>
                      </div>
@@ -48,7 +48,7 @@
                               <h1 class="text-2xl">300</h1>
                            </div>
                            <div class="mt-1 absolute right-0">
-                              <span class="bg-pink-600 rounded-full text-white text-xs ml-3 p-1"><i class="fa fa-check"></i> Actif 200</span>
+                              <span class="bg-white rounded-full  border-red-300 text-xs ml-3 p-1"><i class="fa fa-check"></i> Actif 200</span>
                            </div>
                         </div>
                      </div>
@@ -78,7 +78,7 @@
                      <div class="text-center mt-4">
                         <div class="radial-progress text-green-500 border-green-500" style="--value:70;">70%</div>
                         <div class="m-4">
-                           <a href="" class="w-60 rounded-md text-white bg-green-500 p-2"><router-link :to="{ name: 'student' }">Voir plus</router-link></a>
+                           <a href="" class="w-60 rounded-md text-white bg-green-500 p-2"><router-link :to="{ name: 'IndexPayment' }">Voir plus</router-link></a>
                         </div>
                      </div>
                   </div>
@@ -86,7 +86,7 @@
                   
                   
                <div class="md:grid grid-flow-col justify-stretch gap-5">
-                     <div class="rounded-md bg-white p-4 mt-5 text-[#111827] staff">
+                     <div class="rounded-md bg-white p-4 mt-5 text-[#111827] staff ">
                         <h2>Etats des cours</h2>
                         <div class="flex justify-between mt-2 text-white">
                            <div class="flex p-2 bg-pink-500 rounded-full">
@@ -108,21 +108,21 @@
                            </div>
                         </div>
                      </div>
-                     <div class="rounded-md bg-blue-100 p-4 mt-5 text-[#111827] staff">
-                        <h2 class="">Nombre d'Etudiants</h2>
+                     <div class="rounded-md p-4 mt-5 bg-white text-[#111827]  staff">
+                        <h2 class="">Nombre d'étudiants</h2>
                         <div class="flex mt-5 pl-20 flex justify-between">
-                           <div class="border-r">
-                              <a href="" class="text-pink-500 font-bold"> <router-link :to="{ name: 'student' }"> <i class="fa fa-times-circle"></i> 10 Abandons </router-link></a>
+                           <div class="">
+                              <a href="" class=" font-bold"> <router-link :to="{ name: 'IndexStudent' }"> <i class="fa fa-times-circle"></i> 10 Abandons </router-link></a>
                            </div>
 
                            <div class="w-40 ml-20 mr-10">
-                              <a href="" class="text-blue-500 font-bold"> <router-link :to="{ name: 'student' }"> <i class="fa fa-check text-blue-500"></i>  500 Actifs </router-link></a>
+                              <a href="" class=" font-bold"> <router-link :to="{ name: 'IndexStudent' }"> <i class="fa fa-check"></i>  500 Actifs </router-link></a>
                            </div>
                         </div>
                      </div>
                </div>
 
-               <div class="rounded-md bg-green-100 p-4 mt-5 w-6/7 text-[#111827] staff">
+               <div class="rounded-md bg-white  p-4 mt-5 w-6/7 text-[#111827] staff ">
                   <div class="flex">
                      <h2 class="">Evolution de l'année académique</h2>
                      <div >
@@ -130,7 +130,7 @@
                      </div>
                   </div>
                   
-                  <div class="w-full bg-green-300 rounded-full dark:bg-gray-700 mt-5">
+                  <div class="w-full bg-green-300 rounded-full mt-5">
                      <div class="bg-green-500 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style="width: 45%"> <i class="fa fa-check"></i>45%</div>
                   </div>
                </div>   
@@ -142,7 +142,7 @@
                      </div>
                      <div class="text-center mt-4">
                         <div class="m-4">
-                           <a href="" class="w-60 rounded-md text-white bg-green-500 p-2"><router-link :to="{name: 'student' }"> Voir plus </router-link></a>
+                           <a href="" class="w-60 rounded-md text-white bg-green-500 p-2"><router-link :to="{name: 'IndexActivity' }"> Voir plus </router-link></a>
                         </div>
                      </div>
                   </div>
@@ -153,7 +153,7 @@
                      </div>
                      <div class="text-center mt-4">
                         <div class="m-4">
-                           <a href="" class="w-60 rounded-md text-white bg-green-500 p-2"><router-link :to="{ name: 'student' }"> Voir plus </router-link></a>
+                           <a href="" class="w-60 rounded-md text-white bg-green-500 p-2"><router-link :to="{ name: 'IndexActivity' }"> Voir plus </router-link></a>
                         </div>
                      </div>
                   </div>
@@ -164,12 +164,11 @@
                      </div>
                      <div class="text-center mt-4">
                         <div class="m-4">
-                           <a href="" class="w-60 rounded-md text-white bg-green-500 p-2"><router-link :to="{ name: 'student' }"> Voir plus </router-link></a>
+                           <a href="" class="w-60 rounded-md text-white bg-green-500 p-2"><router-link :to="{ name: 'IndexActivity' }"> Voir plus </router-link></a>
                         </div>
                      </div>
                   </div>
                </div>
-
 
             </div>
 
