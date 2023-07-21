@@ -6,23 +6,23 @@
 
          <Sidebar/>
 
-         <div class="content px-5 py-3 bg-[#F5F7FB] mt-0">
+         <div class="content px-5 py-3 bg-[#F5F7FB] mt-0 border-l border-gray-200">
 
             <Header/>
 
             <div class="content rounded-md bg-[#F5F7FB] mt-12">
     
                 <div class="mb-2 flex">
-                    <h1 class="flex-1 text-gray-300"><i class="fa fa-users"></i> Etudiants</h1>
+                    <h1 class="flex-1 text-gray-300 uppercase text-xs"><i class="fa fa-users"></i> Etudiants</h1>
                     
                     <div class="">
-                        <button v-if="showModal == false" class="border border-green text-green-500 bg-white p-1 rounded hover:text-white hover:bg-green-500 hover:text-white" @click="toggleModal"><i class="fa fa-plus-circle"></i> Nouvel étudiant</button>
+                        <button v-if="showModal == false" class="border border-green text-green-500 bg-white py-1 px-2 rounded hover:text-white hover:bg-green-500 hover:text-white" @click="toggleModal"><i class="fa fa-plus-circle"></i> Nouvel étudiant</button>
                     </div>
                 </div>
               
                 <!-- modal -->
                 <div v-if="showModal">
-                        <div class="backdrop grid grid-flow-col bg-white rounded">
+                        <div class="backdrop grid grid-flow-col bg-[#F5F7FB] rounded">
                             <div class> 
                                 <div class="flex ml-14 my-5 md:w-3/4">
                                     <div class="title flex-1">
@@ -33,7 +33,7 @@
                                     </div>
                                 </div>
 
-                                <div class="register-form rounded-md border p-10 border-gray-300 md:absolute md:ml-auto md:mr-auto md:w-3/4 lg:ml-14">
+                                <div class="register-form rounded-md bg-white p-10 border-gray-300 md:absolute md:ml-auto md:mr-auto md:w-3/4 lg:ml-14">
 
                                     <form @submit.prevent="handleSubmit">
                                         <!-- tab1 -->
@@ -46,7 +46,7 @@
                                                     <svg  :class="pageOne ? 'w-3.5 h-3.5 sm:w-4 sm:h-4 mr-2.5': '1' " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                                         <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                                                     </svg>
-                                                    <span class="mr-2">1</span>Identité 
+                                                    <span class="mr-1">1</span>Identité 
                                                 </span>
                                             </li>
                                             <li :class="pageTwo ? 'text-green-500 font-bold' : '' " class="flex md:w-full items-center after:w-full after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 ">
@@ -54,7 +54,7 @@
                                                     <svg  :class="pageTwo ? 'w-3.5 h-3.5 sm:w-4 sm:h-4 mr-2.5': '' " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                                         <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                                                     </svg>
-                                                    <span class="mr-2">2</span>Adresse
+                                                    <span class="mr-1">2</span>Adresse
                                                 </span>
                                             </li>
 
@@ -63,7 +63,7 @@
                                                     <svg :class="pageThree ? 'w-3.5 h-3.5 sm:w-4 sm:h-4 mr-2.5': '' " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                                         <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                                                     </svg>
-                                                    <span class="mr-2">3</span>Parents
+                                                    <span class="mr-1">3</span>Parents
                                                 </span>
                                             </li>
 
@@ -71,12 +71,12 @@
                                                 <svg :class="pageFour ? 'w-3.5 h-3.5 sm:w-4 sm:h-4 mr-2.5': '' " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                                     <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                                                 </svg>
-                                                <span class="mr-2">4</span>Affectation
+                                                <span class="mr-1">4</span>Affectation
                                             </li>
                                         </ol>
 
                                         <div  v-if="pageOne" class="mt-10">
-                                            <h2 class="uppercase text-green-400 text-xs">Identité de l'étudiant</h2>
+                                            <h2 class="uppercase text-green-500 text-xs">Identité de l'étudiant</h2>
 
                                             <h5 class="mt-3 text-red-500">Les champs obligatoire *</h5>
                                             
@@ -146,7 +146,6 @@
                                                 </div>
                                             </div>
                                             <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
-
                                                 <div class="block md:inline">
                                                     <label for="" class="block text-xs uppercase">Commune</label>
                                                     <input type="text" v-model="commune" class="block border rounded-md p-2 border-gray-300 w-full">
@@ -160,6 +159,12 @@
                                                 <div class="block md:inline">
                                                     <label for="" class="block text-xs uppercase">Cellule</label>
                                                     <input type="text" v-model="cel" class="block border rounded-md p-2 border-gray-300 w-full" >
+                                                </div>
+                                            </div>
+                                            <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+                                                <div class="block md:inline">
+                                                    <label for="" class="block text-xs uppercase">Email <span class="text-red-500">*</span></label>
+                                                    <input type="email" v-model="email" class="block border rounded-md p-2 border-gray-300 w-full">
                                                 </div>
                                             </div>
                                             <div class="mt-10 text-right">
@@ -227,7 +232,7 @@
 
                                             <!-- tab4 -->
 
-                                            <div v-if="pageFour" class="mt-10" >
+                                        <div v-if="pageFour" class="mt-10" >
                                             <h2 class="uppercase text-green-400 text-xs">Affectation de l'étudiant</h2>
                                             
                                             <h5 class="mt-3 text-red-500">Les champs obligatoire *</h5>
@@ -293,9 +298,9 @@
                                 <h2 class="uppercase text-green-400"><i class="fa fa-list-ul"></i> Relatifs</h2>
                             </div>
                             <ul class="mt-5">
-                                <li class="py-2 px-2 w-100 mt-4 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white hover:border-[#111827] font-bold"><router-link :to="{ name: 'IndexFaculty'}"> <i class="fa-solid fa-rectangle-list"></i> Faculté</router-link></li>
-                                <li class="py-2 px-2 w-100 mt-4 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white hover:border-[#111827] font-bold"><router-link :to="{ name: 'IndexDepartment'}"> <i class="fa-solid fa-table-list"></i> Departement</router-link></li>
-                                <li class="py-2 px-2 w-100 mt-4 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white hover:border-[#111827] font-bold"><router-link :to="{ name: 'IndexPromotion'}"> <i class="fa-solid fa-list"></i> Promotion </router-link></li>
+                                <li class="py-2 px-2 w-100 mt-4 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white hover:border-[#111827] "><router-link :to="{ name: 'IndexFaculty'}"> <i class="fa-solid fa-rectangle-list"></i> Faculté</router-link></li>
+                                <li class="py-2 px-2 w-100 mt-4 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white hover:border-[#111827] "><router-link :to="{ name: 'IndexDepartment'}"> <i class="fa-solid fa-table-list"></i> Departement</router-link></li>
+                                <li class="py-2 px-2 w-100 mt-4 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white hover:border-[#111827] "><router-link :to="{ name: 'IndexPromotion'}"> <i class="fa-solid fa-list"></i> Promotion </router-link></li>
                             </ul>
 
                         </div>
@@ -322,6 +327,7 @@
                             </div>
                         </div>
 
+
                         <div class="flex flex-col m-3 h-100">
                             <div class="overflow-x-auto sm:-mx-12 lg:-mx-12">
                                 <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
@@ -334,109 +340,118 @@
                                                     <th scope="col" class=" px-3 py-3">Images</th>
                                                     <th scope="col" class=" px-3 py-3">Nom & Post Nom</th>
                                                     <th scope="col" class=" px-3 py-3">Classe</th>
+                                                    <th scope="col" class=" px-3 py-3">Genre</th>
                                                     <th scope="col" class=" px-3 py-3">Statut</th>
                                                     <th scope="col" class=" px-3 py-3">Action</th>
                                                 </tr>
                                             </thead>
-                                            <tbody class="h-100 border-r border-gray-200">
+                                            <tbody class="h-100 border-r border-b border-gray-100">
                                                 <tr class="">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-gray-200">1</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-gray-200">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-gray-200"> 
+                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-100">1</td>
+                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-100">34562M23</td>
+                                                    <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-b border-gray-100"> 
                                                         <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
                                                     </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-gray-200">Philippe Tsongo</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-gray-200">G3</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-gray-200 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-gray-200 text-green-500"></td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Philippe Tsongo</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">G3</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Homme</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
 
                                                 </tr>
                                                 <tr class="bg-[#F5F7FB]">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-gray-200">2</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-gray-200">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-gray-200"> 
+                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-100">2</td>
+                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-100">34562M23</td>
+                                                    <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-b border-gray-100"> 
                                                         <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
                                                     </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-gray-200">Kambale Makuta</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-gray-200">L1</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-gray-200 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-gray-200 text-green-500"></td>
-
-                                                </tr>
-
-                                                <tr class="">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-gray-200">3</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-gray-200">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-gray-200"> 
-                                                        <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
-                                                    </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-gray-200">Philippe Tsongo</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-gray-200">G2</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-gray-200 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-gray-200 text-green-500"></td>
-
-                                                </tr>
-                                                <tr class="bg-[#F5F7FB]">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-gray-200">4</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-gray-200">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-gray-200"> 
-                                                        <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
-                                                    </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-gray-200">Jacob Kamate</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-gray-200">L1</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-gray-200 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-gray-200 text-green-500"></td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Kambale Makuta</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">L1</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Homme</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
 
                                                 </tr>
 
                                                 <tr class="">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-gray-200">5</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-gray-200">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-gray-200"> 
+                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-100">3</td>
+                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-100">34562M23</td>
+                                                    <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-b border-gray-100"> 
                                                         <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
                                                     </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-gray-200">Kazadi Mbalala</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-gray-200">G2</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-gray-200 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-gray-200 text-green-500"></td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Philippe Tsongo</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">G2</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Homme</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
 
                                                 </tr>
-
                                                 <tr class="bg-[#F5F7FB]">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-gray-200">6</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-gray-200">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-gray-200"> 
+                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-100">4</td>
+                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-100">34562M23</td>
+                                                    <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-b border-gray-100"> 
                                                         <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
                                                     </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-gray-200">Musondolya Lea</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-gray-200">Thornton</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-gray-200 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-gray-200 text-green-500"></td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Jacob Kamate</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">L1</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Homme</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
 
                                                 </tr>
 
                                                 <tr class="">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-gray-200">7</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-gray-200">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-gray-200"> 
+                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-100">5</td>
+                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-100">34562M23</td>
+                                                    <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-b border-gray-100"> 
                                                         <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
                                                     </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-gray-200">Kazadi Mbalala</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-gray-200">G2</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-gray-200 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-gray-200 text-green-500"></td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Kazadi Mbalala</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">G2</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Homme</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
+
                                                 </tr>
 
                                                 <tr class="bg-[#F5F7FB]">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-gray-200">8</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-gray-200">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-gray-200"> 
+                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-100">6</td>
+                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-100">34562M23</td>
+                                                    <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-b border-gray-100"> 
                                                         <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
                                                     </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-gray-200">Kazadi Mbalala</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-gray-200">G2</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-gray-200 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-gray-200 text-green-500"></td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Musondolya Lea</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">G1</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Homme</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
+
+                                                </tr>
+
+                                                <tr class="">
+                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-100">7</td>
+                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-100">34562M23</td>
+                                                    <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-b border-gray-100"> 
+                                                        <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
+                                                    </td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Kazadi Mbalala</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">G2</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Homme</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
+                                                </tr>
+
+                                                <tr class="bg-[#F5F7FB]">
+                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-100">8</td>
+                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-100">34562M23</td>
+                                                    <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-b border-gray-100"> 
+                                                        <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
+                                                    </td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Kazadi Mbalala</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">G2</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Homme</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
                                                 </tr>
                                             
                                             </tbody>
@@ -490,6 +505,7 @@ export default {
             commune: '',
             quarter: '',
             cel: '',
+            email: '',
             fatherName: '',
             motherName: '',
             fatherTitle: '',
@@ -597,8 +613,6 @@ export default {
 
 .title h2 {
   letter-spacing: 1px;
-  font-size: 14px;
-  font-weight: bolder;
 }
 
 .backdrop{
@@ -623,7 +637,7 @@ label{
     }
     .close{
         position: absolute;
-        margin-left: 45%;
+        margin-left: 100%;
     }
 }
 

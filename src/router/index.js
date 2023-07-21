@@ -20,19 +20,17 @@ import IndexSetup from '../views/setup/Index.vue'
 import CreateSetup from '../views/setup/Create.vue'
 import IndexUser from '../views/setup/Index.vue'
 import CreateUser from '../views/setup/Create.vue'
-// import IndexClass from '../views/class/Index.vue'
-// import CreateClass from '../views/class/Create.vue'
 import IndexPayment from '../views/payment/Index.vue'
 import CreatePayment from '../views/payment/Create.vue'
-
-
-
 import IndexFaculty from '../views/faculty/Index.vue'
 import CreateFaculty from '../views/faculty/Create.vue'
 import IndexDepartment from '../views/department/Index.vue'
 import CreateDepartment from '../views/department/Create.vue'
 import IndexPromotion from '../views/promotion/Index.vue'
 import CreatePromotion from '../views/promotion/Create.vue'
+
+import IndexMark from '../views/mark/Index.vue'
+import CreateMark from '../views/mark/Create.vue'
 
 
 
@@ -209,6 +207,18 @@ const routes = [
     path: '/promotion/create',
     name: 'CreatePromotion',
     component: CreatePromotion
+  },
+
+   //mark
+   {
+    path: '/mark',
+    name: 'IndexMark',
+    component: IndexMark
+  },
+  {
+    path: '/mark/create',
+    name: 'CreateMark',
+    component: CreateMark
   },
   
 ]

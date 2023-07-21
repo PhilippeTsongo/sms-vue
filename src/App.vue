@@ -23,4 +23,10 @@ nav a {
 /* nav a.router-link-exact-active {
   color: #42b983;
 } */
+
+input:hover, select:hover{
+  border: 1px solid rgb(16, 222, 16);
+}
+
+
 </style>
