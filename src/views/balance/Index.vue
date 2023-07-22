@@ -13,10 +13,10 @@
             <div class="content rounded-md bg-[#F5F7FB] mt-12">
     
                 <div class="mb-2 flex">
-                    <h1 class="flex-1 text-gray-300 uppercase text-xs"><i class="fa fa-users"></i> Promotion</h1>
+                    <h1 class="flex-1 text-gray-300 uppercase text-xs"><i class="fa fa-users"></i> dépense</h1>
                     
                     <div class="">
-                        <button v-if="showModal == false" class="border border-green text-green-500 bg-white py-1 px-2 rounded hover:text-white hover:bg-green-500 hover:text-white" @click="toggleModal"><i class="fa fa-plus-circle"></i> Nouvelle promotion</button>
+                        <button v-if="showModal == false" class="border border-green text-green-500 bg-white py-1 px-2 rounded hover:text-white hover:bg-green-500 hover:text-white" @click="toggleModal"><i class="fa fa-plus-circle"></i> Nouvelle dépenses</button>
                     </div>
                 </div>
               
@@ -28,7 +28,7 @@
 
                                     <div class="flex py-5 w-full">
                                         <div class="title flex-1">
-                                            <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Nouvelle promotion</h2>
+                                            <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Nouvelle dépense</h2>
                                         </div>
                                         <div class="">
                                             <button v-if="showModal" class="bg-white px-2 py-1 rounded text-red-500" @click="toggleModal"><i class="fa fa-xmark"></i> </button>
@@ -38,16 +38,24 @@
                                     <form @submit.prevent="handleSubmit">
 
                                         <div class="mt-5 pb-5">
-                                            <h2 class="uppercase text-green-500 text-xs">Information de la promotion</h2>
+                                            <h2 class="uppercase text-green-500 text-xs">Information de la dépense</h2>
 
-                                            <h5 class="mt-3 text-red-500">Les champs obligatoire *</h5>
+                                            <h5 class="mt-3 text-red-500">Les champs obligatoires *</h5>
                                             
                                             <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
                                                 <div class="block md:inline">
-                                                    <label for="" class="block text-xs uppercase">Nom <span class="text-red-500">*</span></label>
-                                                    <input type="text" v-model="name" class="block border rounded-md p-2 border-gray-300 w-full" required >
+                                                    <label for="" class="block text-xs uppercase">Montant <span class="text-red-500">*</span></label>
+                                                    <input type="text" v-model="amount" class="block border rounded-md p-2 border-gray-300 w-full" required >
                                                 </div>
                                             </div>
+
+                                            <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+                                                <div class="block md:inline">
+                                                    <label for="" class="block text-xs uppercase">Motif <span class="text-red-500">*</span></label>
+                                                    <textarea v-model="motif" class="block border rounded-md p-2 border-gray-300 w-full"> </textarea>   
+                                                </div>
+                                            </div>
+
                                             <div class="mt-10 text-center">
                                                 <button class="text-[#111827] border border-[#111827] w-full rounded-md px-3 py-2 hover:border-none hover:bg-green-500 hover:text-white"> <i class="fa fa-paper-plane-top"></i> Enregistrer</button>
                                             </div>
@@ -95,16 +103,16 @@
                                 <li class="py-2 px-2 w-100 mt-4 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white hover:border-[#111827] "><router-link :to="{ name: 'IndexBalance'}"> <i class="fa-solid fa-table-list"></i> Balance</router-link></li>
                                 <li class="py-2 px-2 w-100 mt-4 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white hover:border-[#111827] "><router-link :to="{ name: 'IndexBudget'}"> <i class="fa-solid fa-list"></i> Budget </router-link></li>
                             </ul>
-
                         </div>
                     </div>
                     
                     <div class="flex-1 rounded-md bg-white px-5 py-5 ml-5 mt-2 w-100 ">
                         <div class="bg-[#111827]-100 flex">
                             <div class="title flex-1">
-                                <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Situation financière</h2>
+                                <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Difference entre les recettes et les dépenses</h2>
                             </div>
                         </div>
+
                         <div class="mt-5">
                             <div class="md:grid grid-flow-col justify-stretch gap-5">
                                 <div class="rounded-md bg-green-100 p-4 text-green-500 staff">
@@ -113,9 +121,9 @@
                                     <div>
                                         <h1 class="text-2xl">700$</h1>
                                     </div>
-                                        <div class="mt-1 absolute right-0">
-                                            <span class="bg-white rounded-full text-xs py-1 px-2 " >Montant de prévision 25000$</span>
-                                        </div>
+                                    <div class="mt-1 absolute right-0">
+                                        <span class="bg-white rounded-full text-xs py-1 px-2 " >Montant de prévision 25000$</span>
+                                    </div>
                                     </div>
                                 </div>
                                 <div class="rounded-md bg-blue-100 p-4 text-blue-500 staff">
@@ -124,42 +132,54 @@
                                     <div>
                                         <h1 class="text-2xl">300$</h1>
                                     </div>
-                                        <div class="mt-1 absolute right-0">
-                                            <span class="bg-white rounded-full  border-red-300 text-xs ml-3 py-1 px-2">Montant de prévision 15000$</span>
-                                        </div>
+                                    <div class="mt-1 absolute right-0">
+                                        <span class="bg-white rounded-full  border-red-300 text-xs ml-3 py-1 px-2">Montant de prévision 15000$</span>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="md:grid grid-flow-col mt-5 justify-stretch gap-5">
-                                <div class="rounded-md bg-green-100 p-4 text-green-500 staff">
-                                    <h2 class="">Autres recettes</h2>
+
+                            <div class="md:grid grid-flow-col justify-stretch gap-5 mt-5">
+                                <div class="rounded-md bg-red-100 text-red-500 p-4 staff">
+                                    <h2 class=""> Différence</h2>
                                     <div class="flex mt-3 relative">
                                         <div>
-                                            <h1 class="text-2xl">200$</h1>
-                                        </div>
-                                        <div class="mt-1 absolute right-0">
-                                            <span class="bg-white rounded-full text-xs py-1 px-2 " >Montant total des autres recettes</span>
+                                            <h1 class="text-2xl">400$</h1>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="md:grid grid-flow-col mt-5 justify-stretch gap-5">
-                                <div class="rounded-md bg-blue-100 p-4 text-blue-500 staff">
-                                    <h2 class="">Paiement du personnel</h2>
-                                    <div class="flex mt-2 relative">
-                                        <div>
-                                            <h1 class="text-2xl">150$</h1>
-                                        </div>
-                                        <div class="mt-1 absolute right-0">
-                                            <span class="bg-white rounded-full text-xs py-1 px-2 " >Montant total des paiement du personnel</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
+                            </div>                          
                         </div>
+
+                        <div class="rounded-md bg-green-100  p-4 mt-5 w-6/7 text-[#111827] staff ">
+                            <div class="flex">
+                                <div class="title flex-1">
+                                    <h2 class="uppercase text-xl text-green-500">Evolution de recettes budgetaire</h2>
+                                </div>
+                                <div >
+                                    <p class="text-white bg-green-500 p-1 rounded-md absolute right-14" >75%</p>
+                                </div>
+                            </div>
+                            <div class="w-full bg-green-300 rounded-full mt-5">
+                                <div class="bg-green-500 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style="width: 75%"> <i class="fa fa-check"></i>75%</div>
+                            </div>
+                        </div> 
+
+                        <div class="rounded-md bg-blue-100  p-4 mt-5 w-6/7 text-[#111827] staff ">
+                            <div class="flex">
+                                <div class="title flex-1">
+                                    <h2 class="uppercase text-xl text-blue-500">Evolution de dépenses budgetaire</h2>
+                                </div>
+                                <div >
+                                    <p class="text-white bg-blue-500 p-1 rounded-md absolute right-14" >25%</p>
+                                </div>
+                            </div>
+                            <div class="w-full bg-blue-300 rounded-full mt-5">
+                                <div class="bg-blue-500 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style="width: 25%"> <i class="fa fa-check"></i>25%</div>
+                            </div>
+                        </div> 
+
                     </div>
                 </div>
                 
@@ -172,14 +192,14 @@
 
  </template>
  
- <script>
+<script>
 import Head from "../../components/layouts/head.vue";
 import Header from "../../components/layouts/Header.vue";
 import Sidebar from "../../components/layouts/Sidebar.vue";
 import Footer from "../../components/layouts/Footer.vue";
 
 export default {
-  name: "IndexFinance",
+  name: "IndexBalance",
   components: { Head, Header, Sidebar, Footer },
 
   data() {
@@ -188,10 +208,10 @@ export default {
             showModal: false,
             pageOne: true,
 
-
             //form fields
             number: '',
-            name: '',
+            amount: '',
+            motif: ''
         };
   },
 
@@ -211,7 +231,8 @@ export default {
 
         console.log(
             this.number,
-            this.name,
+            this.amount,
+            this.motif
         )
     }   
     

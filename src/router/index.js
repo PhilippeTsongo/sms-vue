@@ -1,34 +1,76 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
+// User
+import IndexUser from '../views/setup/Index.vue'
+import CreateUser from '../views/setup/Create.vue'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 import LogoutView from '../views/LogoutView.vue'
 
+
+// Student
 import IndexStudent from '../views/student/Index.vue'
 import CreateStudent from '../views/student/Create.vue'
+
+// Staff
 import IndexStaff from '../views/staff/Index.vue'
 import CreateStaff from '../views/staff/Create.vue'
+
+// Lecturer
 import IndexLecturer from '../views/lecturer/Index.vue'
 import CreateLecturer from '../views/lecturer/Create.vue'
+
+// Course
 import IndexCourse from '../views/course/Index.vue'
 import CreateCourse from '../views/course/Create.vue'
+
+// Finance
 import IndexFinance from '../views/finance/Index.vue'
 import CreateFinance from '../views/finance/Create.vue'
-import IndexActivity from '../views/activity/Index.vue'
-import CreateActivity from '../views/activity/Create.vue'
-import IndexSetup from '../views/setup/Index.vue'
-import CreateSetup from '../views/setup/Create.vue'
-import IndexUser from '../views/setup/Index.vue'
-import CreateUser from '../views/setup/Create.vue'
+
+// Payment
 import IndexPayment from '../views/payment/Index.vue'
 import CreatePayment from '../views/payment/Create.vue'
+
+// other receipt
+import IndexOtherReceipt from '../views/otherReceipt/Index.vue'
+import CreateOtherReceipt from '../views/otherReceipt/Create.vue'
+
+
+// Expense
+import IndexExpense from '../views/expense/Index.vue'
+import CreateExpense from '../views/expense/Create.vue'
+
+// Balance
+import IndexBalance from '../views/balance/Index.vue'
+import CreateBalance from '../views/balance/Create.vue'
+
+// Budget
+import IndexBudget from '../views/budget/Index.vue'
+import CreateBudget from '../views/budget/Create.vue'
+
+
+// Activity
+import IndexActivity from '../views/activity/Index.vue'
+import CreateActivity from '../views/activity/Create.vue'
+
+// Setup/ Configurations
+import IndexSetup from '../views/setup/Index.vue'
+import CreateSetup from '../views/setup/Create.vue'
+
+// Faculty
 import IndexFaculty from '../views/faculty/Index.vue'
 import CreateFaculty from '../views/faculty/Create.vue'
+
+// Department
 import IndexDepartment from '../views/department/Index.vue'
 import CreateDepartment from '../views/department/Create.vue'
+
+// Promotion
 import IndexPromotion from '../views/promotion/Index.vue'
 import CreatePromotion from '../views/promotion/Create.vue'
 
+// Marks
 import IndexMark from '../views/mark/Index.vue'
 import CreateMark from '../views/mark/Create.vue'
 
@@ -124,18 +166,6 @@ const routes = [
     component: CreateCourse
   },
 
-  //finance
-  {
-    path: '/finance',
-    name: 'IndexFinance',
-    component: IndexFinance
-  },
-  {
-    path: '/finance/create',
-    name: 'CreateFinance',
-    component: CreateFinance
-  },
-
   //activity
   {
     path: '/activity',
@@ -160,6 +190,18 @@ const routes = [
     component: CreateSetup
   },
 
+  //finance
+  {
+    path: '/finance',
+    name: 'IndexFinance',
+    component: IndexFinance
+  },
+  {
+    path: '/finance/create',
+    name: 'CreateFinance',
+    component: CreateFinance
+  },
+
   //payment
   {
     path: '/payment',
@@ -170,6 +212,54 @@ const routes = [
     path: '/payment/create',
     name: 'CreatePayment',
     component: CreatePayment
+  },
+
+  //OtherRecepit
+  {
+    path: '/otherRecepit',
+    name: 'IndexOtherReceipt',
+    component: IndexOtherReceipt
+  },
+  {
+    path: '/otherRecepit/create',
+    name: 'CreateOtherReceipt',
+    component: CreateOtherReceipt
+  },
+
+  //Expense
+  {
+    path: '/expense',
+    name: 'IndexExpense',
+    component: IndexExpense
+  },
+  {
+    path: '/expense/create',
+    name: 'CreateExpense',
+    component: CreateExpense
+  },
+
+  //balance
+  {
+    path: '/balance',
+    name: 'IndexBalance',
+    component: IndexBalance
+  },
+  {
+    path: '/balance/create',
+    name: 'CreateBalance',
+    component: CreateBalance
+  },
+
+  //Budget
+  {
+    path: '/budget',
+    name: 'IndexBudget',
+    component: IndexBudget
+  },
+  {
+    path: '/budget/create',
+    name: 'CreateBudget',
+    component: CreateBudget
   },
 
   //faculty
@@ -196,7 +286,6 @@ const routes = [
     component: CreateDepartment
   },
 
-  
   //promotion
   {
     path: '/promotion',

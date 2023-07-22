@@ -41,7 +41,6 @@
                                         <h5 class="mt-3 text-red-500">Les champs obligatoires *</h5>
                                         <div class="mt-5 md:grid grid-flow-col flex-stretch gap-5">
                                             <div class="block md:inline">
-                                                <label for="" class="block text-xs uppercase">Cours <span class="text-red-500">*</span></label>
                                                 <select v-model="course" class="block border rounded-md p-1 border-gray-300 w-full" required>
                                                     <option value="Phil">Calculus 1</option>
                                                     <option value="Luc">Web development</option>
@@ -49,7 +48,6 @@
                                             </div>
 
                                             <div class="block md:inline">
-                                                <label for="" class="block text-xs uppercase">Type de travail <span class="text-red-500">*</span></label>
                                                 <select v-model="activity" class="block border rounded-md p-1 border-gray-300 w-full" required>
                                                     <option value="TP">TP</option>
                                                     <option value="Examen">Examen</option>
@@ -72,8 +70,8 @@
                                                                 <th scope="col" class=" px-3 py-3">#</th>
                                                                 <th scope="col" class=" px-3 py-3">Numéro</th>
                                                                 <th scope="col" class=" px-3 py-3">Nom  & Post-nom</th>
-                                                                <th scope="col" class=" px-3 py-3">Points obtenus</th>
-                                                                <th scope="col" class=" px-3 py-3">Pondération</th>
+                                                                <th scope="col" class=" px-3 py-3">Point obtenu</th>
+                                                                <th scope="col" class=" px-3 py-3">Ponderation</th>
                                                                 <th scope="col" class=" px-3 py-3">Action</th>
                                                             </tr>
                                                         </thead>
@@ -247,9 +245,8 @@
                                                 <tr class="">
                                                     <th scope="col" class=" px-3 py-3">#</th>
                                                     <th scope="col" class=" px-3 py-3">Nom & Post-Nom</th>
-                                                    <th scope="col" class=" px-3 py-3">Cours</th>
-                                                    <th scope="col" class=" px-3 py-3">Points obtenus</th>
-                                                    <th scope="col" class=" px-3 py-3">Pondération</th>
+                                                    <th scope="col" class=" px-3 py-3">Point</th>
+                                                    <th scope="col" class=" px-3 py-3">Ponderation</th>
                                                     <th scope="col" class=" px-3 py-3">Action</th>
 
                                                 </tr>
@@ -257,18 +254,16 @@
                                             <tbody class="h-100 border-r border-b border-gray-200">
                                                 <tr class="">
                                                     <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">1</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-200">Philippe Tsongo</td>
+                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-200">34562M23</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">Computer Science</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500"> 35 </td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500"> 40 </td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200"></td>
 
                                                 </tr>
                                                 <tr class="bg-[#F5F7FB]">
                                                     <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">2</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-200">John Doe</td>
+                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-200">34562M23</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">Economic and business studies</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">70 </td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">100 </td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200"></td>
                                                 </tr>
@@ -298,7 +293,7 @@ import Sidebar from "../../components/layouts/Sidebar.vue";
 import Footer from "../../components/layouts/Footer.vue";
 
 export default {
-  name: "IndexMark",
+  name: "IndecExpense",
   components: { Head, Header, Sidebar, Footer },
 
   data() {

@@ -13,7 +13,7 @@
             <div class="content rounded-md bg-[#F5F7FB] mt-12">
     
                 <div class="mb-2 flex">
-                    <h1 class="flex-1 text-gray-300 uppercase text-xs"><i class="fa fa-users"></i> Staffs</h1>
+                    <h1 class="flex-1 text-green-300 uppercase text-xs"><i class="fa fa-users"></i> Staffs</h1>
                     
                     <div class="">
                         <button class="border border-green text-green-500 bg-white py-1 px-2 rounded hover:text-white hover:bg-green-500 hover:text-white" @click="toggleModal"><i class="fa fa-plus-circle"></i> Nouveau staff</button>
@@ -160,6 +160,21 @@
 
                                             <div class="mt-10 md:grid grid-flow-col flex-stretch gap-10">
                                                 <div class="block md:inline">
+                                                    <label for="" class="block text-xs uppercase">Type <span class="text-red-500">*</span></label>
+                                                    <select v-model="type" class="block border rounded-md p-2 border-gray-300 w-full" required>
+                                                        <option value="">Permanent</option>
+                                                        <option value="">Invité</option>
+                                                        <option value="">Bibliothequère</option>
+                                                    </select>
+                                                </div>
+                                                <div class="block md:inline">
+                                                    <label for="" class="block text-xs uppercase">Salaire <span class="text-red-500">*</span></label>
+                                                    <input v-model="salary" type="number" class="block border rounded-md p-2 border-gray-300 w-full" required>
+                                                </div>
+
+                                            </div>
+                                            <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+                                                <div class="block md:inline">
                                                     <label for="" class="block text-xs uppercase">Rôle <span class="text-red-500">*</span></label>
                                                     <select v-model="role" class="block border rounded-md p-2 border-gray-300 w-full" required>
                                                         <option value="">Enseignant</option>
@@ -267,7 +282,9 @@
                                                     <th scope="col" class=" px-3 py-3">Matricule</th>
                                                     <th scope="col" class=" px-3 py-3">Images</th>
                                                     <th scope="col" class=" px-3 py-3">Nom & Post Nom</th>
-                                                    <th scope="col" class=" px-3 py-3">Classe</th>
+                                                    <th scope="col" class=" px-3 py-3">Type</th>
+                                                    <th scope="col" class=" px-3 py-3">Rôle</th>
+                                                    <th scope="col" class=" px-3 py-3">Salaire</th>
                                                     <th scope="col" class=" px-3 py-3">Statut</th>
                                                     <th scope="col" class=" px-3 py-3">Action</th>
                                                 </tr>
@@ -280,10 +297,11 @@
                                                         <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
                                                     </td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Philippe Tsongo</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">G3</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Permanent</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Enseignant</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">500$</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
-
                                                 </tr>
                                                 <tr class="bg-[#F5F7FB]">
                                                     <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-100">2</td>
@@ -292,7 +310,9 @@
                                                         <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
                                                     </td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Kambale Makuta</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">L1</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Visiteur</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Enseingant</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">350$</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
 
@@ -305,7 +325,9 @@
                                                         <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
                                                     </td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Philippe Tsongo</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">G2</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Permanent</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">DG</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">750$</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
 
@@ -317,7 +339,9 @@
                                                         <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
                                                     </td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Jacob Kamate</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">L1</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Permanent</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">IT</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">450$</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
 
@@ -330,7 +354,9 @@
                                                         <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
                                                     </td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Kazadi Mbalala</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">G2</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Permanent</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">DAF</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">750$</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
 
@@ -343,7 +369,9 @@
                                                         <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
                                                     </td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Musondolya Lea</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Thornton</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Permanent</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Financier</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">250$</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
 
@@ -356,7 +384,9 @@
                                                         <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
                                                     </td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Kazadi Mbalala</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">G2</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Permanent</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Comptable</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">350$</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
                                                 </tr>
@@ -368,7 +398,9 @@
                                                         <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
                                                     </td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Kazadi Mbalala</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">G2</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Permanent</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">HOD</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">750$</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
                                                 </tr>
@@ -426,7 +458,9 @@ export default {
 
             faculty: '',
             department: '',
-            promotion: ''
+            promotion: '',
+            type: '',
+            salary: ''
 
         };
   },

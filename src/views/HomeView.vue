@@ -15,13 +15,13 @@
             </div> -->
             <div class="rounded-md bg-white py-7 flex items-stretch mt-10 ">
 
-                  <a href="" class="text-gray-500 flex-1 text-center"><router-link :to="{ name: 'IndexStudent' }"> <i class="fa fa-users"></i> Etudiants </router-link></a>
+               <a href="" class="text-gray-500 flex-1 text-center"><router-link :to="{ name: 'IndexStudent' }"> <i class="fa fa-users"></i> Etudiants </router-link></a>
 
-                  <a href="" class="text-gray-500 flex-1 text-center"><router-link :to="{ name: 'IndexPromotion' }"> <i class="fa fa-screen-user"></i> Classes </router-link></a>
+               <a href="" class="text-gray-500 flex-1 text-center"><router-link :to="{ name: 'IndexPromotion' }"> <i class="fa fa-screen-user"></i> Classes </router-link></a>
 
-                  <a href="" class="text-gray-500 flex-1 text-center"><router-link :to="{ name: 'IndexLecturer' }"> <i class="fa fa-chalkboard"></i> Enseignants </router-link></a>
+               <a href="" class="text-gray-500 flex-1 text-center"><router-link :to="{ name: 'IndexLecturer' }"> <i class="fa fa-chalkboard"></i> Enseignants </router-link></a>
 
-                  <a href="" class="text-gray-500 flex-1 text-center"><router-link :to="{ name: 'IndexPayment' }"> <i class="fa fa-wallet"></i> Paiements </router-link></a> 
+               <a href="" class="text-gray-500 flex-1 text-center"><router-link :to="{ name: 'IndexPayment' }"> <i class="fa fa-wallet"></i> Paiements </router-link></a> 
 
             </div>
 

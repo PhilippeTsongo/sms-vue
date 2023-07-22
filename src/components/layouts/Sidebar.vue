@@ -4,20 +4,20 @@
     <div class="bg-white rounded-md py-3 px-2 ml-0">
         <div class="flex">
             <!-- hide the sidebar -->
-            <button v-if="showMenu" v-on:click="toggleShowMenu" class="border rounded-md p-1">
-                <svg xmlns="http://www.w3.org/2000/svg"  class="w-7 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <button v-if="showMenu" v-on:click="toggleShowMenu" class="border border-green-500 rounded-md p-1">
+                <svg xmlns="http://www.w3.org/2000/svg"  class="w-7 h-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/> 
                 </svg>
             </button>
             <!-- show the side bar -->
 
-            <button v-if="!showMenu" v-on:click="toggleShowMenu" class="border rounded-md p-1 m-auto">
-                <svg xmlns="http://www.w3.org/2000/svg"  class="w-7 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <button v-if="!showMenu" v-on:click="toggleShowMenu" class="border border-green-500 rounded-md p-1 m-auto">
+                <svg xmlns="http://www.w3.org/2000/svg"  class="w-7 h-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/> 
                 </svg>
             </button>
             <div v-if="showMenu">
-               <h1 class="font-bold ml-8 text-2xl">MENU</h1>
+               <h1 class="font-bold ml-8 text-2xl text-green-500">MENU</h1>
             </div>
         </div>
     </div>
@@ -25,7 +25,7 @@
     <!-- SIDEBAR WITH TITLE -->
     <div v-if="showMenu" class="sidebar pt-3 mb-5 px-2 md:w-48 bg-white">
 
-        <h1 class="bg-gray-900 border-b text-center text-white text-4xl p-2">SMS</h1>    
+        <h1 class="bg-green-100 text-center text-green-500 text-4xl p-2 rounded">SMS</h1>    
 
         <ul class="mt-8">
             <li class="p-2 hover:bg-[#F5F7FB] hover:rounded">
@@ -83,8 +83,7 @@
     <!-- SIDEBAR WITHOUT TITLE -->
     <div v-if="!showMenu" class="sidebar pt-3 pl-3 pr-3 bg-white text-center">
 
-
-        <h1 class="bg-gray-900 border-b text-center text-white text-sm p-2">SMS</h1>    
+        <h1 class="bg-green-100 text-center text-green-500 text-sm p-2 rounded">SMS</h1>    
 
         <ul class="mt-8">
             <li class="">
