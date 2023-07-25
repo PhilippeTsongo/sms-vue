@@ -13,9 +13,10 @@
             <div class="content rounded-md bg-[#F5F7FB] mt-12">
     
                 <div class="mb-2 flex">
-                    <h1 class="flex-1 text-gray-300 uppercase text-xs"><i class="fa fa-users"></i> Configurations</h1>
+                    <h1 class="flex-1 text-gray-300 uppercase text-xs"><i class="fa fa-users"></i> Année académique</h1>
+                    
                     <div class="">
-                        <button v-if="showModal == false" class="border border-green text-green-500 bg-white py-1 px-2 rounded hover:text-white hover:bg-green-500 hover:text-white" @click="toggleModal"><i class="fa fa-plus-circle"></i> Nouvelle dépenses</button>
+                        <button v-if="showModal == false" class="border border-green text-green-500 bg-white py-1 px-2 rounded hover:text-white hover:bg-green-500 hover:text-white" @click="toggleModal"><i class="fa fa-plus-circle"></i> Nouvelle année académique</button>
                     </div>
                 </div>
               
@@ -27,7 +28,7 @@
 
                                     <div class="flex py-5 w-full">
                                         <div class="title flex-1">
-                                            <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i>Configuration</h2>
+                                            <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Nouvelle année académique</h2>
                                         </div>
                                         <div class="">
                                             <button v-if="showModal" class="bg-white px-2 py-1 rounded text-red-500" @click="toggleModal"><i class="fa fa-xmark"></i> </button>
@@ -37,29 +38,35 @@
                                     <form @submit.prevent="handleSubmit">
 
                                         <div class="mt-5 pb-5">
-                                            <h2 class="uppercase text-green-500 text-xs">Information de la dépense</h2>
+                                            <h2 class="uppercase text-green-500 text-xs">Information de l'année académique</h2>
 
                                             <h5 class="mt-3 text-red-500">Les champs obligatoires *</h5>
                                             
                                             <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
                                                 <div class="block md:inline">
-                                                    <label for="" class="block text-xs uppercase">Montant <span class="text-red-500">*</span></label>
-                                                    <input type="text" v-model="amount" class="block border rounded-md p-2 border-gray-300 w-full" required >
+                                                    <label for="" class="block text-xs uppercase">Année académique (ex.:2022-2023) <span class="text-red-500">*</span></label>
+                                                    <input type="text" v-model="academicYear" class="block border rounded-md p-2 border-gray-300 w-full" required >
                                                 </div>
                                             </div>
 
                                             <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
                                                 <div class="block md:inline">
-                                                    <label for="" class="block text-xs uppercase">Motif <span class="text-red-500">*</span></label>
-                                                    <textarea v-model="motif" class="block border rounded-md p-2 border-gray-300 w-full"> </textarea>   
+                                                    <label for="" class="block text-xs uppercase">Date début</label>
+                                                    <input v-model="start_date" type="date" placeholder="Sélectionnez la date" class="block border rounded-md p-2 border-gray-300 w-full">
+                                                </div>
+                                            </div>
+
+                                            <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+                                                <div class="block md:inline">
+                                                    <label for="" class="block text-xs uppercase">Date fin</label>
+                                                    <input v-model="end_date" type="date" placeholder="Sélectionnez la date" class="block border rounded-md p-2 border-gray-300 w-full">
                                                 </div>
                                             </div>
 
                                             <div class="mt-10 text-center">
-                                                <button class="text-[#111827] border border-[#111827] w-full rounded-md px-3 py-2 hover:border-none hover:bg-green-500 hover:text-white"> <i class="fa fa-paper-plane-top"></i> Enregistrer</button>
+                                                <button class="text-[#111827] border border-[#111827] w-full rounded-md px-3 py-2 hover:border-green-500 hover:bg-green-500 hover:text-white"> <i class="fa fa-paper-plane-top"></i> Enregistrer</button>
                                             </div>
                                         </div>
-
                                     </form>
                                 </div>
 
@@ -70,7 +77,7 @@
 
                 <div class="flex">
                     <div class="">
-                        <!-- <div class="rounded-md bg-white w-48 p-5 mt-2 ">
+                        <div class="rounded-md bg-white w-48 p-5 mt-2 ">
                             <div class="title">
                                 <h2 class="uppercase text-green-400"><i class="fa fa-list-ol"></i> Détails</h2>
                             </div>
@@ -90,14 +97,13 @@
                                     <div> Passives </div> 
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
                         <div>    
                             <div class="title mt-5">
                                 <h2 class="uppercase text-green-400"><i class="fa fa-list-ul"></i> Relatifs</h2>
                             </div>
                             <ul class="mt-5">
-                                <li class="py-2 px-2 w-100 mt-4 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white hover:border-[#111827] "><router-link :to="{ name: 'IndexFees'}"> <i class="fa-solid fa-rectangle-list"></i> Frais / Motif de paiement</router-link></li>
-                                <li class="py-2 px-2 w-100 mt-4 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white hover:border-[#111827] "><router-link :to="{ name: 'IndexAcademicYear'}"> <i class="fa-solid fa-rectangle-list"></i> Année académique</router-link></li>
+                                <li class="py-2 px-2 w-100 mt-4 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white hover:border-[#111827] "><router-link :to="{ name: 'IndexFees'}"> <i class="fa-solid fa-rectangle-list"></i> Frais/Motif de paiement</router-link></li>
                             </ul>
 
                         </div>
@@ -106,7 +112,7 @@
                     <div class="flex-1 rounded-md bg-white pt-6 pl-6 pr-6 pb-2 ml-5 mt-2 w-100 ">
                         <div class="bg-[#111827]-100 flex">
                             <div class="title flex-1">
-                                <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Liste de dépenses</h2>
+                                <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Liste d'années académiques</h2>
                             </div>
 
                             <div class="" style="margin-top: -5px;">
@@ -126,39 +132,32 @@
                                             <thead class="bg-[#F5F7FB] ">
                                                 <tr class="">
                                                     <th scope="col" class=" px-3 py-3">#</th>
-                                                    <th scope="col" class=" px-3 py-3">Motif</th>
-                                                    <th scope="col" class=" px-3 py-3">Montant</th>
-                                                    <th scope="col" class=" px-3 py-3">Date</th>
+                                                    <th scope="col" class=" px-3 py-3">Année académique</th>
+                                                    <th scope="col" class=" px-3 py-3">Date début</th>
+                                                    <th scope="col" class=" px-3 py-3">Date fin</th>
 
                                                 </tr>
                                             </thead>
                                             <tbody class="h-100 border-r border-b border-gray-200">
                                                 <tr class="">
                                                     <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">1</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">Paiement loyé</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">30$ </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">20-07-2023</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">2021-2022</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">20-09-2021</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">20-07-2022</td>
                                                 </tr>
 
                                                 <tr class="">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">1</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">Paiement éléctricité</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">130$ </td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">2</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">2022-2023</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">20-09-2022</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">20-07-2023</td>
                                                 </tr>
 
                                                 <tr class="">
                                                     <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">3</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">Achat matériels informatiques</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">500$ </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">20-07-2023</td>
-                                                </tr>
-
-                                                <tr class="">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">4</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">Paiement du personnel</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">1500$ </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">20-07-2023</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">2023-2024</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">20-10-2023 </td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">20-07-2024</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -185,7 +184,7 @@ import Sidebar from "../../components/layouts/Sidebar.vue";
 import Footer from "../../components/layouts/Footer.vue";
 
 export default {
-  name: "IndexFees",
+  name: "IndexAcademicYear",
   components: { Head, Header, Sidebar, Footer },
 
   data() {
@@ -195,9 +194,9 @@ export default {
             pageOne: true,
 
             //form fields
-            number: '',
-            amount: '',
-            motif: ''
+            academicYear: '',
+            start_date: '',
+            end_date: ''
         };
   },
 

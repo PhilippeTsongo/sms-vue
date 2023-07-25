@@ -20,28 +20,7 @@
                     </div>
                 </div>
               
-
-                <div v-if="pageProfile">
-                    <div class="backdrop grid grid-flow-col bg-[#F5F7FB] rounded">
-                        <div class> 
-                            <div class="flex ml-14 my-5 md:w-3/4">
-                                <div class="title flex-1">
-                                    <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Nouvel étudiant</h2>
-                                </div>
-                                <div class="close">
-                                    <button v-if="showModal" class="bg-white px-2 py-1 rounded text-red-500" @click="toggleModal"><i class="fa fa-xmark"></i> </button>
-                                </div>
-                            </div>
-                            <div class="register-form rounded-md bg-white p-10 border-gray-300 md:absolute md:ml-auto md:mr-auto md:w-3/4 lg:ml-14">
-
-                                Phil2T
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <!-- modal form -->
+                <!-- modal -->
                 <div v-if="showModal">
                         <div class="backdrop grid grid-flow-col bg-[#F5F7FB] rounded">
                             <div class> 
@@ -353,130 +332,9 @@
                             <div class="overflow-x-auto sm:-mx-12 lg:-mx-12">
                                 <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                                     <div class="border-gray-200 rounded">
-                                        <table class="rounded border border-gray-200 min-w-full text-left text-sm font-light">
-                                            <thead class="bg-[#F5F7FB] ">
-                                                <tr class="">
-                                                    <th scope="col" class=" px-3 py-3">#</th>
-                                                    <th scope="col" class=" px-3 py-3">Matricule</th>
-                                                    <th scope="col" class=" px-3 py-3">Images</th>
-                                                    <th scope="col" class=" px-3 py-3">Nom & Post Nom</th>
-                                                    <th scope="col" class=" px-3 py-3">Classe</th>
-                                                    <th scope="col" class=" px-3 py-3">Genre</th>
-                                                    <th scope="col" class=" px-3 py-3">Statut</th>
-                                                    <th scope="col" class=" px-3 py-3">Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody class="h-100 border-r border-b border-gray-100">
-                                                <tr class="">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-100">1</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-100">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-b border-gray-100"> 
-                                                        <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
-                                                    </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100"> <button @click="showProfile">Philippe Tsongo</button> </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">G3</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Homme</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
+                                        
 
-                                                </tr>
-                                                <tr class="bg-[#F5F7FB]">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-100">2</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-100">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-b border-gray-100"> 
-                                                        <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
-                                                    </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Kambale Makuta</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">L1</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Homme</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
-
-                                                </tr>
-
-                                                <tr class="">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-100">3</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-100">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-b border-gray-100"> 
-                                                        <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
-                                                    </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Philippe Tsongo</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">G2</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Homme</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
-
-                                                </tr>
-                                                <tr class="bg-[#F5F7FB]">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-100">4</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-100">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-b border-gray-100"> 
-                                                        <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
-                                                    </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Jacob Kamate</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">L1</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Homme</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
-
-                                                </tr>
-
-                                                <tr class="">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-100">5</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-100">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-b border-gray-100"> 
-                                                        <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
-                                                    </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Kazadi Mbalala</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">G2</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Homme</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
-
-                                                </tr>
-
-                                                <tr class="bg-[#F5F7FB]">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-100">6</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-100">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-b border-gray-100"> 
-                                                        <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
-                                                    </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Musondolya Lea</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">G1</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Homme</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
-
-                                                </tr>
-
-                                                <tr class="">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-100">7</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-100">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-b border-gray-100"> 
-                                                        <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
-                                                    </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Kazadi Mbalala</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">G2</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Homme</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
-                                                </tr>
-
-                                                <tr class="bg-[#F5F7FB]">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-100">8</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-100">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-b border-gray-100"> 
-                                                        <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
-                                                    </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Kazadi Mbalala</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">G2</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Homme</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
-                                                </tr>
-                                            
-                                            </tbody>
-                                        </table>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -500,7 +358,7 @@ import Sidebar from "../../components/layouts/Sidebar.vue";
 import Footer from "../../components/layouts/Footer.vue";
 
 export default {
-  name: "IndexStudent",
+  name: "IndexStudentProfile",
   components: { Head, Header, Sidebar, Footer },
 
   data() {
@@ -511,8 +369,6 @@ export default {
             pageTwo: false,
             pageThree: false,
             pageFour: false,
-            PageProfile: false,
-
 
             //form fields
             firstName: '',
@@ -581,13 +437,6 @@ export default {
     secondLastTab(){
         this.pageTwo = !this.pageTwo;
         this.pageThree = !this.pageThree;
-    },
-
-    //student profile
-    showProfile(){
-        this.pageProfile = !this.pageProfile;
-        console.log(this.pageProfile)
-
     },
 
     handleSubmit(){

@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 // User
-import IndexUser from '../views/setup/Index.vue'
-import CreateUser from '../views/setup/Create.vue'
+import IndexUser from '../views/user/Index.vue'
+import CreateUser from '../views/user/Create.vue'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 import LogoutView from '../views/LogoutView.vue'
@@ -36,10 +36,13 @@ import CreatePayment from '../views/payment/Create.vue'
 import IndexOtherReceipt from '../views/otherReceipt/Index.vue'
 import CreateOtherReceipt from '../views/otherReceipt/Create.vue'
 
-
 // Expense
 import IndexExpense from '../views/expense/Index.vue'
 import CreateExpense from '../views/expense/Create.vue'
+
+// Expense
+import IndexStaffPayment from '../views/staffPayment/Index.vue'
+import CreateStaffPayment from '../views/staffPayment/Create.vue'
 
 // Balance
 import IndexBalance from '../views/balance/Index.vue'
@@ -49,14 +52,17 @@ import CreateBalance from '../views/balance/Create.vue'
 import IndexBudget from '../views/budget/Index.vue'
 import CreateBudget from '../views/budget/Create.vue'
 
-
 // Activity
 import IndexActivity from '../views/activity/Index.vue'
 import CreateActivity from '../views/activity/Create.vue'
 
-// Setup/ Configurations
+// Setup/Configurations
 import IndexSetup from '../views/setup/Index.vue'
 import CreateSetup from '../views/setup/Create.vue'
+
+// Fees 
+import IndexFees from '../views/fees/Index.vue'
+import CreateFees from '../views/fees/Create.vue'
 
 // Faculty
 import IndexFaculty from '../views/faculty/Index.vue'
@@ -74,6 +80,9 @@ import CreatePromotion from '../views/promotion/Create.vue'
 import IndexMark from '../views/mark/Index.vue'
 import CreateMark from '../views/mark/Create.vue'
 
+// Academic year
+import IndexAcademicYear from '../views/academicYear/Index.vue'
+import CreateAcademicYear from '../views/academicYear/Create.vue'
 
 
 const routes = [
@@ -190,6 +199,18 @@ const routes = [
     component: CreateSetup
   },
 
+  //Fees
+  {
+    path: '/fees',
+    name: 'IndexFees',
+    component: IndexFees
+  },
+  {
+    path: '/fees/create',
+    name: 'CreateFees',
+    component: CreateFees
+  },
+
   //finance
   {
     path: '/finance',
@@ -236,6 +257,18 @@ const routes = [
     path: '/expense/create',
     name: 'CreateExpense',
     component: CreateExpense
+  },
+
+  //staffPayment
+  {
+    path: '/staffPayment',
+    name: 'IndexStaffPayment',
+    component: IndexStaffPayment
+  },
+  {
+    path: '/staffPayment/create',
+    name: 'CreateStaffPayment',
+    component: CreateStaffPayment
   },
 
   //balance
@@ -298,16 +331,28 @@ const routes = [
     component: CreatePromotion
   },
 
-   //mark
-   {
-    path: '/mark',
-    name: 'IndexMark',
-    component: IndexMark
+  //mark
+  {
+  path: '/mark',
+  name: 'IndexMark',
+  component: IndexMark
   },
   {
     path: '/mark/create',
     name: 'CreateMark',
     component: CreateMark
+  },
+
+  //Academic Year
+  {
+    path: '/academicYear',
+    name: 'IndexAcademicYear',
+    component: IndexAcademicYear
+  },
+  {
+    path: '/academicYear/create',
+    name: 'CreateAcademicYear',
+    component: CreateAcademicYear
   },
   
 ]

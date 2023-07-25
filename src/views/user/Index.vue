@@ -13,48 +13,27 @@
             <div class="content rounded-md bg-[#F5F7FB] mt-12">
     
                 <div class="mb-2 flex">
-                    <h1 class="flex-1 text-gray-300 uppercase text-xs"><i class="fa fa-users"></i> Etudiants</h1>
+                    <h1 class="flex-1 text-green-300 uppercase text-xs"><i class="fa fa-users"></i> Staffs</h1>
                     
                     <div class="">
-                        <button v-if="showModal == false" class="border border-green text-green-500 bg-white py-1 px-2 rounded hover:text-white hover:bg-green-500 hover:text-white" @click="toggleModal"><i class="fa fa-plus-circle"></i> Nouvel étudiant</button>
+                        <button class="border border-green text-green-500 bg-white py-1 px-2 rounded hover:text-white hover:bg-green-500 hover:text-white" @click="toggleModal"><i class="fa fa-plus-circle"></i> Nouveau staff</button>
                     </div>
                 </div>
               
-
-                <div v-if="pageProfile">
-                    <div class="backdrop grid grid-flow-col bg-[#F5F7FB] rounded">
-                        <div class> 
-                            <div class="flex ml-14 my-5 md:w-3/4">
-                                <div class="title flex-1">
-                                    <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Nouvel étudiant</h2>
-                                </div>
-                                <div class="close">
-                                    <button v-if="showModal" class="bg-white px-2 py-1 rounded text-red-500" @click="toggleModal"><i class="fa fa-xmark"></i> </button>
-                                </div>
-                            </div>
-                            <div class="register-form rounded-md bg-white p-10 border-gray-300 md:absolute md:ml-auto md:mr-auto md:w-3/4 lg:ml-14">
-
-                                Phil2T
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <!-- modal form -->
+                <!-- modal -->
                 <div v-if="showModal">
                         <div class="backdrop grid grid-flow-col bg-[#F5F7FB] rounded">
                             <div class> 
                                 <div class="flex ml-14 my-5 md:w-3/4">
                                     <div class="title flex-1">
-                                        <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Nouvel étudiant</h2>
+                                        <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Nouveau staff</h2>
                                     </div>
                                     <div class="close">
                                         <button v-if="showModal" class="bg-white px-2 py-1 rounded text-red-500" @click="toggleModal"><i class="fa fa-xmark"></i> </button>
                                     </div>
                                 </div>
 
-                                <div class="register-form rounded-md bg-white p-10 border-gray-300 md:absolute md:ml-auto md:mr-auto md:w-3/4 lg:ml-14">
+                                <div class="register-form rounded-md border p-10 border-gray-300 md:absolute md:ml-auto md:mr-auto md:w-3/4 lg:ml-14">
 
                                     <form @submit.prevent="handleSubmit">
                                         <!-- tab1 -->
@@ -79,25 +58,16 @@
                                                 </span>
                                             </li>
 
-                                            <li :class="pageThree ? 'text-green-500 font-bold' : '' " class="flex md:w-full items-center after:w-full after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10">
-                                                <span class="flex items-center">
-                                                    <svg :class="pageThree ? 'w-3.5 h-3.5 sm:w-4 sm:h-4 mr-2.5': '' " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                                        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
-                                                    </svg>
-                                                    <span class="mr-1">3</span>Parents
-                                                </span>
-                                            </li>
-
-                                            <li :class="pageFour ? 'text-green-500 font-bold' : '' " class="flex items-center">
-                                                <svg :class="pageFour ? 'w-3.5 h-3.5 sm:w-4 sm:h-4 mr-2.5': '' " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                            <li :class="pageThree ? 'text-green-500 font-bold' : '' " class="flex items-center">
+                                                <svg :class="pageThree ? 'w-3.5 h-3.5 sm:w-4 sm:h-4 mr-2.5': '' " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                                     <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                                                 </svg>
-                                                <span class="mr-1">4</span>Affectation
+                                                <span class="mr-1">3</span>Affectation
                                             </li>
                                         </ol>
 
                                         <div  v-if="pageOne" class="mt-10">
-                                            <h2 class="uppercase text-green-500 text-xs">Identité de l'étudiant</h2>
+                                            <h2 class="uppercase text-green-400 text-xs">Identité </h2>
 
                                             <h5 class="mt-3 text-red-500">Les champs obligatoire *</h5>
                                             
@@ -125,16 +95,6 @@
                                                         <option class="select" value="Femme">F</option>
                                                     </select>
                                                 </div>
-
-                                                <div class="block md:inline">
-                                                    <label for="" class="block text-xs uppercase">Lieu de naissance</label>
-                                                    <input type="text" v-model="placeBirth" class="block border rounded-md p-2 border-gray-300 w-full">
-                                                </div>
-
-                                                <div class="block md:inline">
-                                                    <label for="" class="block text-xs uppercase">Date de naissance</label>
-                                                    <input type="date" v-model="dateBirth" class="block border rounded-md p-2 border-gray-300 w-full" >
-                                                </div>
                                             </div>
                                             <div class="mt-10 text-right">
                                                 <div class="inline">
@@ -146,7 +106,7 @@
                                         <!-- tab2 -->
 
                                         <div v-if="pageTwo" class="mt-10" >
-                                            <h2 class="uppercase text-green-400 text-xs">Adresse de l'étudiant</h2>
+                                            <h2 class="uppercase text-green-400 text-xs">Adresse </h2>
                                             
                                             <h5 class="mt-3 text-red-500">Les champs obligatoire *</h5>
 
@@ -167,6 +127,7 @@
                                                 </div>
                                             </div>
                                             <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+
                                                 <div class="block md:inline">
                                                     <label for="" class="block text-xs uppercase">Commune</label>
                                                     <input type="text" v-model="commune" class="block border rounded-md p-2 border-gray-300 w-full">
@@ -182,12 +143,6 @@
                                                     <input type="text" v-model="cel" class="block border rounded-md p-2 border-gray-300 w-full" >
                                                 </div>
                                             </div>
-                                            <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
-                                                <div class="block md:inline">
-                                                    <label for="" class="block text-xs uppercase">Email <span class="text-red-500">*</span></label>
-                                                    <input type="email" v-model="email" class="block border rounded-md p-2 border-gray-300 w-full">
-                                                </div>
-                                            </div>
                                             <div class="mt-10 text-right">
                                                 <div class="inline">
                                                     <span @click="showTab1" class="rounded-md px-3 py-2 ml-5 hover:cursor-pointer text-[#111827] hover:border"> <i class="fa fa-chevron-left"></i> Retour</span>
@@ -197,86 +152,54 @@
                                         </div>
 
                                         <!-- tab3 -->
+
                                         <div v-if="pageThree" class="mt-10" >
-                                            <h2 class="uppercase text-green-400 text-xs">Informations des parents de l'étudiant</h2>
+                                            <h2 class="uppercase text-green-400 text-xs">Affectation </h2>
                                             
                                             <h5 class="mt-3 text-red-500">Les champs obligatoire *</h5>
 
                                             <div class="mt-10 md:grid grid-flow-col flex-stretch gap-10">
                                                 <div class="block md:inline">
-                                                    <label for="" class="block text-xs uppercase">Nom du père</label>
-                                                    <input type="text" v-model="fatherName" class="block border rounded-md p-2 border-gray-300 w-full">
+                                                    <label for="" class="block text-xs uppercase">Type <span class="text-red-500">*</span></label>
+                                                    <select v-model="type" class="block border rounded-md p-2 border-gray-300 w-full" required>
+                                                        <option value="">Permanent</option>
+                                                        <option value="">Invité</option>
+                                                        <option value="">Bibliothequère</option>
+                                                    </select>
                                                 </div>
-
                                                 <div class="block md:inline">
-                                                    <label for="" class="block text-xs uppercase">Nom de la mère</label>
-                                                    <input type="text" v-model="motherName" class="block border rounded-md p-2 border-gray-300 w-full">
+                                                    <label for="" class="block text-xs uppercase">Salaire <span class="text-red-500">*</span></label>
+                                                    <input v-model="salary" type="number" class="block border rounded-md p-2 border-gray-300 w-full" required>
                                                 </div>
 
                                             </div>
                                             <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
-
                                                 <div class="block md:inline">
-                                                    <label for="" class="block text-xs uppercase">Téléphone</label>
-                                                    <input type="text" v-model="fatherTel" class="block border rounded-md p-2 border-gray-300 w-full">
+                                                    <label for="" class="block text-xs uppercase">Rôle <span class="text-red-500">*</span></label>
+                                                    <select v-model="role" class="block border rounded-md p-2 border-gray-300 w-full" required>
+                                                        <option value="">Enseignant</option>
+                                                        <option value="">Chef de departement</option>
+                                                        <option value="">Bibliothequère</option>
+                                                    </select>
                                                 </div>
 
                                                 <div class="block md:inline">
-                                                    <label for="" class="block text-xs uppercase">Professsion</label>
-                                                    <input type="text" v-model="fatherTitle" class="block border rounded-md p-2 border-gray-300 w-full">
+                                                    <label for="" class="block text-xs uppercase">Classe <span class="text-red-500">*</span></label>
+                                                    <select v-model="classe" class="block border rounded-md p-2 border-gray-300 w-full" required>
+                                                        <option class="select" value="">G2</option>
+                                                    </select>
                                                 </div>
 
                                                 <div class="block md:inline">
-                                                    <label for="" class="block text-xs uppercase">Téléphone</label>
-                                                    <input type="text" v-model="motherTel" class="block border rounded-md p-2 border-gray-300 w-full" >
-                                                </div>
-
-                                                <div class="block md:inline">
-                                                    <label for="" class="block text-xs uppercase">Professsion</label>
-                                                    <input type="text" v-model="motherTitle" class="block border rounded-md p-2 border-gray-300 w-full">
-                                                </div>
-                                            </div>
-
-                                            <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
-                                                <div class="block md:inline">
-                                                    <label for="" class="block text-xs uppercase">Adresse</label>
-                                                    <input type="text" v-model="parentAddress" class="block border rounded-md p-2 border-gray-300 w-full">
-                                                </div>
-                                            </div>
-                                            <div class="mt-10 text-right">
-                                                <div class="inline">
-                                                    <span @click="secondLastTab" class="rounded-md px-3 py-2 ml-5 hover:cursor-pointer text-[#111827] hover:border"> <i class="fa fa-chevron-left"></i> Retour</span>
-                                                    <span @click="showTab4" class="rounded-md px-3 py-2 ml-5 border  text-['#111827'] hover:cursor-pointer hover:bg-[#111827] hover:text-white hover:border-[#111827]"> <i class="fa fa-chevron-right"></i> Suivant</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                            <!-- tab4 -->
-
-                                        <div v-if="pageFour" class="mt-10" >
-                                            <h2 class="uppercase text-green-400 text-xs">Affectation de l'étudiant</h2>
-                                            
-                                            <h5 class="mt-3 text-red-500">Les champs obligatoire *</h5>
-
-                                            <div class="mt-10 md:grid grid-flow-col flex-stretch gap-10">
-                                                <div class="block md:inline">
-                                                    <label for="" class="block text-xs uppercase">Faculté <span class="text-red-500">*</span></label>
-                                                    <input type="text" v-model="faculty" class="block border rounded-md p-2 border-gray-300 w-full" required >
-                                                </div>
-
-                                                <div class="block md:inline">
-                                                    <label for="" class="block text-xs uppercase">Departement <span class="text-red-500">*</span></label>
-                                                    <input type="text" v-model="department" class="block border rounded-md p-2 border-gray-300 w-full" required>
-                                                </div>
-
-                                                <div class="block md:inline">
-                                                    <label for="" class="block text-xs uppercase">Promotion <span class="text-red-500">*</span></label>
-                                                    <input type="text" v-model="promotion" class="block border rounded-md p-2 border-gray-300 w-full" required>
+                                                    <label for="" class="block text-xs uppercase">Cours <span class="text-red-500">*</span></label>
+                                                    <select v-model="course" class="block border rounded-md p-2 border-gray-300 w-full" required>
+                                                        <option class="select" value="">Math</option>
+                                                    </select>
                                                 </div>
 
                                             </div>
                                             
-                                            <div class="mt-10 text-right">
+                                            <div class="mt-5 text-right">
                                                 <div class="inline">
                                                     <span @click="firstLastTab" class="rounded-md px-3 py-2 ml-5 hover:cursor-pointer text-[#111827] hover:border"> <i class="fa fa-chevron-left"></i> Retour</span>
                                                     <button class="text-white rounded-md px-3 py-2 bg-[#111827] ml-5 hover:cursor-pointer hover:bg-green-500 font-bold"> <i class="fa fa-paper-plane-top"></i> Enregistrer</button>
@@ -330,7 +253,7 @@
                     <div class="flex-1 rounded-md bg-white pt-6 pl-6 pr-6 pb-2 ml-5 mt-2 w-100 ">
                         <div class="bg-[#111827]-100 flex">
                             <div class="title flex-1">
-                                <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Liste d'étudiants</h2>
+                                <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Liste de staffs</h2>
                             </div>
 
                             <div class="" style="margin-top: -5px;">
@@ -348,7 +271,6 @@
                             </div>
                         </div>
 
-
                         <div class="flex flex-col m-3 h-100">
                             <div class="overflow-x-auto sm:-mx-12 lg:-mx-12">
                                 <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
@@ -360,8 +282,9 @@
                                                     <th scope="col" class=" px-3 py-3">Matricule</th>
                                                     <th scope="col" class=" px-3 py-3">Images</th>
                                                     <th scope="col" class=" px-3 py-3">Nom & Post Nom</th>
-                                                    <th scope="col" class=" px-3 py-3">Classe</th>
-                                                    <th scope="col" class=" px-3 py-3">Genre</th>
+                                                    <th scope="col" class=" px-3 py-3">Type</th>
+                                                    <th scope="col" class=" px-3 py-3">Rôle</th>
+                                                    <th scope="col" class=" px-3 py-3">Salaire</th>
                                                     <th scope="col" class=" px-3 py-3">Statut</th>
                                                     <th scope="col" class=" px-3 py-3">Action</th>
                                                 </tr>
@@ -373,12 +296,12 @@
                                                     <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-b border-gray-100"> 
                                                         <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
                                                     </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100"> <button @click="showProfile">Philippe Tsongo</button> </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">G3</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Homme</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Philippe Tsongo</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Permanent</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Enseignant</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">500$</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
-
                                                 </tr>
                                                 <tr class="bg-[#F5F7FB]">
                                                     <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-100">2</td>
@@ -387,8 +310,9 @@
                                                         <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
                                                     </td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Kambale Makuta</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">L1</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Homme</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Visiteur</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Enseingant</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">350$</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
 
@@ -401,8 +325,9 @@
                                                         <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
                                                     </td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Philippe Tsongo</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">G2</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Homme</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Permanent</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">DG</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">750$</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
 
@@ -414,8 +339,9 @@
                                                         <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
                                                     </td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Jacob Kamate</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">L1</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Homme</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Permanent</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">IT</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">450$</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
 
@@ -428,8 +354,9 @@
                                                         <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
                                                     </td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Kazadi Mbalala</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">G2</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Homme</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Permanent</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">DAF</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">750$</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
 
@@ -442,8 +369,9 @@
                                                         <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
                                                     </td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Musondolya Lea</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">G1</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Homme</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Permanent</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Financier</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">250$</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
 
@@ -456,8 +384,9 @@
                                                         <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
                                                     </td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Kazadi Mbalala</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">G2</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Homme</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Permanent</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Comptable</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">350$</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
                                                 </tr>
@@ -469,8 +398,9 @@
                                                         <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
                                                     </td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Kazadi Mbalala</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">G2</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Homme</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Permanent</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">HOD</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">750$</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
                                                 </tr>
@@ -500,7 +430,7 @@ import Sidebar from "../../components/layouts/Sidebar.vue";
 import Footer from "../../components/layouts/Footer.vue";
 
 export default {
-  name: "IndexStudent",
+  name: "IndexUser",
   components: { Head, Header, Sidebar, Footer },
 
   data() {
@@ -511,7 +441,6 @@ export default {
             pageTwo: false,
             pageThree: false,
             pageFour: false,
-            PageProfile: false,
 
 
             //form fields
@@ -519,25 +448,19 @@ export default {
             familyName: '',
             lastName: '',
             gender: '',
-            placeBirth: '',
-            dateBirth: '',
+
             country: '',
             province: '',
             city: '',
             commune: '',
             quarter: '',
             cel: '',
-            email: '',
-            fatherName: '',
-            motherName: '',
-            fatherTitle: '',
-            motherTitle: '',
-            fatherTel: '',
-            motherTel: '',
-            parentAddress: '',
+
             faculty: '',
             department: '',
-            promotion: ''
+            promotion: '',
+            type: '',
+            salary: ''
 
         };
   },
@@ -568,26 +491,9 @@ export default {
         this.pageTwo = !this.pageTwo;
     },
 
-    showTab4(){
-        this.pageFour = !this.pageFour;
-        this.pageThree = !this.pageThree;
-    },
-
     firstLastTab(){
-        this.pageThree = !this.pageThree;
-        this.pageFour = !this.pageFour;
-    },
-
-    secondLastTab(){
         this.pageTwo = !this.pageTwo;
         this.pageThree = !this.pageThree;
-    },
-
-    //student profile
-    showProfile(){
-        this.pageProfile = !this.pageProfile;
-        console.log(this.pageProfile)
-
     },
 
     handleSubmit(){
@@ -598,24 +504,17 @@ export default {
             this.familyName,
             this.lastName,
             this.gender,
-            this.placeBirth,
-            this.dateBirth,
+
             this.country,
             this.province,
             this.city,
             this.commune,
             this.quarter,
             this.cel,
-            this.fatherName,
-            this.motherName,
-            this.fatherTitle,
-            this.motherTitle,
-            this.fatherTel,
-            this.motherTel,
-            this.parentAddress,
-            this.faculty,
-            this.department,
-            this.promotion
+           
+            this.role,
+            this.class,
+            this.course
         )
     }   
     
@@ -666,7 +565,7 @@ label{
     }
     .close{
         position: absolute;
-        margin-left: 100%;
+        margin-left: 45%;
     }
 }
 

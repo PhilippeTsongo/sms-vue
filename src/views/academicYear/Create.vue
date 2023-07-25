@@ -99,87 +99,77 @@
                             <ul class="mt-5">
                                 <li class="py-2 px-2 w-100 mt-4 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white hover:border-[#111827] "><router-link :to="{ name: 'IndexPayment'}"> <i class="fa-solid fa-rectangle-list"></i> Paiement</router-link></li>
                                 <li class="py-2 px-2 w-100 mt-4 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white hover:border-[#111827] "><router-link :to="{ name: 'IndexOtherReceipt'}"> <i class="fa-solid fa-rectangle-list"></i> Autres recettes</router-link></li>
-                                <li class="py-2 px-2 w-100 mt-4 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white hover:border-[#111827] "><router-link :to="{ name: 'IndexExpense'}"> <i class="fa-solid fa-table-list"></i> Dépense</router-link></li>
                                 <li class="py-2 px-2 w-100 mt-4 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white hover:border-[#111827] "><router-link :to="{ name: 'IndexStaffPayment'}"> <i class="fa-solid fa-table-list"></i> Paiment des employés</router-link></li>
+                                <li class="py-2 px-2 w-100 mt-4 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white hover:border-[#111827] "><router-link :to="{ name: 'IndexBalance'}"> <i class="fa-solid fa-table-list"></i> Balance</router-link></li>
                                 <li class="py-2 px-2 w-100 mt-4 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white hover:border-[#111827] "><router-link :to="{ name: 'IndexBudget'}"> <i class="fa-solid fa-list"></i> Budget </router-link></li>
                             </ul>
+
                         </div>
                     </div>
                     
-                    <div class="flex-1 rounded-md bg-white px-5 py-5 ml-5 mt-2 w-100 ">
+                    <div class="flex-1 rounded-md bg-white pt-6 pl-6 pr-6 pb-2 ml-5 mt-2 w-100 ">
                         <div class="bg-[#111827]-100 flex">
                             <div class="title flex-1">
-                                <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Difference entre les recettes et les dépenses</h2>
+                                <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Liste de dépenses</h2>
+                            </div>
+
+                            <div class="" style="margin-top: -5px;">
+                                <input  type="search" class="p-1 rounded-md border border-gray-200"> 
+                            </div>
+                            <div class="ml-5 p-1 rounded" style="margin-top: -5px; margin-right: -3px;">
+                                <a href="" class=""> <router-link :to="{}"> <i class="fa fa-print"></i></router-link></a>
+                                <a href="" class="ml-5"> <router-link :to="{ }"> <i class="fa fa-file-excel"></i></router-link></a>
                             </div>
                         </div>
 
-                        <div class="mt-5">
-                            <div class="md:grid grid-flow-col justify-stretch gap-5">
-                                <div class="rounded-md bg-green-100 p-4 text-green-500 staff">
-                                    <h2 class=""> Recettes</h2>
-                                    <div class="flex mt-3 relative">
-                                    <div>
-                                        <h1 class="text-2xl">700$</h1>
-                                    </div>
-                                    <div class="mt-1 absolute right-0">
-                                        <span class="bg-white rounded-full text-xs py-1 px-2 " >Montant de prévision 25000$</span>
-                                    </div>
-                                    </div>
-                                </div>
-                                <div class="rounded-md bg-blue-100 p-4 text-blue-500 staff">
-                                    <h2 class="">Dépenses</h2>
-                                    <div class="flex mt-2 relative">
-                                    <div>
-                                        <h1 class="text-2xl">300$</h1>
-                                    </div>
-                                    <div class="mt-1 absolute right-0">
-                                        <span class="bg-white rounded-full  border-red-300 text-xs ml-3 py-1 px-2">Montant de prévision 15000$</span>
-                                    </div>
+                        <div class="flex flex-col m-3 h-100">
+                            <div class="overflow-x-auto sm:-mx-12 lg:-mx-12">
+                                <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                                    <div class="border-gray-200 rounded">
+                                        <table class="rounded border border-gray-200 min-w-full text-left text-sm font-light">
+                                            <thead class="bg-[#F5F7FB] ">
+                                                <tr class="">
+                                                    <th scope="col" class=" px-3 py-3">#</th>
+                                                    <th scope="col" class=" px-3 py-3">Motif</th>
+                                                    <th scope="col" class=" px-3 py-3">Montant</th>
+                                                    <th scope="col" class=" px-3 py-3">Date</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody class="h-100 border-r border-b border-gray-200">
+                                                <tr class="">
+                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">1</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">Pa</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">30$ </td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">20-07-2023</td>
+                                                </tr>
+
+                                                <tr class="">
+                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">1</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">Paiement éléctricité</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">130$ </td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">20-07-2023</td>
+                                                </tr>
+
+                                                <tr class="">
+                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">3</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">Achat matériels informatiques</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">500$ </td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">20-07-2023</td>
+                                                </tr>
+
+                                                <tr class="">
+                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">4</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">Paiement du personnel</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">1500$ </td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">20-07-2023</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
-
-
-                            <div class="md:grid grid-flow-col justify-stretch gap-5 mt-5">
-                                <div class="rounded-md bg-red-100 text-red-500 p-4 staff">
-                                    <h2 class=""> Différence</h2>
-                                    <div class="flex mt-3 relative">
-                                        <div>
-                                            <h1 class="text-2xl">400$</h1>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>                          
                         </div>
-
-                        <div class="rounded-md bg-green-100  p-4 mt-5 w-6/7 text-[#111827] staff ">
-                            <div class="flex">
-                                <div class="title flex-1">
-                                    <h2 class="uppercase text-xl text-green-500">Evolution de recettes budgetaire</h2>
-                                </div>
-                                <div >
-                                    <p class="text-white bg-green-500 p-1 rounded-md absolute right-14" >75%</p>
-                                </div>
-                            </div>
-                            <div class="w-full bg-green-300 rounded-full mt-5">
-                                <div class="bg-green-500 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style="width: 75%"> <i class="fa fa-check"></i>75%</div>
-                            </div>
-                        </div> 
-
-                        <div class="rounded-md bg-blue-100  p-4 mt-5 w-6/7 text-[#111827] staff ">
-                            <div class="flex">
-                                <div class="title flex-1">
-                                    <h2 class="uppercase text-xl text-blue-500">Evolution de dépenses budgetaire</h2>
-                                </div>
-                                <div >
-                                    <p class="text-white bg-blue-500 p-1 rounded-md absolute right-14" >25%</p>
-                                </div>
-                            </div>
-                            <div class="w-full bg-blue-300 rounded-full mt-5">
-                                <div class="bg-blue-500 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style="width: 25%"> <i class="fa fa-check"></i>25%</div>
-                            </div>
-                        </div> 
-
                     </div>
                 </div>
                 
@@ -199,7 +189,7 @@ import Sidebar from "../../components/layouts/Sidebar.vue";
 import Footer from "../../components/layouts/Footer.vue";
 
 export default {
-  name: "IndexBalance",
+  name: "CreateAcademicYear",
   components: { Head, Header, Sidebar, Footer },
 
   data() {
