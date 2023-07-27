@@ -35,7 +35,7 @@
                                         </div>
                                     </div>
 
-                                    <form @submit.prevent="handleSubmit">
+                                    <form @submit.prevent="newCourse">
 
                                         <div class="mt-5 pb-5">
                                             <h2 class="uppercase text-green-500 text-xs">Information du cours</h2>
@@ -45,40 +45,46 @@
                                             <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
                                                 <div class="block md:inline">
                                                     <label for="" class="block text-xs uppercase">Nom <span class="text-red-500">*</span></label>
-                                                    <input type="text" v-model="name" class="block border rounded-md p-1 border-gray-300 w-full" required >
+                                                    <input type="text" v-model="formData.name" class="block border rounded p-2 border-gray-300 w-full" required >
+                                                </div>
+                                            </div>
+                                            <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+                                                <div class="block md:inline">
+                                                    <label for="" class="block text-xs uppercase">Nom abrégé <span class="text-red-500">*</span></label>
+                                                    <input type="text" v-model="formData.short_name" class="block border rounded p-2 border-gray-300 w-full" required >
                                                 </div>
                                             </div>
 
                                             <div class="mt-5 md:grid grid-flow-col flex-stretch gap-5">
                                                 <div class="block md:inline">
                                                     <label for="" class="block text-xs uppercase">Department <span class="text-red-500">*</span></label>
-                                                    <select v-model="department" class="block border rounded-md p-1 border-gray-300 w-full" required>
-                                                        <option value="Phil">Computer Science</option>
-                                                        <option value="Luc">Law</option>
+                                                    <select v-model="formData.department" class="block border rounded p-2 border-gray-300 w-full" required>
+                                                        <option value="1">Computer Science</option>
+                                                        <option value="2">Law</option>
                                                     </select>
                                                 </div>
 
                                                 <div class="block md:inline">
                                                     <label for="" class="block text-xs uppercase">Promotion <span class="text-red-500">*</span></label>
-                                                    <select v-model="promotion" class="block border rounded-md p-1 border-gray-300 w-full" required>
-                                                        <option value="Phil">G1</option>
-                                                        <option value="Luc">L2</option>
+                                                    <select v-model="formData.promotion" class="block border rounded p-2 border-gray-300 w-full" required>
+                                                        <option value="1">G1</option>
+                                                        <option value="2">L2</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="mt-5 md:grid grid-flow-col flex-stretch">
                                                 <div class="block md:inline">
                                                     <label for="" class="block text-xs uppercase">Enseignant </label>
-                                                    <select v-model="lecturer" class="block border rounded-md p-1 border-gray-300 w-full" required>
-                                                        <option value="Phil">Phil</option>
-                                                        <option value="Luc">Luc</option>
+                                                    <select v-model="formData.lecturer" class="block border rounded p-2 border-gray-300 w-full" required>
+                                                        <option value="1">Phil</option>
+                                                        <option value="2">Luc</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="mt-5 md:grid grid-flow-col flex-stretch">
                                                 <div class="block md:inline">
                                                     <label for="" class="block text-xs uppercase">Ponderation(40) <span class="text-red-500">*</span></label>
-                                                    <input type="text" v-model="total_marks" class="block border rounded-md p-1 border-gray-300 w-full" required >
+                                                    <input type="text" v-model="formData.total_marks" class="block border rounded p-2 border-gray-300 w-full" required >
                                                 </div>
                                             </div>
 
@@ -95,8 +101,12 @@
                         </div>
                 </div>
 
+                <ul class="flex md:hidden bg-white rounded-md p-5">
+                    <li class="py-2 px-2 w-100 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white hover:border-[#111827] "><router-link :to="{ name: 'IndexActivity'}"> <i class="fa-solid fa-rectangle-list"></i> Travaux des cours</router-link></li>
+                    <li class="ml-5 py-2 px-2 w-100 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white hover:border-[#111827] "><router-link :to="{ name: 'IndexMark'}"> <i class="fa-solid fa-rectangle-list"></i> Points</router-link></li>
+                </ul>
                 <div class="flex">
-                    <div class="">
+                    <div class="hidden md:inline">
                         <div class="rounded-md bg-white w-48 p-5 mt-2 ">
                             <div class="title">
                                 <h2 class="uppercase text-green-400"><i class="fa fa-list-ol"></i> Détails</h2>
@@ -130,15 +140,15 @@
 
                         </div>
                     </div>
-                    
-                    <div class="flex-1 rounded-md bg-white pt-6 pl-6 pr-6 pb-2 ml-5 mt-2 w-100 ">
+
+                    <div class="flex-1 rounded-md bg-white pt-6 pl-6 pr-6 pb-2 ml-0 md:ml-5 mt-2 w-100 ">
                         <div class="bg-[#111827]-100 flex">
                             <div class="title flex-1">
                                 <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Liste de cours</h2>
                             </div>
 
                             <div class="" style="margin-top: -5px;">
-                                <input  type="search" class="p-1 rounded-md border border-gray-200"> 
+                                <input  type="search" class="p-1 rounded-md border border-gray-200 hidden sm:inline"> 
                             </div>
                             <div class="ml-5 p-1 rounded" style="margin-top: -5px; margin-right: -3px;">
                                 <a href="" class=""> <router-link :to="{}"> <i class="fa fa-print"></i></router-link></a>
@@ -148,14 +158,15 @@
 
                         <div class="flex flex-col m-3 h-100">
                             <div class="overflow-x-auto sm:-mx-12 lg:-mx-12">
-                                <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                                <div class="inline-block w-96 md:w-full py-2 sm:px-6 lg:px-8">
                                     <div class="border-gray-200 rounded">
-                                        <table class="rounded border border-gray-200 min-w-full text-left text-sm font-light">
+                                        <table class="rounded border border-gray-200 w-96 md:w-full text-left text-sm font-light">
                                             <thead class="bg-[#F5F7FB] ">
                                                 <tr class="">
                                                     <th scope="col" class=" px-3 py-3">#</th>
                                                     <th scope="col" class=" px-3 py-3">Numéro</th>
                                                     <th scope="col" class=" px-3 py-3">Nom</th>
+                                                    <th scope="col" class=" px-3 py-3">Departement</th>
                                                     <th scope="col" class=" px-3 py-3">Promotion</th>
                                                     <th scope="col" class=" px-3 py-3">Ponderation</th>
                                                     <th scope="col" class=" px-3 py-3">Enseignant</th>
@@ -164,61 +175,18 @@
                                                 </tr>
                                             </thead>
                                             <tbody class="h-100 border-r border-b border-gray-200">
-                                                <tr class="">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">1</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-200">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">Calculus 1</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200"> G2 </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500 text-center"> <span class="bg-green-500 text-white rounded-full p-1">40</span></td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">Joseph Buyingo</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200"></td>
+                                                <tr v-for="course in courses" :key="course.id" class="">
+                                                    <td class="px-3 py-2 font-medium border-r border-b border-gray-200"> {{course.id}}</td>
+                                                    <td class="px-4 w-24 py-2 border-r border-b border-gray-200"> {{course.course_number}}</td>
+                                                    <td class="px-3 py-2 border-r border-b border-gray-200"> {{course.name}}</td>
+                                                    <td class="px-3 py-2 border-r border-b border-gray-200"> {{course.department.name}}</td>
+                                                    <td class="px-3 py-2 border-r border-b border-gray-200"> {{course.promotion.name}} </td>
+                                                    <td class="px-3 py-2 border-r border-b border-gray-200 text-green-500 text-center"> <span class="bg-green-500 text-white rounded-full p-1"> {{course.total_marks}}</span></td>
+                                                    <td class="px-3 py-2 border-r border-b border-gray-200"> {{course.lecturer.name}}</td>
+                                                    <td class="px-3 py-2 border-r border-b border-gray-200 text-green-500"> {{course.status}}</td>
+                                                    <td class="px-3 py-2 border-r border-b border-gray-200"></td>
 
-
-                                                </tr>
-                                                <tr class="bg-[#F5F7FB]">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">2</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-200">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">Calculus 2</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200"> G1 </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500 text-center"> <span class="bg-green-500 text-white rounded-full p-1">100</span></td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">Patman Mugisho</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200"></td>
-                                                </tr>
-
-                                                <tr class="">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">3</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-200">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">Linear algebra</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">L1 </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500 text-center"> <span class="bg-green-500 text-white rounded-full p-1">100</span></td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">Jacob Kamate</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200"></td>
-                                                </tr>
-                                                <tr class="bg-[#F5F7FB]">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">3</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-200">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">Information technology</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">L2 </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500 text-center"> <span class="bg-green-500 text-white rounded-full p-1">100</span></td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">Aristote Doe</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200"></td>
-                                                </tr>
-                                                <tr class="">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">3</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-200">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">Automata</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">L1 </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500 text-center"> <span class="bg-green-500 text-white rounded-full p-1">100</span></td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">John Doe</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200"></td>
-                                                </tr>
-                                                
-                                            
+                                                </tr>                                      
                                             </tbody>
                                         </table>
                                     </div>
@@ -243,56 +211,86 @@ import Header from "../../components/layouts/Header.vue";
 import Sidebar from "../../components/layouts/Sidebar.vue";
 import Footer from "../../components/layouts/Footer.vue";
 
+// import axios from "axios";
+import {getCourses, addCourse} from '../../jscore/init.js';
+
 export default {
   name: "IndexCourse",
   components: { Head, Header, Sidebar, Footer },
 
-  data() {
+    data() {
         return {
             text: "Required field are marked *",
             showModal: false,
             pageOne: true,
-
+            courses: [],
 
             //form fields
-            number: '',
-            name: '',
-            total_marks: '',
-            lecturer: '',
-            promotion: '',
-            department: ''
+            formData: {
+                name: '',
+                short_name: '',
+                total_marks: '',
+                lecturer: '',
+                promotion: '',
+                department: '',
+            }
         };
-  },
+    },
 
-  // show and close modal
-  methods: {
-    
-    toggleModal() {
+    mounted(){
+        this.fetchCourses();
+        // this.newCourse();
+    },
+
+    methods: {
+        //Course list
+        fetchCourses(){
+            getCourses()
+            .then(response => {
+                this.courses = response.data.courses;
+            })
+            .catch(error => {
+                console.log(error);
+            })
+        },
+
+        //new course
+        newCourse(){
+            addCourse(this.formData)
+            .then(response => {
+                //toast notification
+                // createToast('Wow, easy', 
+                // {
+                //     type: 'success',
+                //     timeout: 6000,
+                //     position: 'top-right',
+                //     showCloseButton: false,
+                //     showIcon: true,
+                // });
+                //close the tab
+                this.showModal = !this.showModal;
+                // console.log(this.formData + response.data)
+
+            })
+            .catch(response, error => {
+                //toast notification
+                
+
+                console.error(error)
+            })
+        },
+
+        
+        // show and close modal
+        toggleModal() {
+            this.showModal = !this.showModal;
+        },
+        closeToggleModal() {
         this.showModal = !this.showModal;
-    },
-
-    closeToggleModal() {
-      this.showModal = !this.showModal;
-    },
-
-    handleSubmit(){
-        console.log('1' + this.pageOne)
-
-        console.log(
-            this.number,
-            this.name,
-            this.total_marks,
-            this.lecturer,
-            this.promotion,
-            this.department
-        )
-    }   
+        } 
     
-
-    // closeEvent() {
-    //     this.$emit('close')
-    // }
-  }
+    
+    }
 };
 </script>
  

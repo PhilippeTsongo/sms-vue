@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
+
 // User
 import IndexUser from '../views/user/Index.vue'
 import CreateUser from '../views/user/Create.vue'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 import LogoutView from '../views/LogoutView.vue'
-
 
 // Student
 import IndexStudent from '../views/student/Index.vue'
@@ -360,6 +360,17 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
-})
+});
+
+
+// Example of Vue Router navigation guard
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth) && !userIsAuthenticated) {
+    // Redirect to the login page or show a 403 Forbidden page
+    next({ name: 'login' });
+  } else {
+    next();
+  }
+});
 
 export default router

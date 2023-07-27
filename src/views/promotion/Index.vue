@@ -48,6 +48,21 @@
                                                     <input type="text" v-model="name" class="block border rounded-md p-2 border-gray-300 w-full" required >
                                                 </div>
                                             </div>
+                                            <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+                                                <div class="block md:inline">
+                                                    <label for="" class="block text-xs uppercase">Cycle <span class="text-red-500">*</span></label>
+                                                    <select v-model="cycle" class="block border rounded-md p-2 border-gray-300 w-full" required>
+                                                        <option class="select" value="">Licence</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                             <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+                                                <div class="block md:inline">
+                                                    <label for="" class="block text-xs uppercase">Departement <span class="text-red-500">*</span></label>
+                                                    <input type="text" v-model="department" class="block border rounded-md p-2 border-gray-300 w-full" required >
+                                                </div>
+
+                                            </div>
                                             <div class="mt-10 text-center">
                                                 <button class="text-[#111827] border border-[#111827] w-full rounded-md px-3 py-2 hover:border-none hover:bg-green-500 hover:text-white"> <i class="fa fa-paper-plane-top"></i> Enregistrer</button>
                                             </div>
@@ -206,6 +221,8 @@ export default {
             //form fields
             number: '',
             name: '',
+            cycle: '',
+            department: ''
         };
   },
 

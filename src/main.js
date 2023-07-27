@@ -5,13 +5,15 @@ import router from './router'
 //tailwind
 import '../src/assets/index.css'
 import '../src/assets/fontawesome/css/all.min.css' 
-// import '../src/assets/fontawesome/css/regular.min.css' 
-// import '../src/assets/fontawesome/css/solid.min.css' 
+import axios from 'axios';
 
-// import '../../public/js/chart.js'
+//setup axios default headers
+const authToken = localStorage.getItem('authToken');
+axios.defaults.baseURL = 'http://127.0.0.1:8000/api'; // Adjust the URL to match your Laravel backend
+axios.defaults.headers.common['Authorization'] = `Bearer ${authToken}`;
 
-//fontawesome
-// import '../src/components/head.vue' 
+//toast notification
+// import { createToast } from 'mosha-vue-toastify';
 
-
+// createApp(App).use(router).use(createToast).mount('#app')
 createApp(App).use(router).mount('#app')

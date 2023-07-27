@@ -1,7 +1,7 @@
 <template>
     <div class="login">
         <div >
-            <form action="" class="pt-14 pb-20">
+            <form @submit.prevent="handleSubmit" method="post" action="" class="pt-14 pb-20">
                 <div class="text-center">
                     <h1 class="uppercase text-lg text-green-500 text-bold">Connexion</h1>
                 </div>
@@ -17,7 +17,7 @@
                     </div>
 
                     <div class="mt-7 ml-10">
-                        <input type="checkbox" v-model="remember" required>
+                        <input type="checkbox">
                         <label class="text-gray-400">Se souvenir de moi</label>
                     </div>
 
@@ -38,11 +38,49 @@
 
 
 <script>
+
+//import init
+import {userLogin} from '../jscore/init.js';
+
+
 export default {
     name: 'LoginView',
-    components: { }
+    components: { },
 
+    data(){
+        return{
+           email: '',
+           password: '',
+        }
+    },
+
+    methods:{
+        handleSubmit(){
+            const credentials = {
+                email: this.email,
+                password: this.password
+            };
+
+            userLogin(credentials)
+                .then((response) => {
+                    const token = response.data.accessToken; //get the access token
+                    localStorage.setItem('authToken', token); //store the token in a local staorage
+
+                    this.$router.push('/course'); //redirection to the dashboard
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        }
+    }
 }
+
+
+
+
+
+
+
 </script>
 
 <style>
