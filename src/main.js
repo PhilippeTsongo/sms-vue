@@ -12,8 +12,9 @@ const authToken = localStorage.getItem('authToken');
 axios.defaults.baseURL = 'http://127.0.0.1:8000/api'; // Adjust the URL to match your Laravel backend
 axios.defaults.headers.common['Authorization'] = `Bearer ${authToken}`;
 
-//toast notification
-// import { createToast } from 'mosha-vue-toastify';
 
-// createApp(App).use(router).use(createToast).mount('#app')
-createApp(App).use(router).mount('#app')
+//notification
+import Toaster from '@meforma/vue-toaster';
+
+createApp(App).use(router).use(Toaster).mount('#app')
+// createApp(App).use(router).mount('#app')

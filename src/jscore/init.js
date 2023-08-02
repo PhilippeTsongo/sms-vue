@@ -12,7 +12,20 @@ export function getCourses(){
     return axios.get('/course')
 }
 
-//new course
+//Course new
 export function addCourse(formData){
     return axios.post('/course', formData)
 }
+
+//Course Show
+export function showCourse(course){
+    return axios.get(`/course/${course}`)
+}
+
+//Course Show
+export function editCourse(course, formData){
+    return axios.put(`/course/${course}`, formData)
+}
+
+
+

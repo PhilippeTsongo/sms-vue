@@ -35,7 +35,8 @@
                                         </div>
                                     </div>
 
-                                    <form @submit.prevent="newCourse">
+                                    <!-- :class="pageOne ? 'text-green-500 font-bold' : '' " -->
+                                    <form @submit.prevent=" course ? UpdateCourse : newCourse ">
 
                                         <div class="mt-5 pb-5">
                                             <h2 class="uppercase text-green-500 text-xs">Information du cours</h2>
@@ -44,29 +45,35 @@
                                             
                                             <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
                                                 <div class="block md:inline">
-                                                    <label for="" class="block text-xs uppercase">Nom <span class="text-red-500">*</span></label>
-                                                    <input type="text" v-model="formData.name" class="block border rounded p-2 border-gray-300 w-full" required >
+                                                    <label for="" class="block text-xs uppercase">Nom du cours <span class="text-red-500">*</span></label>
+                                                    <input v-if="!course" type="text" :v-model="formData.name" class="block border rounded p-2 border-gray-300 w-full" required>
+                                                    <input v-if="course" type="text" :value="formDataEdit.name" class="block border rounded p-2 border-gray-300 w-full" required>
                                                 </div>
                                             </div>
                                             <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
                                                 <div class="block md:inline">
-                                                    <label for="" class="block text-xs uppercase">Nom abrégé <span class="text-red-500">*</span></label>
-                                                    <input type="text" v-model="formData.short_name" class="block border rounded p-2 border-gray-300 w-full" required >
+                                                    <label for="" class="block text-xs uppercase">Nom abrégé du cours  <span class="text-red-500">*</span></label>
+                                                    <input v-if="!course" type="text" :v-model="formData.short_name" class="block border rounded p-2 border-gray-300 w-full" required >
+                                                    <input v-if="course" type="text" :value="formDataEdit.short_name" class="block border rounded p-2 border-gray-300 w-full" required >
                                                 </div>
                                             </div>
 
                                             <div class="mt-5 md:grid grid-flow-col flex-stretch gap-5">
                                                 <div class="block md:inline">
-                                                    <label for="" class="block text-xs uppercase">Department <span class="text-red-500">*</span></label>
-                                                    <select v-model="formData.department" class="block border rounded p-2 border-gray-300 w-full" required>
+                                                    <label for="" class="block text-xs uppercase">Departement <span class="text-red-500">*</span></label>
+                                                    <select v-if="!course" v-model="formData.department" class="block border rounded p-3 border-gray-300 w-full" required>
                                                         <option value="1">Computer Science</option>
                                                         <option value="2">Law</option>
+                                                    </select>
+                                                    <select v-if="course" v-model="formDataEdit.department" class="block border rounded p-3 border-gray-300 w-full" required>
+                                                        <option :value="1">Computer Science</option>
+                                                        <option :value="2">Law</option>
                                                     </select>
                                                 </div>
 
                                                 <div class="block md:inline">
                                                     <label for="" class="block text-xs uppercase">Promotion <span class="text-red-500">*</span></label>
-                                                    <select v-model="formData.promotion" class="block border rounded p-2 border-gray-300 w-full" required>
+                                                    <select v-model="formData.promotion" class="block border rounded p-3 border-gray-300 w-full" required>
                                                         <option value="1">G1</option>
                                                         <option value="2">L2</option>
                                                     </select>
@@ -75,7 +82,7 @@
                                             <div class="mt-5 md:grid grid-flow-col flex-stretch">
                                                 <div class="block md:inline">
                                                     <label for="" class="block text-xs uppercase">Enseignant </label>
-                                                    <select v-model="formData.lecturer" class="block border rounded p-2 border-gray-300 w-full" required>
+                                                    <select v-model="formData.lecturer" class="block border rounded p-3 border-gray-300 w-full" required>
                                                         <option value="1">Phil</option>
                                                         <option value="2">Luc</option>
                                                     </select>
@@ -180,12 +187,15 @@
                                                     <td class="px-4 w-24 py-2 border-r border-b border-gray-200"> {{course.course_number}}</td>
                                                     <td class="px-3 py-2 border-r border-b border-gray-200"> {{course.name}}</td>
                                                     <td class="px-3 py-2 border-r border-b border-gray-200"> {{course.department.name}}</td>
-                                                    <td class="px-3 py-2 border-r border-b border-gray-200"> {{course.promotion.name}} </td>
+                                                    <td class="px-3 py-2 border-r border-b border-gray-200"> {{ course.promotion.name}} </td>
                                                     <td class="px-3 py-2 border-r border-b border-gray-200 text-green-500 text-center"> <span class="bg-green-500 text-white rounded-full p-1"> {{course.total_marks}}</span></td>
-                                                    <td class="px-3 py-2 border-r border-b border-gray-200"> {{course.lecturer.name}}</td>
+                                                    <td class="px-3 py-2 border-r border-b border-gray-200"> {{ course.lecturer.name}}</td>
                                                     <td class="px-3 py-2 border-r border-b border-gray-200 text-green-500"> {{course.status}}</td>
-                                                    <td class="px-3 py-2 border-r border-b border-gray-200"></td>
+                                                    <td class="px-3 py-2 border-r border-b border-gray-200">
 
+                                                        <button @click="dataCourse(course.id)" class="text-[#111827] border border-[#111827] w-full rounded-md px-3 py-2"> Edit</button>
+
+                                                    </td>
                                                 </tr>                                      
                                             </tbody>
                                         </table>
@@ -203,16 +213,21 @@
     </div>
     </div>
 
- </template>
+</template>
  
- <script>
+<script>
 import Head from "../../components/layouts/head.vue";
 import Header from "../../components/layouts/Header.vue";
 import Sidebar from "../../components/layouts/Sidebar.vue";
 import Footer from "../../components/layouts/Footer.vue";
 
+//notification
+
+
 // import axios from "axios";
-import {getCourses, addCourse} from '../../jscore/init.js';
+import {getCourses, addCourse, showCourse, editCourse} from '../../jscore/init.js';
+import {successMessage, errorMessage} from '../../jscore/IoNotification.js';
+
 
 export default {
   name: "IndexCourse",
@@ -223,7 +238,8 @@ export default {
             text: "Required field are marked *",
             showModal: false,
             pageOne: true,
-            courses: [],
+            courses: [], //courses list
+            course: null, //course profile
 
             //form fields
             formData: {
@@ -233,25 +249,39 @@ export default {
                 lecturer: '',
                 promotion: '',
                 department: '',
-            }
+            },
+
+
+            formDataEdit: {
+                name: '',
+                short_name: '',
+                total_marks: '',
+                lecturer: '',
+                promotion: '',
+                department: '',
+            },
+
         };
     },
 
+
     mounted(){
         this.fetchCourses();
-        // this.newCourse();
+        // this.dataCourse();
     },
+
 
     methods: {
         //Course list
         fetchCourses(){
+
             getCourses()
             .then(response => {
                 this.courses = response.data.courses;
             })
             .catch(error => {
                 console.log(error);
-            })
+            });
         },
 
         //new course
@@ -259,34 +289,70 @@ export default {
             addCourse(this.formData)
             .then(response => {
                 //toast notification
-                // createToast('Wow, easy', 
-                // {
-                //     type: 'success',
-                //     timeout: 6000,
-                //     position: 'top-right',
-                //     showCloseButton: false,
-                //     showIcon: true,
-                // });
-                //close the tab
+                successMessage(this.$toast, response.data.message);
+                //close the tab    
                 this.showModal = !this.showModal;
-                // console.log(this.formData + response.data)
-
+                //fetch List
+                this.fetchCourses();
             })
-            .catch(response, error => {
+            .catch((errors) => {
                 //toast notification
-                
-
-                console.error(error)
+                errorMessage(this.$toast, errors.response.data.message);
             })
         },
 
-        
+
+        //new course
+        dataCourse(course){
+            //open the tab    
+            this.showModal = !this.showModal;
+            showCourse(course)
+            .then(response => {
+                this.course = response.data.course;
+
+                this.formDataEdit.name = this.course.name;
+                this.formDataEdit.short_name = this.course.short_name;
+                this.formDataEdit.total_marks = this.course.total_marks;
+                this.formDataEdit.department = this.course.department;
+                this.formDataEdit.promotion = this.course.promotion;
+                this.formDataEdit.lecturer = this.course.lecturer;
+
+                //fetch List
+            })
+            .catch((errors) => {
+                //toast notification
+                errorMessage(this.$toast, errors.response.data.message);
+            });
+        },
+
+        showCourseProfile(course) {
+            // When the "Data Profile" button is clicked, fetch the selected course profile
+            this.dataCourse(course);
+        },
+
+        //update course
+        UpdateCourse(course){
+            editCourse(course, this.formData)
+            .then(response => {
+                //toast notification
+                successMessage(this.$toast, response.data.message);
+                //close the tab    
+                this.showModal = !this.showModal;
+                //fetch List
+                this.fetchCourses();
+            })
+            .catch((errors) => {
+                //toast notification
+                errorMessage(this.$toast, errors.response.data.message);
+            })
+        },
+
         // show and close modal
         toggleModal() {
             this.showModal = !this.showModal;
         },
         closeToggleModal() {
-        this.showModal = !this.showModal;
+            this.showModal = !this.showModal;
         } 
     
     

@@ -1,7 +1,8 @@
 <template id="app">
-  <router-view/>
-
-  
+  <div>
+    <router-view/>
+    <!-- <be-notifications/> -->
+  </div>
 </template>
 
 <style>
