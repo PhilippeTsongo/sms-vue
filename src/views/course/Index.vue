@@ -20,7 +20,7 @@
                     </div>
                 </div>
               
-                <!-- modal -->
+                <!-- modal new -->
                 <div v-if="showModal">
                         <div class="grid grid-flow-col rounded absolute w-96 top-20 right-0 h-auto">
                             <div class> 
@@ -36,46 +36,42 @@
                                     </div>
 
                                     <!-- :class="pageOne ? 'text-green-500 font-bold' : '' " -->
-                                    <form @submit.prevent=" course ? UpdateCourse : newCourse ">
+                                    <form @submit.prevent>
 
                                         <div class="mt-5 pb-5">
-                                            <h2 class="uppercase text-green-500 text-xs">Information du cours</h2>
+                                            <h2 class="uppercase text-green-500 text-xs">Informations du cours</h2>
 
-                                            <h5 class="mt-3 text-red-500">Les champs obligatoire *</h5>
+                                            <h5 class="mt-3 text-red-500">Les champs obligatoires *</h5>
                                             
                                             <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
                                                 <div class="block md:inline">
                                                     <label for="" class="block text-xs uppercase">Nom du cours <span class="text-red-500">*</span></label>
-                                                    <input v-if="!course" type="text" :v-model="formData.name" class="block border rounded p-2 border-gray-300 w-full" required>
-                                                    <input v-if="course" type="text" :value="formDataEdit.name" class="block border rounded p-2 border-gray-300 w-full" required>
+                                                    <input type="text" :v-model="formData.name" class="block border rounded p-2 border-gray-300 w-full" required>
                                                 </div>
                                             </div>
                                             <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
                                                 <div class="block md:inline">
                                                     <label for="" class="block text-xs uppercase">Nom abrégé du cours  <span class="text-red-500">*</span></label>
-                                                    <input v-if="!course" type="text" :v-model="formData.short_name" class="block border rounded p-2 border-gray-300 w-full" required >
-                                                    <input v-if="course" type="text" :value="formDataEdit.short_name" class="block border rounded p-2 border-gray-300 w-full" required >
+                                                    <input type="text" :v-model="formData.short_name" class="block border rounded p-2 border-gray-300 w-full" required >
                                                 </div>
                                             </div>
 
                                             <div class="mt-5 md:grid grid-flow-col flex-stretch gap-5">
                                                 <div class="block md:inline">
                                                     <label for="" class="block text-xs uppercase">Departement <span class="text-red-500">*</span></label>
-                                                    <select v-if="!course" v-model="formData.department" class="block border rounded p-3 border-gray-300 w-full" required>
-                                                        <option value="1">Computer Science</option>
-                                                        <option value="2">Law</option>
-                                                    </select>
-                                                    <select v-if="course" v-model="formDataEdit.department" class="block border rounded p-3 border-gray-300 w-full" required>
-                                                        <option :value="1">Computer Science</option>
-                                                        <option :value="2">Law</option>
+                                                    <select v-model="formData.department" class="block border rounded p-3 border-gray-300 w-full" required>
+                                                        <option v-for="department in departmentsList" :key="department.id" :value="department.id">
+                                                            {{ department.name }}
+                                                        </option>
                                                     </select>
                                                 </div>
 
                                                 <div class="block md:inline">
                                                     <label for="" class="block text-xs uppercase">Promotion <span class="text-red-500">*</span></label>
                                                     <select v-model="formData.promotion" class="block border rounded p-3 border-gray-300 w-full" required>
-                                                        <option value="1">G1</option>
-                                                        <option value="2">L2</option>
+                                                        <option v-for="promotion in promotionsList" :key="promotion.id" :value="promotion.id">
+                                                            {{ promotion.name }}
+                                                        </option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -83,8 +79,9 @@
                                                 <div class="block md:inline">
                                                     <label for="" class="block text-xs uppercase">Enseignant </label>
                                                     <select v-model="formData.lecturer" class="block border rounded p-3 border-gray-300 w-full" required>
-                                                        <option value="1">Phil</option>
-                                                        <option value="2">Luc</option>
+                                                        <option v-for="lecturer in lecturersList" :key="lecturer.id" :value="lecturer.id">
+                                                            {{ lecturer.name }}
+                                                        </option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -96,7 +93,95 @@
                                             </div>
 
                                             <div class="mt-5 text-center">
-                                                <button class="text-[#111827] border border-[#111827] w-full rounded-md px-3 py-2 hover:border-none hover:bg-green-500 hover:text-white"> <i class="fa fa-paper-plane-top"></i> Enregistrer</button>
+                                                <button @click="newCourse"  class="text-[#111827] border border-[#111827] w-full rounded-md px-3 py-2 hover:border-none hover:bg-green-500 hover:text-white"> <i class="fa fa-paper-plane-top"></i> Enregistrez</button>
+
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+
+                            </div>
+
+                        </div>
+                </div>
+
+
+                <!-- modal new -->
+                <div v-if="showModalEdit">
+                        <div class="grid grid-flow-col rounded absolute w-96 top-20 right-0 h-auto">
+                            <div class> 
+                                <div class="register-form rounded-md bg-white px-5 border-gray-900 shadow-xl md:absolute md:ml-auto md:mr-auto md:w-3/4 lg:ml-14">
+
+                                    <div class="flex py-5 w-full">
+                                        <div class="title flex-1">
+                                            <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Modifier le cours</h2>
+                                        </div>
+                                        <div class="">
+                                            <button v-if="showModalEdit" class="bg-white px-2 py-1 rounded text-red-500" @click="toggleModalEdit"><i class="fa fa-xmark"></i> </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- :class="pageOne ? 'text-green-500 font-bold' : '' " -->
+                                    <form @submit.prevent="updateCourse(courseData.id)">
+
+                                        <div class="mt-5 pb-5">
+                                            <h2 class="uppercase text-green-500 text-xs">Informations du cours</h2>
+
+                                            <h5 class="mt-3 text-red-500">Les champs obligatoires *</h5>
+                                            
+                                            <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+                                                <div class="block md:inline">
+                                                    <label for="" class="block text-xs uppercase">Nom du cours <span class="text-red-500">*</span></label>
+                                                    <input type="text" v-model="courseData.name" class="block border rounded p-2 border-gray-300 w-full" required>
+                                                </div>
+                                            </div>
+                                            <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+                                                <div class="block md:inline">
+                                                    <label for="" class="block text-xs uppercase">Nom abrégé du cours  <span class="text-red-500">*</span></label>
+                                                    <input type="text" v-model="courseData.short_name" class="block border rounded p-2 border-gray-300 w-full" required >
+                                                </div>
+                                            </div>
+
+                                            <div class="mt-5 md:grid grid-flow-col flex-stretch gap-5">
+                                                <div class="block md:inline">
+                                                    <label for="" class="block text-xs uppercase">Departement <span class="text-red-500">*</span></label>
+                                                    <select v-model="courseData.department_id" class="block border rounded p-3 border-gray-300 w-full" required>
+                                                        <option v-for="department in departmentsList" :key="department.id" :value="department.id" >
+                                                            {{ department.name }}
+                                                        </option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="block md:inline">
+                                                    <label for="" class="block text-xs uppercase">Promotion <span class="text-red-500">*</span></label>
+                                                    <select v-model="courseData.promotion_id" class="block border rounded p-3 border-gray-300 w-full" required>
+                                                        <option v-for="promotion in promotionsList" :key="promotion.id" :value="promotion.id" >
+                                                            {{ promotion.name }}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="mt-5 md:grid grid-flow-col flex-stretch">
+                                                <div class="block md:inline">
+                                                    <label for="" class="block text-xs uppercase">Enseignant </label>
+                                                    <select v-model="courseData.lecturer_id" class="block border rounded p-3 border-gray-300 w-full" required>
+                                                        <option v-for="lecturer in lecturersList" :key="lecturer.id" :value="lecturer.id">
+                                                            {{ lecturer.name }}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="mt-5 md:grid grid-flow-col flex-stretch">
+                                                <div class="block md:inline">
+                                                    <label for="" class="block text-xs uppercase">Ponderation(40) <span class="text-red-500">*</span></label>
+                                                    <input type="text" v-model="courseData.total_marks" class="block border rounded p-2 border-gray-300 w-full" required >
+                                                </div>
+                                            </div>
+
+                                            <div class="mt-5 text-center">
+                                                <button  class="text-[#111827] border border-[#111827] w-full rounded-md px-3 py-2 hover:border-none hover:bg-green-500 hover:text-white"> <i class="fa fa-paper-plane-top"></i> Enregistrez</button>
+
                                             </div>
                                         </div>
 
@@ -221,11 +306,9 @@ import Header from "../../components/layouts/Header.vue";
 import Sidebar from "../../components/layouts/Sidebar.vue";
 import Footer from "../../components/layouts/Footer.vue";
 
-//notification
-
 
 // import axios from "axios";
-import {getCourses, addCourse, showCourse, editCourse} from '../../jscore/init.js';
+import {getCourses, addCourse, showCourse, editCourse, getDepartments, getPromotions, getLecturers} from '../../jscore/init.js';
 import {successMessage, errorMessage} from '../../jscore/IoNotification.js';
 
 
@@ -237,11 +320,20 @@ export default {
         return {
             text: "Required field are marked *",
             showModal: false,
+            showModalEdit: false,
             pageOne: true,
-            courses: [], //courses list
-            course: null, //course profile
+            courses: {}, //courses list
+            courseData: {}, //course profile
+            departmentData: {}, //department profile
+            promotionData: {}, //department profile
+            lecturerData: {}, //lecturer profile
 
-            //form fields
+            //select options list  
+            departmentsList: {},
+            promotionsList: {},
+            lecturersList: {},
+
+            //form fields for inserting new data
             formData: {
                 name: '',
                 short_name: '',
@@ -252,22 +344,15 @@ export default {
             },
 
 
-            formDataEdit: {
-                name: '',
-                short_name: '',
-                total_marks: '',
-                lecturer: '',
-                promotion: '',
-                department: '',
-            },
-
         };
     },
 
 
     mounted(){
         this.fetchCourses();
-        // this.dataCourse();
+        
+        this.optionList();
+
     },
 
 
@@ -292,6 +377,7 @@ export default {
                 successMessage(this.$toast, response.data.message);
                 //close the tab    
                 this.showModal = !this.showModal;
+
                 //fetch List
                 this.fetchCourses();
             })
@@ -305,19 +391,19 @@ export default {
         //new course
         dataCourse(course){
             //open the tab    
-            this.showModal = !this.showModal;
+            this.showModalEdit = !this.showModalEdit;
+
             showCourse(course)
             .then(response => {
-                this.course = response.data.course;
+                this.courseData.id = course;
+                this.courseData.name = response.data.course.name;
+                this.courseData.slug_name = response.data.course.slug_name;
+                this.courseData.short_name = response.data.course.short_name;
+                this.courseData.total_marks = response.data.course.total_marks;
 
-                this.formDataEdit.name = this.course.name;
-                this.formDataEdit.short_name = this.course.short_name;
-                this.formDataEdit.total_marks = this.course.total_marks;
-                this.formDataEdit.department = this.course.department;
-                this.formDataEdit.promotion = this.course.promotion;
-                this.formDataEdit.lecturer = this.course.lecturer;
-
-                //fetch List
+                this.courseData.department_id = response.data.department.id;
+                this.courseData.promotion_id = response.data.promotion.id;
+                this.courseData.lecturer_id = response.data.lecturer.id;
             })
             .catch((errors) => {
                 //toast notification
@@ -331,13 +417,14 @@ export default {
         },
 
         //update course
-        UpdateCourse(course){
-            editCourse(course, this.formData)
+        updateCourse(course){
+
+            editCourse(course, this.courseData)
             .then(response => {
                 //toast notification
                 successMessage(this.$toast, response.data.message);
-                //close the tab    
-                this.showModal = !this.showModal;
+                //close the tab  
+                this.showModalEdit = !this.showModalEdit;
                 //fetch List
                 this.fetchCourses();
             })
@@ -347,14 +434,44 @@ export default {
             })
         },
 
-        // show and close modal
-        toggleModal() {
+        //togle modal
+        toggleModal(){
             this.showModal = !this.showModal;
         },
-        closeToggleModal() {
-            this.showModal = !this.showModal;
-        } 
-    
+
+        toggleModalEdit(){
+            this.showModalEdit = !this.showModalEdit;
+        },
+
+        //option list
+        optionList(){
+            //departments list
+            getDepartments()
+            .then(response => {
+                this.departmentsList = response.data.departments;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+            //promotions list
+            getPromotions()
+            .then(response => {
+                this.promotionsList = response.data.promotions;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+            //lecturere list
+            getLecturers()
+            .then(response => {
+                this.lecturersList = response.data.lecturers;
+            })
+            .catch(error => {
+                console.log(error);
+            })
+        }
     
     }
 };

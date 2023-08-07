@@ -20,7 +20,7 @@
                     </div>
                 </div>
               
-                <!-- modal -->
+                <!-- new modal -->
                 <div v-if="showModal">
                         <div class="grid grid-flow-col rounded absolute w-96 top-20 right-0 h-auto">
                             <div class> 
@@ -35,31 +35,80 @@
                                         </div>
                                     </div>
 
-                                    <form @submit.prevent="handleSubmit">
+                                    <form @submit.prevent="newPromotion">
 
                                         <div class="mt-5 pb-5">
-                                            <h2 class="uppercase text-green-500 text-xs">Information de la promotion</h2>
+                                            <h2 class="uppercase text-green-500 text-xs">Informations de la promotions</h2>
 
                                             <h5 class="mt-3 text-red-500">Les champs obligatoires *</h5>
                                             
                                             <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
                                                 <div class="block md:inline">
                                                     <label for="" class="block text-xs uppercase">Nom <span class="text-red-500">*</span></label>
-                                                    <input type="text" v-model="name" class="block border rounded-md p-2 border-gray-300 w-full" required >
-                                                </div>
-                                            </div>
-                                            <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
-                                                <div class="block md:inline">
-                                                    <label for="" class="block text-xs uppercase">Cycle <span class="text-red-500">*</span></label>
-                                                    <select v-model="cycle" class="block border rounded-md p-2 border-gray-300 w-full" required>
-                                                        <option class="select" value="">Licence</option>
-                                                    </select>
+                                                    <input type="text" v-model="formData.name" class="block border rounded-md p-2 border-gray-300 w-full" required >
                                                 </div>
                                             </div>
                                              <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
                                                 <div class="block md:inline">
                                                     <label for="" class="block text-xs uppercase">Departement <span class="text-red-500">*</span></label>
-                                                    <input type="text" v-model="department" class="block border rounded-md p-2 border-gray-300 w-full" required >
+                                                    <select v-model="formData.department_id" class="block border rounded-md p-2 border-gray-300 w-full" required>
+                                                        <option v-for="department in departmentsList" :key="department.id" class="select" :value="department.id">
+                                                           {{department.name}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                            <div class="mt-10 text-center">
+                                                <button class="text-[#111827] border border-[#111827] w-full rounded-md px-3 py-2 hover:border-none hover:bg-green-500 hover:text-white"> <i class="fa fa-paper-plane-top"></i> Enregistrer</button>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+
+                            </div>
+
+                        </div>
+                </div>
+
+
+                <!-- new modal -->
+                <div v-if="showModalEdit">
+                        <div class="grid grid-flow-col rounded absolute w-96 top-20 right-0 h-auto">
+                            <div class> 
+                                <div class="register-form rounded-md bg-white px-5 border-gray-900 shadow-xl md:absolute md:ml-auto md:mr-auto md:w-3/4 lg:ml-14">
+
+                                    <div class="flex py-5 w-full">
+                                        <div class="title flex-1">
+                                            <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Modifier la promotion</h2>
+                                        </div>
+                                        <div class="">
+                                            <button v-if="showModalEdit" class="bg-white px-2 py-1 rounded text-red-500" @click="toggleModalEdit"><i class="fa fa-xmark"></i> </button>
+                                        </div>
+                                    </div>
+
+                                    <form @submit.prevent="updatePromotion(promotionData.id)">
+
+                                        <div class="mt-5 pb-5">
+                                            <h2 class="uppercase text-green-500 text-xs">Informations de la promotion</h2>
+
+                                            <h5 class="mt-3 text-red-500">Les champs obligatoires *</h5>
+                                            
+                                            <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+                                                <div class="block md:inline">
+                                                    <label for="" class="block text-xs uppercase">Nom <span class="text-red-500">*</span></label>
+                                                    <input type="text" v-model="promotionData.name" class="block border rounded-md p-2 border-gray-300 w-full" required >
+                                                </div>
+                                            </div>
+                                             <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+                                                <div class="block md:inline">
+                                                    <label for="" class="block text-xs uppercase">Departement <span class="text-red-500">*</span></label>
+                                                    <select v-model="promotionData.department_id" class="block border rounded-md p-2 border-gray-300 w-full" required>
+                                                        <option v-for="department in departmentsList" :key="department.id" class="select" :value="department.id">
+                                                           {{department.name}}
+                                                        </option>
+                                                    </select>
                                                 </div>
 
                                             </div>
@@ -129,60 +178,31 @@
 
                         <div class="flex flex-col m-3 h-100">
                             <div class="overflow-x-auto sm:-mx-12 lg:-mx-12">
-                                <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                                <div class="inline-block w-96 md:w-full py-2 sm:px-6 lg:px-8">
                                     <div class="border-gray-200 rounded">
-                                        <table class="rounded border border-gray-200 min-w-full text-left text-sm font-light">
+                                        <table class="rounded border border-gray-200 w-96 md:w-full text-left text-sm font-light">
                                             <thead class="bg-[#F5F7FB] ">
                                                 <tr class="">
                                                     <th scope="col" class=" px-3 py-3">#</th>
                                                     <th scope="col" class=" px-3 py-3">Numéro</th>
-                                                    <th scope="col" class=" px-3 py-3">Nom</th>
-                                                    <th scope="col" class=" px-3 py-3">Statut</th>
+                                                    <th scope="col" class=" px-3 py-3">Nom de la promotion</th>
+                                                    <th scope="col" class=" px-3 py-3">Departement</th>
                                                     <th scope="col" class=" px-3 py-3">Action</th>
 
                                                 </tr>
                                             </thead>
                                             <tbody class="h-100 border-r border-b border-gray-200">
-                                                <tr class="">
+                                                <tr v-for="promotion in promotions" :key="promotion.id" class="">
                                                     <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">1</td>
                                                     <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-200">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">G1</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">Actif </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200"></td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">{{ promotion.name }}</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">{{ promotion.department.name }}</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">
+                                                        <button @click="dataPromotion(promotion.id)" class="text-[#111827] border border-[#111827] w-full rounded-md px-3 py-2"> Edit</button>
+
+                                                    </td>
                                                 </tr>
 
-                                                <tr class="">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">2</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-200">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">G2</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">Actif </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200"></td>
-                                                </tr>
-
-                                                <tr class="">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">3</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-200">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">G3</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">Actif </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200"></td>
-                                                </tr>
-
-                                                <tr class="">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">4</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-200">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">L1</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">Actif </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200"></td>
-                                                </tr>
-                                                
-                                                <tr class="">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">5</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-200">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">L2</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">Actif </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200"></td>
-                                                </tr>
-                                            
                                             </tbody>
                                         </table>
                                     </div>
@@ -207,50 +227,142 @@ import Header from "../../components/layouts/Header.vue";
 import Sidebar from "../../components/layouts/Sidebar.vue";
 import Footer from "../../components/layouts/Footer.vue";
 
+// import axios from "axios";
+import {getPromotion, addPromotion, showPromotion, editPromotion, getDepartments } from '../../jscore/init.js';
+import {successMessage, errorMessage} from '../../jscore/IoNotification.js';
+
+
+
 export default {
   name: "IndexPromotion",
   components: { Head, Header, Sidebar, Footer },
 
   data() {
         return {
-            text: "Required field are marked *",
             showModal: false,
+            showModalEdit: false,
             pageOne: true,
 
+            promotions: {},
+            promotionData: {}, 
 
             //form fields
-            number: '',
-            name: '',
-            cycle: '',
-            department: ''
+            formData: {
+                number: '',
+                name: '',
+                slug_name: '',
+                department_id: ''
+            }
         };
   },
 
-  // show and close modal
-  methods: {
-    
-    toggleModal() {
-        this.showModal = !this.showModal;
+  mounted(){
+        this.fetchPromotions();
+        
+        this.optionList();
+
     },
 
-    closeToggleModal() {
-      this.showModal = !this.showModal;
-    },
 
-    handleSubmit(){
-        console.log('1' + this.pageOne)
+    methods: {
+        //Course list
+        fetchPromotions(){
 
-        console.log(
-            this.number,
-            this.name,
-        )
-    }   
+            getPromotion()
+            .then(response => {
+                this.promotions = response.data.promotion;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        },
+
+        //new course
+        newPromotion(){
+            addPromotion(this.formData)
+            .then(response => {
+                //toast notification
+                successMessage(this.$toast, response.data.message);
+                //close the tab    
+                this.showModal = !this.showModal;
+
+                //fetch List
+                this.fetchPromotions();
+            })
+            .catch((errors) => {
+                //toast notification
+                errorMessage(this.$toast, errors.response.data.message);
+            })
+        },
+
+
+        //new course
+        dataPromotion(promotion){
+            //open the tab    
+            this.showModalEdit = !this.showModalEdit;
+
+            showPromotion(promotion)
+            .then(response => {
+
+                this.promotionData.id = promotion;
+                this.promotionData.name = response.data.promotion.name;
+                this.promotionData.slug_name = response.data.promotion.slug_name;
+
+                this.departmentData.department_id = response.data.department.id;
+            })
+            .catch((errors) => {
+                //toast notification
+                errorMessage(this.$toast, errors.response.data.message);
+            });
+        },
+
+        showPromotionProfile(promotion) {
+            // When the "Data Profile" button is clicked, fetch the selected course profile
+            this.dataPromotion(promotion);
+        },
+
+        //update course
+        updatePromotion(promotion){
+
+            editPromotion(promotion, this.promotionData)
+            .then(response => {
+                //toast notification
+                successMessage(this.$toast, response.data.message);
+                //close the tab  
+                this.showModalEdit = !this.showModalEdit;
+                //fetch List
+                this.fetchPromotions();
+            })
+            .catch((errors) => {
+                //toast notification
+                errorMessage(this.$toast, errors.response.data.message);
+            })
+        },
+
+        //togle modal
+        toggleModal(){
+            this.showModal = !this.showModal;
+        },
+
+        toggleModalEdit(){
+            this.showModalEdit = !this.showModalEdit;
+        },
+
+        //option list
+        optionList(){
+            //departments list
+            getDepartments()
+            .then(response => {
+                this.departmentsList = response.data.department;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+           
+        }
     
-
-    // closeEvent() {
-    //     this.$emit('close')
-    // }
-  }
+    }
 };
 </script>
  

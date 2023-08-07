@@ -20,7 +20,7 @@
                     </div>
                 </div>
               
-                <!-- modal -->
+                <!--new modal -->
                 <div v-if="showModal">
                         <div class="grid grid-flow-col rounded absolute w-96 top-20 right-0 h-auto">
                             <div class> 
@@ -35,19 +35,61 @@
                                         </div>
                                     </div>
 
-                                    <form @submit.prevent="handleSubmit">
+                                    <form @submit.prevent="newFaculty">
 
                                         <div class="mt-5 pb-5">
-                                            <h2 class="uppercase text-green-500 text-xs">Information de la faculté</h2>
+                                            <h2 class="uppercase text-green-500 text-xs">Informations de la faculté</h2>
 
-                                            <h5 class="mt-3 text-red-500">Les champs obligatoire *</h5>
+                                            <h5 class="mt-3 text-red-500">Les champs obligatoires *</h5>
                                             
                                             <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
                                                 <div class="block md:inline">
                                                     <label for="" class="block text-xs uppercase">Nom <span class="text-red-500">*</span></label>
-                                                    <input type="text" v-model="name" class="block border rounded-md p-2 border-gray-300 w-full" required >
+                                                    <input type="text" v-model="formData.name" class="block border rounded-md p-2 border-gray-300 w-full" required >
                                                 </div>
                                             </div>
+                                            <div class="mt-10 text-center">
+                                                <button class="text-[#111827] border border-[#111827] w-full rounded-md px-3 py-2 hover:border-none hover:bg-green-500 hover:text-white"> <i class="fa fa-paper-plane-top"></i> Enregistrer</button>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+
+                            </div>
+
+                        </div>
+                </div>
+
+                <!--edit modal -->
+                <div v-if="showModalEdit">
+                        <div class="grid grid-flow-col rounded absolute w-96 top-20 right-0 h-auto">
+                            <div class> 
+                                <div class="register-form rounded-md bg-white px-5 border-gray-900 shadow-xl md:absolute md:ml-auto md:mr-auto md:w-3/4 lg:ml-14">
+
+                                    <div class="flex py-5 w-full">
+                                        <div class="title flex-1">
+                                            <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Modifier la faculté</h2>
+                                        </div>
+                                        <div class="">
+                                            <button v-if="showModalEdit" class="bg-white px-2 py-1 rounded text-red-500" @click="toggleModalEdit"><i class="fa fa-xmark"></i> </button>
+                                        </div>
+                                    </div>
+
+                                    <form @submit.prevent="updateFaculty(facultyData.id)">
+
+                                        <div class="mt-5 pb-5">
+                                            <h2 class="uppercase text-green-500 text-xs">Informations de la faculté</h2>
+
+                                            <h5 class="mt-3 text-red-500">Les champs obligatoires *</h5>
+                                            
+                                            <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+                                                <div class="block md:inline">
+                                                    <label for="" class="block text-xs uppercase">Nom <span class="text-red-500">*</span></label>
+                                                    <input type="text" v-model="facultyData.name" class="block border rounded-md p-2 border-gray-300 w-full" required >
+                                                </div>
+                                            </div>
+
                                             <div class="mt-10 text-center">
                                                 <button class="text-[#111827] border border-[#111827] w-full rounded-md px-3 py-2 hover:border-none hover:bg-green-500 hover:text-white"> <i class="fa fa-paper-plane-top"></i> Enregistrer</button>
                                             </div>
@@ -115,9 +157,9 @@
 
                         <div class="flex flex-col m-3 h-100">
                             <div class="overflow-x-auto sm:-mx-12 lg:-mx-12">
-                                <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                                <div class="inline-block w-96 md:w-full py-2 sm:px-6 lg:px-8">
                                     <div class="border-gray-200 rounded">
-                                        <table class="rounded border border-gray-200 min-w-full text-left text-sm font-light">
+                                        <table class="rounded border border-gray-200 w-96 md:w-full text-left text-sm font-light">
                                             <thead class="bg-[#F5F7FB] ">
                                                 <tr class="">
                                                     <th scope="col" class=" px-3 py-3">#</th>
@@ -129,37 +171,17 @@
                                                 </tr>
                                             </thead>
                                             <tbody class="h-100 border-r border-b border-gray-200">
-                                                <tr class="">
+                                                <tr v-for="faculty in faculties" :key="faculty.id"  class="">
                                                     <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">1</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-200">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">Computer Science</td>
+                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-200">{{ faculty.faculty_number }}</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">{{ faculty.name }}</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">Actif </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200"></td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">
+                                                        <button @click="dataFaculty(faculty.id)" class="text-[#111827] border border-[#111827] w-full rounded-md px-3 py-2"> Edit</button>
+
+                                                    </td>
 
                                                 </tr>
-                                                <tr class="bg-[#F5F7FB]">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">2</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-200">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">Economic and business studies</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">Actif </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200"></td>
-                                                </tr>
-
-                                                <tr class="">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">3</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-200">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">Law</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">Actif </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200"></td>
-                                                </tr>
-                                                <tr class="">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">3</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-200">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">Polytechnic</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">Actif </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200"></td>
-                                                </tr>
-                                                
                                             
                                             </tbody>
                                         </table>
@@ -185,6 +207,12 @@ import Header from "../../components/layouts/Header.vue";
 import Sidebar from "../../components/layouts/Sidebar.vue";
 import Footer from "../../components/layouts/Footer.vue";
 
+
+// import axios from "axios";
+import {getFaculties, addFaculty, showFaculty, editFaculty} from '../../jscore/init.js';
+import {successMessage, errorMessage} from '../../jscore/IoNotification.js';
+
+
 export default {
   name: "IndexFaculty",
   components: { Head, Header, Sidebar, Footer },
@@ -193,40 +221,111 @@ export default {
         return {
             text: "Required field are marked *",
             showModal: false,
+            showModalEdit: false,
             pageOne: true,
+            faculties: {},
+            facultyData: {},
 
 
             //form fields
-            number: '',
-            name: '',
+            formData: {
+                faculty_number: '',
+                name: '',
+                slug_name: '',
+            },
+            
         };
   },
 
-  // show and close modal
-  methods: {
-    
-    toggleModal() {
-        this.showModal = !this.showModal;
+  mounted(){
+        this.fetchFaculties();
+        
     },
 
-    closeToggleModal() {
-      this.showModal = !this.showModal;
-    },
 
-    handleSubmit(){
-        console.log('1' + this.pageOne)
+    methods: {
+        //Course list
+        fetchFaculties(){
 
-        console.log(
-            this.number,
-            this.name,
-        )
-    }   
+            getFaculties()
+            .then(response => {
+                this.faculties = response.data.faculty;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        },
+
+        //new course
+        newFaculty(){
+            addFaculty(this.formData)
+            .then(response => {
+                //toast notification
+                successMessage(this.$toast, response.data.message);
+                //close the tab    
+                this.showModal = !this.showModal;
+
+                //fetch List
+                this.fetchFaculties();
+            })
+            .catch((errors) => {
+                //toast notification
+                errorMessage(this.$toast, errors.response.data.message);
+            })
+        },
+
+
+        //new course
+        dataFaculty(faculty){
+            //open the tab    
+            this.showModalEdit = !this.showModalEdit;
+
+            showFaculty(faculty)
+            .then(response => {
+                this.facultyData.id = faculty;
+                this.facultyData.name = response.data.faculty.name;
+
+            })
+            .catch((errors) => {
+                //toast notification
+                errorMessage(this.$toast, errors.response.data.message);
+            });
+        },
+
+        showFacultyProfile(faculty) {
+            // When the "Data Profile" button is clicked, fetch the selected course profile
+            this.dataCourse(faculty);
+        },
+
+        //update course
+        updateFaculty(faculty){
+
+            editFaculty(faculty, this.facultyData)
+            .then(response => {
+                //toast notification
+                successMessage(this.$toast, response.data.message);
+                //close the tab  
+                this.showModalEdit = !this.showModalEdit;
+                //fetch List
+                this.fetchFaculties();
+            })
+            .catch((errors) => {
+                //toast notification
+                errorMessage(this.$toast, errors.response.data.message);
+            })
+        },
+
+        //togle modal
+        toggleModal(){
+            this.showModal = !this.showModal;
+        },
+
+        toggleModalEdit(){
+            this.showModalEdit = !this.showModalEdit;
+        },
+
+    }
     
-
-    // closeEvent() {
-    //     this.$emit('close')
-    // }
-  }
 };
 </script>
  

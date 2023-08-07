@@ -303,49 +303,7 @@
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
                                                 </tr>
-                                                <tr class="bg-[#F5F7FB]">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-100">2</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-100">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-b border-gray-100"> 
-                                                        <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
-                                                    </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Kambale Makuta</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Visiteur</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Enseingant</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">350$</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
-
-                                                </tr>
-
-                                                <tr class="">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-100">3</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-100">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-b border-gray-100"> 
-                                                        <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
-                                                    </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Philippe Tsongo</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Permanent</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">DG</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">750$</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
-
-                                                </tr>
-                                                <tr class="bg-[#F5F7FB]">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-100">4</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-100">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-b border-gray-100"> 
-                                                        <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
-                                                    </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Jacob Kamate</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Permanent</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">IT</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">450$</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
-
-                                                </tr>
+                                                
 
                                                 <tr class="">
                                                     <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-100">5</td>
@@ -362,48 +320,7 @@
 
                                                 </tr>
 
-                                                <tr class="bg-[#F5F7FB]">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-100">6</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-100">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-b border-gray-100"> 
-                                                        <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
-                                                    </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Musondolya Lea</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Permanent</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Financier</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">250$</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
-
-                                                </tr>
-
-                                                <tr class="">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-100">7</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-100">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-b border-gray-100"> 
-                                                        <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
-                                                    </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Kazadi Mbalala</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Permanent</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Comptable</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">350$</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
-                                                </tr>
-
-                                                <tr class="bg-[#F5F7FB]">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-100">8</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-100">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-b border-gray-100"> 
-                                                        <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
-                                                    </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Kazadi Mbalala</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Permanent</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">HOD</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">750$</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
-                                                </tr>
+                                              
                                             
                                             </tbody>
                                         </table>
