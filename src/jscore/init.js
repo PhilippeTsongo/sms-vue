@@ -76,19 +76,39 @@ export function getPromotion(){
     return axios.get('/promotion')
 }
 
-//faculty new
+//promotion new
 export function addPromotion(formData){
     return axios.post('/promotion', formData)
 }
 
-//faculty Show
+//promotion Show
 export function showPromotion(promotion){
     return axios.get(`/promotion/${promotion}`)
 }
 
-//faculty update
-export function editPromotion(promotion, promotionData){    
-    return axios.put(`/promotion/${promotion}`, promotionData)
+//promotion update
+export function editPromotion(promotion, formData){    
+    return axios.put(`/promotion/${promotion}`, formData)
+}
+
+//academic year list
+export function getAcademicYear(){
+    return axios.get('/academic_year')
+}
+
+//academic year new
+export function addAcademicYear(formData){
+    return axios.post('/academic_year', formData)
+}
+
+//academic year Show
+export function showAcademicYear(academic_year){
+    return axios.get(`/academic_year/${academic_year}`)
+}
+
+//academic year update
+export function editAcademicYear(academic_year, AcademicYearData){    
+    return axios.put(`/academic_year/${academic_year}`, AcademicYearData)
 }
 
 
@@ -96,9 +116,9 @@ export function editPromotion(promotion, promotionData){
 
 
 
+// +++++++++++++++++++++++++++++++++++++++++++++optins list ++++++++++++++++++++++++++++++++++++++++++++++++++
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-
-// optins list
 //departments list
 export function getDepartments(){
     return axios.get('/department')

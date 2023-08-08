@@ -20,7 +20,7 @@
                     </div>
                 </div>
               
-                <!-- modal -->
+                <!-- new modal -->
                 <div v-if="showModal">
                         <div class="grid grid-flow-col rounded absolute w-96 top-20 right-0 h-auto">
                             <div class> 
@@ -35,7 +35,7 @@
                                         </div>
                                     </div>
 
-                                    <form @submit.prevent="handleSubmit">
+                                    <form @submit.prevent="addAcademicYear()">
 
                                         <div class="mt-5 pb-5">
                                             <h2 class="uppercase text-green-500 text-xs">Information de l'année académique</h2>
@@ -60,6 +60,54 @@
                                                 <div class="block md:inline">
                                                     <label for="" class="block text-xs uppercase">Date fin</label>
                                                     <input v-model="end_date" type="date" placeholder="Sélectionnez la date" class="block border rounded-md p-2 border-gray-300 w-full">
+                                                </div>
+                                            </div>
+
+                                            <div class="mt-10 text-center">
+                                                <button class="text-[#111827] border border-[#111827] w-full rounded-md px-3 py-2 hover:border-green-500 hover:bg-green-500 hover:text-white"> <i class="fa fa-paper-plane-top"></i> Enregistrer</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+
+                        </div>
+                </div>
+
+                <!-- edit modal -->
+                <div v-if="showModalEdit">
+                        <div class="grid grid-flow-col rounded absolute w-96 top-20 right-0 h-auto">
+                            <div class> 
+                                <div class="register-form rounded-md bg-white px-5 border-gray-900 shadow-xl md:absolute md:ml-auto md:mr-auto md:w-3/4 lg:ml-14">
+
+                                    <div class="flex py-5 w-full">
+                                        <div class="title flex-1">
+                                            <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Modifier l'année académique</h2>
+                                        </div>
+                                        <div class="">
+                                            <button v-if="showModalEdit" class="bg-white px-2 py-1 rounded text-red-500" @click="toggleModalEdit"><i class="fa fa-xmark"></i> </button>
+                                        </div>
+                                    </div>
+
+                                    <form @submit.prevent="updateAcademicYear(academicYearData.id)">
+
+                                        <div class="mt-5 pb-5">
+                                            <h2 class="uppercase text-green-500 text-xs">Informations de l'année académique</h2>
+
+                                            <h5 class="mt-3 text-red-500">Les champs obligatoires *</h5>
+                                            
+                                            <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+                                                <div class="block md:inline">
+                                                    <label for="" class="block text-xs uppercase">Date début<span class="text-red-500">*</span></label>
+                                                    <input v-model="start_date" type="text" placeholder="Sélectionnez la date" class="block border rounded-md p-2 border-gray-300 w-full">
+                                                </div>
+                                            </div>
+
+                                            <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+                                                <div class="block md:inline">
+                                                    <label for="" class="block text-xs uppercase">Date fin<span class="text-red-500">*</span></label>
+                                                    <input v-model="end_date" type="text" placeholder="Sélectionnez la date" class="block border rounded-md p-2 border-gray-300 w-full">
                                                 </div>
                                             </div>
 
@@ -131,33 +179,20 @@
                                         <table class="rounded border border-gray-200 min-w-full text-left text-sm font-light">
                                             <thead class="bg-[#F5F7FB] ">
                                                 <tr class="">
-                                                    <th scope="col" class=" px-3 py-3">#</th>
                                                     <th scope="col" class=" px-3 py-3">Année académique</th>
                                                     <th scope="col" class=" px-3 py-3">Date début</th>
                                                     <th scope="col" class=" px-3 py-3">Date fin</th>
-
+                                                    <th scope="col" class=" px-3 py-3">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody class="h-100 border-r border-b border-gray-200">
-                                                <tr class="">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">1</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">2021-2022</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">20-09-2021</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">20-07-2022</td>
-                                                </tr>
-
-                                                <tr class="">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">2</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">2022-2023</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">20-09-2022</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">20-07-2023</td>
-                                                </tr>
-
-                                                <tr class="">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">3</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">2023-2024</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">20-10-2023 </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">20-07-2024</td>
+                                                <tr v-for="academic_year in academic_years" :key="academic_year.id" class="">
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">{{ academic_year.number }}</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">{{ academic_year.start_date }}</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">{{ academic_year.end_date }}</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">
+                                                        <button @click="dataFaculty(academicYearData.id)" class="text-[#111827] border border-[#111827] w-full rounded-md px-3 py-2"> Edit</button>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -183,6 +218,12 @@ import Header from "../../components/layouts/Header.vue";
 import Sidebar from "../../components/layouts/Sidebar.vue";
 import Footer from "../../components/layouts/Footer.vue";
 
+
+// import axios from "axios";
+import {getAcademicYear, addAcademicYear, showAcademicYear, editAcademicYear} from '../../jscore/init.js';
+import {successMessage, errorMessage} from '../../jscore/IoNotification.js';
+
+
 export default {
   name: "IndexAcademicYear",
   components: { Head, Header, Sidebar, Footer },
@@ -191,41 +232,110 @@ export default {
         return {
             text: "Required field are marked *",
             showModal: false,
+            showModalEdit: false,
             pageOne: true,
+            academic_years: {},
+            academicYearData: {},
+
 
             //form fields
-            academicYear: '',
-            start_date: '',
-            end_date: ''
+            formData : {
+                academic_number: '',
+                start_date: '',
+                end_date: ''
+            }
+            
         };
   },
 
-  // show and close modal
-  methods: {
-    
-    toggleModal() {
-        this.showModal = !this.showModal;
+  mounted(){
+        this.fetchAcademicYears();
+        
     },
 
-    closeToggleModal() {
-      this.showModal = !this.showModal;
-    },
 
-    handleSubmit(){
-        console.log('1' + this.pageOne)
+    methods: {
+        //AcademicYear list
+        fetchAcademicYears(){
 
-        console.log(
-            this.number,
-            this.amount,
-            this.motif
-        )
-    }   
-    
+            getAcademicYear()
+            .then(response => {
+                this.academic_years = response.data.academic_year;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        },
 
-    // closeEvent() {
-    //     this.$emit('close')
-    // }
-  }
+        //new academic year
+        newAcademicYear(){
+            addAcademicYear(this.formData)
+            .then(response => {
+                //toast notification
+                successMessage(this.$toast, response.data.message);
+                //close the tab    
+                this.showModal = !this.showModal;
+
+                //fetch List
+                this.fetchAcademicYears();
+            })
+            .catch((errors) => {
+                //toast notification
+                errorMessage(this.$toast, errors.response.data.message);
+            })
+        },
+
+
+        //data academic year
+        dataAcademicYear(academic_year){
+            //open the tab    
+            this.showModalEdit = !this.showModalEdit;
+
+            showAcademicYear(academic_year)
+            .then(response => {
+                this.academicYearData.id = academic_year;
+                this.academicYearData.start_date = response.data.academic_year.start_date;
+                this.academicYearData.start_date = response.data.academic_year.end_date;
+            })
+            .catch((errors) => {
+                //toast notification
+                errorMessage(this.$toast, errors.response.data.message);
+            });
+        },
+
+        showAcademicYearProfile(academic_year) {
+            // When the "Data Profile" button is clicked, fetch the selected course profile
+            this.dataAcademicYear(academic_year);
+        },
+
+        //update academic year
+        updateAcademicYear(academic_year){
+
+            editAcademicYear(academic_year, this.AcademicYear)
+            .then(response => {
+                //toast notification
+                successMessage(this.$toast, response.data.message);
+                //close the tab  
+                this.showModalEdit = !this.showModalEdit;
+                //fetch List
+                this.fetchAcademicYears();
+            })
+            .catch((errors) => {
+                //toast notification
+                errorMessage(this.$toast, errors.response.data.message);
+            })
+        },
+
+        //togle modal
+        toggleModal(){
+            this.showModal = !this.showModal;
+        },
+
+        toggleModalEdit(){
+            this.showModalEdit = !this.showModalEdit;
+        },
+
+    }
 };
 </script>
  
