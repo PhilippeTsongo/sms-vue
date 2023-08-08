@@ -74,17 +74,17 @@
                                             <div class="mt-10 md:grid grid-flow-col flex-stretch gap-10">
                                                 <div class="block md:inline">
                                                     <label for="" class="block text-xs uppercase">Nom <span class="text-red-500">*</span></label>
-                                                    <input type="text" v-model="firstName" class="block border rounded-md p-2 border-gray-300 w-full" required >
+                                                    <input type="text" v-model="firstname" class="block border rounded-md p-2 border-gray-300 w-full" required >
                                                 </div>
 
                                                 <div class="block md:inline">
                                                     <label for="" class="block text-xs uppercase">Post-nom <span class="text-red-500">*</span></label>
-                                                    <input type="text"  v-model="familyName" class="block border rounded-md p-2 border-gray-300 w-full" required>
+                                                    <input type="text"  v-model="familyname" class="block border rounded-md p-2 border-gray-300 w-full" required>
                                                 </div>
 
                                                 <div class="block md:inline">
                                                     <label for="" class="block text-xs uppercase">Prénom</label>
-                                                    <input type="text" v-model="lastName" class="block border rounded-md p-2 border-gray-300 w-full">
+                                                    <input type="text" v-model="lastname" class="block border rounded-md p-2 border-gray-300 w-full">
                                                 </div>
                                             </div>
                                             <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
@@ -361,23 +361,25 @@ export default {
 
 
             //form fields
-            firstName: '',
-            familyName: '',
-            lastName: '',
-            gender: '',
 
-            country: '',
-            province: '',
-            city: '',
-            commune: '',
-            quarter: '',
-            cel: '',
+            formData : {
+                firstname: '',
+                familyname: '',
+                lastname: '',
+                gender: '',
+                email: '',
 
-            faculty: '',
-            department: '',
-            promotion: '',
-            type: '',
-            salary: ''
+                country: '',
+                province: '',
+                city: '',
+                commune: '',
+                quarter: '',
+                cel: '',
+
+                type: '',
+                salary: '',
+                role: '',
+            }
 
         };
   },
