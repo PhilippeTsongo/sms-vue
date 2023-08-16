@@ -13,14 +13,14 @@
             <div class="content rounded-md bg-[#F5F7FB] mt-12">
     
                 <div class="mb-2 flex">
-                    <h1 class="flex-1 text-gray-300 uppercase text-xs"><i class="fa fa-users"></i> dépense</h1>
+                    <h1 class="flex-1 text-gray-300 uppercase text-xs"><i class="fa fa-users"></i> Dépense</h1>
                     
                     <div class="">
-                        <button v-if="showModal == false" class="border border-green text-green-500 bg-white py-1 px-2 rounded hover:text-white hover:bg-green-500 hover:text-white" @click="toggleModal"><i class="fa fa-plus-circle"></i> Nouvelle dépenses</button>
+                        <button v-if="showModal == false" class="border border-green text-green-500 bg-white py-1 px-2 rounded hover:text-white hover:bg-green-500 hover:text-white" @click="toggleModal"><i class="fa fa-plus-circle"></i> Nouvelle dépense</button>
                     </div>
                 </div>
               
-                <!-- modal -->
+                <!--new modal -->
                 <div v-if="showModal">
                         <div class="grid grid-flow-col rounded absolute w-96 top-20 right-0 h-auto">
                             <div class> 
@@ -35,24 +35,73 @@
                                         </div>
                                     </div>
 
-                                    <form @submit.prevent="handleSubmit">
+                                    <form @submit.prevent="newExpense()">
 
                                         <div class="mt-5 pb-5">
-                                            <h2 class="uppercase text-green-500 text-xs">Information de la dépense</h2>
+                                            <h2 class="uppercase text-green-500 text-xs">Informations de la dépense</h2>
 
                                             <h5 class="mt-3 text-red-500">Les champs obligatoires *</h5>
                                             
                                             <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
                                                 <div class="block md:inline">
                                                     <label for="" class="block text-xs uppercase">Montant <span class="text-red-500">*</span></label>
-                                                    <input type="text" v-model="amount" class="block border rounded-md p-2 border-gray-300 w-full" required >
+                                                    <input type="text" v-model="expenseData.amount" class="block border rounded-md p-2 border-gray-300 w-full" required >
                                                 </div>
                                             </div>
 
                                             <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
                                                 <div class="block md:inline">
                                                     <label for="" class="block text-xs uppercase">Motif <span class="text-red-500">*</span></label>
-                                                    <textarea v-model="motif" class="block border rounded-md p-2 border-gray-300 w-full"> </textarea>   
+                                                    <textarea v-model="expenseData.motif" class="block border rounded-md p-2 border-gray-300 w-full"> </textarea>   
+                                                </div>
+                                            </div>
+
+                                            <div class="mt-10 text-center">
+                                                <button class="text-[#111827] border border-[#111827] w-full rounded-md px-3 py-2 hover:border-none hover:bg-green-500 hover:text-white"> <i class="fa fa-paper-plane-top"></i> Enregistrer</button>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+
+                            </div>
+
+                        </div>
+                </div>
+
+                <!--edit modal -->
+                <div v-if="showModalEdit">
+                        <div class="grid grid-flow-col rounded absolute w-96 top-20 right-0 h-auto">
+                            <div class> 
+                                <div class="register-form rounded-md bg-white px-5 border-gray-900 shadow-xl md:absolute md:ml-auto md:mr-auto md:w-3/4 lg:ml-14">
+
+                                    <div class="flex py-5 w-full">
+                                        <div class="title flex-1">
+                                            <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Modifiez une dépense</h2>
+                                        </div>
+                                        <div class="">
+                                            <button v-if="showModalEdit" class="bg-white px-2 py-1 rounded text-red-500" @click="toggleModalEdit"><i class="fa fa-xmark"></i> </button>
+                                        </div>
+                                    </div>
+
+                                    <form @submit.prevent="newExpense()">
+
+                                        <div class="mt-5 pb-5">
+                                            <h2 class="uppercase text-green-500 text-xs">Informations de la dépense</h2>
+
+                                            <h5 class="mt-3 text-red-500">Les champs obligatoires *</h5>
+                                            
+                                            <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+                                                <div class="block md:inline">
+                                                    <label for="" class="block text-xs uppercase">Montant <span class="text-red-500">*</span></label>
+                                                    <input type="text" v-model="expenseData.amount" class="block border rounded-md p-2 border-gray-300 w-full" required >
+                                                </div>
+                                            </div>
+
+                                            <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+                                                <div class="block md:inline">
+                                                    <label for="" class="block text-xs uppercase">Motif <span class="text-red-500">*</span></label>
+                                                    <textarea v-model="expenseData.motif" class="block border rounded-md p-2 border-gray-300 w-full"> </textarea>   
                                                 </div>
                                             </div>
 
@@ -188,6 +237,12 @@ import Header from "../../components/layouts/Header.vue";
 import Sidebar from "../../components/layouts/Sidebar.vue";
 import Footer from "../../components/layouts/Footer.vue";
 
+
+// import axios from "axios";
+import {getExpense, addExpense, showExpense, editExpense} from '../../jscore/init.js';
+import {successMessage, errorMessage} from '../../jscore/IoNotification.js';
+
+
 export default {
   name: "IndexExpense",
   components: { Head, Header, Sidebar, Footer },
@@ -196,42 +251,105 @@ export default {
         return {
             text: "Required field are marked *",
             showModal: false,
+            showModalEdit: false,
             pageOne: true,
-
+            expenses: {},
+            expenseData: {},
 
             //form fields
-            number: '',
-            amount: '',
-            motif: ''
+            formData: {
+                amount: '',
+                motif: ''
+            }
         };
   },
 
-  // show and close modal
-  methods: {
-    
-    toggleModal() {
-        this.showModal = !this.showModal;
+  mounted(){
+        this.fetchExpenses();
+        
     },
 
-    closeToggleModal() {
-      this.showModal = !this.showModal;
-    },
+    methods: {
+        //expenses list
+        fetchExpenses(){
+            getExpense()
+            .then(response => {
+                this.expenses = response.data.expense;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        },
 
-    handleSubmit(){
-        console.log('1' + this.pageOne)
+        //new expense
+        newExpense(){
+            addExpense(this.formData)
+            .then(response => {
+                //toast notification
+                successMessage(this.$toast, response.data.message);
+                //close the tab    
+                this.showModal = !this.showModal;
 
-        console.log(
-            this.number,
-            this.amount,
-            this.motif
-        )
-    }   
-    
+                //fetch List
+                this.fetchExpenses();
+            })
+            .catch((errors) => {
+                //toast notification
+                errorMessage(this.$toast, errors.response.data.message);
+            })
+        },
 
-    // closeEvent() {
-    //     this.$emit('close')
-    // }
-  }
+
+        //new expense
+        dataExpense(expense){
+            //open the tab    
+            this.showModalEdit = !this.showModalEdit;
+
+            showExpense(expense)
+            .then(response => {
+                this.expenseData.id = expense;
+                this.expenseData.amount = response.data.expense.amount;
+                this.expenseData.motif = response.data.expense.motif;
+            })
+            .catch((errors) => {
+                //toast notification
+                errorMessage(this.$toast, errors.response.data.message);
+            });
+        },
+
+        showExpenseProfile(expense) {
+            // When the "Data Profile" button is clicked, fetch the selected course profile
+            this.dataCourse(expense);
+        },
+
+        //update expense
+        updateExpense(expense){
+
+            editExpense(expense, this.expenseData)
+            .then(response => {
+                //toast notification
+                successMessage(this.$toast, response.data.message);
+                //close the tab  
+                this.showModalEdit = !this.showModalEdit;
+                //fetch List
+                this.fetchExpenses();
+            })
+            .catch((errors) => {
+                //toast notification
+                errorMessage(this.$toast, errors.response.data.message);
+            })
+        },
+
+        //togle modal
+        toggleModal(){
+            this.showModal = !this.showModal;
+        },
+
+        toggleModalEdit(){
+            this.showModalEdit = !this.showModalEdit;
+        },
+
+    }  
 };
 </script>
  

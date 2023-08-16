@@ -113,7 +113,7 @@ export function editAcademicYear(academic_year, AcademicYearData){
 
 
 //students list
-export function getStudents(){
+export function getStudent(){
     return axios.get('/student')
 }
 
@@ -130,6 +130,26 @@ export function showStudent(student){
 //student update
 export function editStudent(student, studentData){    
     return axios.put(`/student/${student}`, studentData)
+}
+
+//expense list
+export function getExpense(){
+    return axios.get('/expense')
+}
+
+//expense new
+export function addExpense(formData){
+    return axios.post('/expense', formData)
+}
+
+//expense Show
+export function showExpense(expense){
+    return axios.get(`/expense/${expense}`)
+}
+
+//expense update
+export function editExpense(expense, expenseData){    
+    return axios.put(`/expense/${expense}`, expenseData)
 }
 
 
@@ -166,8 +186,3 @@ export function getAcademicYears(){
     return axios.get('/academic_year')
 }
 
-
-//lecturers list
-// export function getStaffs(){
-//     return axios.get('/staff')
-// }

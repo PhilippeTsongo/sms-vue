@@ -85,6 +85,11 @@ import IndexAcademicYear from '../views/academicYear/Index.vue'
 import CreateAcademicYear from '../views/academicYear/Create.vue'
 
 
+// Academic year
+import IndexParent from '../views/parent/Index.vue'
+import CreateParent from '../views/parent/Create.vue'
+
+
 const routes = [
   
   //appIndex
@@ -353,6 +358,18 @@ const routes = [
     path: '/academicYear/create',
     name: 'CreateAcademicYear',
     component: CreateAcademicYear
+  },
+
+  //Parent
+  {
+    path: '/parent',
+    name: 'IndexParent',
+    component: IndexParent
+  },
+  {
+    path: '/parent/create',
+    name: 'CreateParent',
+    component: CreateParent
   },
   
 ]

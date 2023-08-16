@@ -211,7 +211,6 @@
                                     <div class="mt-10 text-right">
                                         <div class="inline">
                                             <span @click="secondLastTab" class="rounded-md px-3 py-2 ml-5 hover:cursor-pointer text-[#111827] hover:border"> <i class="fa fa-chevron-left"></i> Retour</span>
-                                            <span @click="showTab4" class="rounded-md px-3 py-2 ml-5 border  text-['#111827'] hover:cursor-pointer hover:bg-[#111827] hover:text-white hover:border-[#111827]"> <i class="fa fa-chevron-right"></i> Suivant </span>
                                         </div>
                                     </div>
                                 </div>
@@ -310,29 +309,29 @@
                                     </span>
                                 </li>
 
-                                <li :class="pageThree ? 'text-green-500 font-bold' : '' " class="flex md:w-full items-center after:w-full after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10">
+                                <!-- <li :class="pageThree ? 'text-green-500 font-bold' : '' " class="flex md:w-full items-center after:w-full after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10">
                                     <span class="flex items-center">
                                         <svg :class="pageThree ? 'w-3.5 h-3.5 sm:w-4 sm:h-4 mr-2.5': '' " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                             <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                                         </svg>
                                         <span class="mr-1">3</span>Parents
                                     </span>
-                                </li>
+                                </li> -->
 
-                                <li :class="pageFour ? 'text-green-500 font-bold' : '' " class="flex items-center">
-                                    <svg :class="pageFour ? 'w-3.5 h-3.5 sm:w-4 sm:h-4 mr-2.5': '' " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <li :class="pageThree ? 'text-green-500 font-bold' : '' " class="flex items-center">
+                                    <svg :class="pageThree ? 'w-3.5 h-3.5 sm:w-4 sm:h-4 mr-2.5': '' " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                         <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                                     </svg>
                                     <span class="mr-1">4</span>Affectation
                                 </li>
                                 </ol>
 
-                            <form @submit.prevent="handleSubmit">
+                            <form @submit.prevent="newStudent()">
                                 <!-- tab1 -->
                                 <div  v-if="pageOne" class="mt-10">
                                     <h2 class="uppercase text-green-500 text-xs">Identité de l'étudiant</h2>
 
-                                    <h5 class="mt-3 text-red-500">Les champs obligatoire *</h5>
+                                    <h5 class="mt-3 text-red-500">Les champs obligatoires *</h5>
                                     
                                     <div class="mt-10 md:grid grid-flow-col flex-stretch gap-10">
                                         <div class="block md:inline">
@@ -369,6 +368,17 @@
                                             <input type="date" v-model="formData.date_of_birth" class="block border rounded-md p-2 border-gray-300 w-full" >
                                         </div>
                                     </div>
+                                    <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+                                        <div class="block md:inline">
+                                            <label for="" class="block text-xs uppercase">Téléphone <span class="text-red-500">*</span></label>
+                                            <input type="tel" v-model="formData.tel" class="block border rounded-md p-2 border-gray-300 w-full">
+                                        </div>
+                                        <div class="block md:inline">
+                                            <label for="" class="block text-xs uppercase">Email <span class="text-red-500">*</span></label>
+                                            <input type="email" v-model="formData.email" class="block border rounded-md p-2 border-gray-300 w-full">
+                                        </div>
+                                    </div>
+
                                     <div class="mt-10 text-right">
                                         <div class="inline">
                                             <span href="" @click="showTab2" class="rounded-md px-3 py-2 ml-5 border text-['#111827'] hover:cursor-pointer hover:bg-[#111827] hover:text-white hover:border-[#111827]"> <i class="fa fa-chevron-right"></i> Suivant</span>
@@ -381,7 +391,7 @@
                                 <div v-if="pageTwo" class="mt-10" >
                                     <h2 class="uppercase text-green-400 text-xs">Adresse de l'étudiant</h2>
                                     
-                                    <h5 class="mt-3 text-red-500">Les champs obligatoire *</h5>
+                                    <h5 class="mt-3 text-red-500">Les champs obligatoires *</h5>
 
                                     <div class="mt-10 md:grid grid-flow-col flex-stretch gap-10">
                                         <div class="block md:inline">
@@ -411,16 +421,11 @@
                                         </div>
 
                                         <div class="block md:inline">
-                                            <label for="" class="block text-xs uppercase">Cellule</label>
+                                            <label for="" class="block text-xs uppercase">Adresse</label>
                                             <input type="text" v-model="formData.cel" class="block border rounded-md p-2 border-gray-300 w-full" >
                                         </div>
                                     </div>
-                                    <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
-                                        <div class="block md:inline">
-                                            <label for="" class="block text-xs uppercase">Email <span class="text-red-500">*</span></label>
-                                            <input type="email" v-model="formData.email" class="block border rounded-md p-2 border-gray-300 w-full">
-                                        </div>
-                                    </div>
+
                                     <div class="mt-10 text-right">
                                         <div class="inline">
                                             <span @click="showTab1" class="rounded-md px-3 py-2 ml-5 hover:cursor-pointer text-[#111827] hover:border"> <i class="fa fa-chevron-left"></i> Retour</span>
@@ -430,20 +435,20 @@
                                 </div>
 
                                 <!-- tab3 -->
-                                <div v-if="pageThree" class="mt-10" >
+                                <!-- <div v-if="pageThree" class="mt-10" >
                                     <h2 class="uppercase text-green-400 text-xs">Informations des parents de l'étudiant</h2>
                                     
-                                    <h5 class="mt-3 text-red-500">Les champs obligatoire *</h5>
+                                    <h5 class="mt-3 text-red-500">Les champs obligatoires *</h5>
 
                                     <div class="mt-10 md:grid grid-flow-col flex-stretch gap-10">
                                         <div class="block md:inline">
                                             <label for="" class="block text-xs uppercase">Nom du père</label>
-                                            <input type="text" v-model="fatherName" class="block border rounded-md p-2 border-gray-300 w-full">
+                                            <input type="text" v-model="father_name" class="block border rounded-md p-2 border-gray-300 w-full">
                                         </div>
 
                                         <div class="block md:inline">
                                             <label for="" class="block text-xs uppercase">Nom de la mère</label>
-                                            <input type="text" v-model="motherName" class="block border rounded-md p-2 border-gray-300 w-full">
+                                            <input type="text" v-model="mother_name" class="block border rounded-md p-2 border-gray-300 w-full">
                                         </div>
 
                                     </div>
@@ -451,22 +456,22 @@
 
                                         <div class="block md:inline">
                                             <label for="" class="block text-xs uppercase">Téléphone</label>
-                                            <input type="text" v-model="fatherTel" class="block border rounded-md p-2 border-gray-300 w-full">
+                                            <input type="tel" v-model="father_tel" class="block border rounded-md p-2 border-gray-300 w-full">
                                         </div>
 
                                         <div class="block md:inline">
                                             <label for="" class="block text-xs uppercase">Professsion</label>
-                                            <input type="text" v-model="fatherTitle" class="block border rounded-md p-2 border-gray-300 w-full">
+                                            <input type="text" v-model="father_title" class="block border rounded-md p-2 border-gray-300 w-full">
                                         </div>
 
                                         <div class="block md:inline">
                                             <label for="" class="block text-xs uppercase">Téléphone</label>
-                                            <input type="text" v-model="motherTel" class="block border rounded-md p-2 border-gray-300 w-full" >
+                                            <input type="tel" v-model="mother_tel" class="block border rounded-md p-2 border-gray-300 w-full" >
                                         </div>
 
                                         <div class="block md:inline">
                                             <label for="" class="block text-xs uppercase">Professsion</label>
-                                            <input type="text" v-model="motherTitle" class="block border rounded-md p-2 border-gray-300 w-full">
+                                            <input type="text" v-model="mother_title" class="block border rounded-md p-2 border-gray-300 w-full">
                                         </div>
                                     </div>
 
@@ -482,14 +487,14 @@
                                             <span @click="showTab4" class="rounded-md px-3 py-2 ml-5 border  text-['#111827'] hover:cursor-pointer hover:bg-[#111827] hover:text-white hover:border-[#111827]"> <i class="fa fa-chevron-right"></i> Suivant</span>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
 
                                     <!-- tab4 -->
 
-                                <div v-if="pageFour" class="mt-10" >
+                                <div v-if="pageThree" class="mt-10" >
                                     <h2 class="uppercase text-green-400 text-xs">Affectation de l'étudiant</h2>
                                     
-                                    <h5 class="mt-3 text-red-500">Les champs obligatoire *</h5>
+                                    <h5 class="mt-3 text-red-500">Les champs obligatoires *</h5>
 
                                     <div class="mt-10 md:grid grid-flow-col flex-stretch gap-10">
                                         <div class="block md:inline">
@@ -510,10 +515,266 @@
                                             </select>
                                         </div>
 
-                                        <div class="block md:inline">
-                                            <label for="" class="block text-xs uppercase">Téléphone<span class="text-red-500">*</span></label>
-                                            <input type="text" v-model="formData.tel" class="block border rounded-md p-2 border-gray-300 w-full">
+                                        
+
+                                    </div>
+                                    
+                                    <div class="mt-10 text-right">
+                                        <div class="inline">
+                                            <span @click="firstLastTab" class="rounded-md px-3 py-2 ml-5 hover:cursor-pointer text-[#111827] hover:border"> <i class="fa fa-chevron-left"></i> Retour</span>
+                                            <button class="text-white rounded-md px-3 py-2 bg-[#111827] ml-5 hover:cursor-pointer hover:bg-green-500 font-bold"> <i class="fa fa-paper-plane-top"></i> Enregistrer</button>
                                         </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                 <!--edit modal form -->
+                 <div v-if="showModalEdit">
+                    <div class="backdrop absolute md:fixed grid grid-flow-col bg-[#F5F7FB] rounded">
+                            
+                        <div class="register-form rounded-md bg-white p-10 border-gray-300 md:absolute md:ml-auto md:mr-auto md:w-3/4 lg:ml-14">
+
+                            <div class="flex">
+                                <div class="title flex-1">
+                                    <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Modifiez l'étudiant</h2>
+                                </div>
+                                <div class="">
+                                    <button v-if="showModalEdit" class="bg-white px-2 py-1 rounded text-red-500" @click="toggleModal"><i class="fa fa-xmark"></i> </button>
+                                </div>
+                            </div>
+
+                            <!-- step label -->
+                            <ol class="mt-5 flex items-center w-full text-sm font-medium text-center text-gray-500  sm:text-base">
+                                    
+                                <li  :class="pageOne ? 'text-green-500 font-bold' : '' " class="flex md:w-full items-center after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10">
+                                    <span class="flex items-center ">
+                                        <svg  :class="pageOne ? 'w-3.5 h-3.5 sm:w-4 sm:h-4 mr-2.5': '1' " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+                                        </svg>
+                                        <span class="mr-1">1</span>Identité 
+                                    </span>
+                                </li>
+                                <li :class="pageTwo ? 'text-green-500 font-bold' : '' " class="flex md:w-full items-center after:w-full after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 ">
+                                    <span class="flex items-center">
+                                        <svg  :class="pageTwo ? 'w-3.5 h-3.5 sm:w-4 sm:h-4 mr-2.5': '' " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+                                        </svg>
+                                        <span class="mr-1">2</span>Adresse
+                                    </span>
+                                </li>
+
+                                <!-- <li :class="pageThree ? 'text-green-500 font-bold' : '' " class="flex md:w-full items-center after:w-full after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10">
+                                    <span class="flex items-center">
+                                        <svg :class="pageThree ? 'w-3.5 h-3.5 sm:w-4 sm:h-4 mr-2.5': '' " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+                                        </svg>
+                                        <span class="mr-1">3</span>Parents
+                                    </span>
+                                </li> -->
+
+                                <li :class="pageThree ? 'text-green-500 font-bold' : '' " class="flex items-center">
+                                    <svg :class="pageThree ? 'w-3.5 h-3.5 sm:w-4 sm:h-4 mr-2.5': '' " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+                                    </svg>
+                                    <span class="mr-1">4</span>Affectation
+                                </li>
+                                </ol>
+
+                            <form @submit.prevent="updateStudent(studentData.id)">
+                                <!-- tab1 -->
+                                <div  v-if="pageOne" class="mt-10">
+                                    <h2 class="uppercase text-green-500 text-xs">Identité de l'étudiant</h2>
+
+                                    <h5 class="mt-3 text-red-500">Les champs obligatoires *</h5>
+                                    
+                                    <div class="mt-10 md:grid grid-flow-col flex-stretch gap-10">
+                                        <div class="block md:inline">
+                                            <label for="" class="block text-xs uppercase">Nom <span class="text-red-500">*</span></label>
+                                            <input type="text" v-model="studentData.firstname" class="block border rounded-md p-2 border-gray-300 w-full" required >
+                                        </div>
+
+                                        <div class="block md:inline">
+                                            <label for="" class="block text-xs uppercase">Post-nom <span class="text-red-500">*</span></label>
+                                            <input type="text"  v-model="studentData.familyname" class="block border rounded-md p-2 border-gray-300 w-full" required>
+                                        </div>
+
+                                        <div class="block md:inline">
+                                            <label for="" class="block text-xs uppercase">Prénom</label>
+                                            <input type="text" v-model="studentData.lastname" class="block border rounded-md p-2 border-gray-300 w-full">
+                                        </div>
+                                    </div>
+                                    <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+                                        <div class="block md:inline">
+                                            <label for="" class="block text-xs uppercase">Genre (Homme/Femme) <span class="text-red-500">*</span></label>
+                                            <select v-model="studentData.gender" class="block border rounded-md p-2 border-gray-300 w-full" required>
+                                                <option class="select" value="H">H</option>
+                                                <option class="select" value="F">F</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="block md:inline">
+                                            <label for="" class="block text-xs uppercase">Lieu de naissance</label>
+                                            <input type="text" v-model="studentData.place_of_birth" class="block border rounded-md p-2 border-gray-300 w-full">
+                                        </div>
+
+                                        <div class="block md:inline">
+                                            <label for="" class="block text-xs uppercase">Date de naissance</label>
+                                            <input type="date" v-model="studentData.date_of_birth" class="block border rounded-md p-2 border-gray-300 w-full" >
+                                        </div>
+                                    </div>
+                                    <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+                                        <div class="block md:inline">
+                                            <label for="" class="block text-xs uppercase">Téléphone <span class="text-red-500">*</span></label>
+                                            <input type="tel" v-model="studentData.tel" class="block border rounded-md p-2 border-gray-300 w-full">
+                                        </div>
+                                        <div class="block md:inline">
+                                            <label for="" class="block text-xs uppercase">Email <span class="text-red-500">*</span></label>
+                                            <input type="email" v-model="studentData.email" class="block border rounded-md p-2 border-gray-300 w-full">
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-10 text-right">
+                                        <div class="inline">
+                                            <span href="" @click="showTab2" class="rounded-md px-3 py-2 ml-5 border text-['#111827'] hover:cursor-pointer hover:bg-[#111827] hover:text-white hover:border-[#111827]"> <i class="fa fa-chevron-right"></i> Suivant</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- tab2 -->
+
+                                <div v-if="pageTwo" class="mt-10" >
+                                    <h2 class="uppercase text-green-400 text-xs">Adresse de l'étudiant</h2>
+                                    
+                                    <h5 class="mt-3 text-red-500">Les champs obligatoires *</h5>
+
+                                    <div class="mt-10 md:grid grid-flow-col flex-stretch gap-10">
+                                        <div class="block md:inline">
+                                            <label for="" class="block text-xs uppercase">Nationalité</label>
+                                            <input type="text" v-model="studentData.country" class="block border rounded-md p-2 border-gray-300 w-full" >
+                                        </div>
+
+                                        <div class="block md:inline">
+                                            <label for="" class="block text-xs uppercase">Province</label>
+                                            <input type="text" v-model="studentData.province" class="block border rounded-md p-2 border-gray-300 w-full">
+                                        </div> 
+
+                                        <div class="block md:inline">
+                                            <label for="" class="block text-xs uppercase">Ville</label>
+                                            <input type="text" v-model="studentData.city" class="block border rounded-md p-2 border-gray-300 w-full">
+                                        </div>
+                                    </div>
+                                    <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+                                        <div class="block md:inline">
+                                            <label for="" class="block text-xs uppercase">Commune</label>
+                                            <input type="text" v-model="studentData.commune" class="block border rounded-md p-2 border-gray-300 w-full">
+                                        </div>
+
+                                        <div class="block md:inline">
+                                            <label for="" class="block text-xs uppercase">Quartier</label>
+                                            <input type="text" v-model="studentData.quarter" class="block border rounded-md p-2 border-gray-300 w-full" >
+                                        </div>
+
+                                        <div class="block md:inline">
+                                            <label for="" class="block text-xs uppercase">Adresse</label>
+                                            <input type="text" v-model="studentData.cel" class="block border rounded-md p-2 border-gray-300 w-full" >
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-10 text-right">
+                                        <div class="inline">
+                                            <span @click="showTab1" class="rounded-md px-3 py-2 ml-5 hover:cursor-pointer text-[#111827] hover:border"> <i class="fa fa-chevron-left"></i> Retour</span>
+                                            <span @click="showTab3" class="rounded-md px-3 py-2 ml-5 border  text-['#111827'] hover:cursor-pointer hover:bg-[#111827] hover:text-white hover:border-[#111827]"> <i class="fa fa-chevron-right"></i> Suivant </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- tab3 -->
+                                <!-- <div v-if="pageThree" class="mt-10" >
+                                    <h2 class="uppercase text-green-400 text-xs">Informations des parents de l'étudiant</h2>
+                                    
+                                    <h5 class="mt-3 text-red-500">Les champs obligatoires *</h5>
+
+                                    <div class="mt-10 md:grid grid-flow-col flex-stretch gap-10">
+                                        <div class="block md:inline">
+                                            <label for="" class="block text-xs uppercase">Nom du père</label>
+                                            <input type="text" v-model="father_name" class="block border rounded-md p-2 border-gray-300 w-full">
+                                        </div>
+
+                                        <div class="block md:inline">
+                                            <label for="" class="block text-xs uppercase">Nom de la mère</label>
+                                            <input type="text" v-model="mother_name" class="block border rounded-md p-2 border-gray-300 w-full">
+                                        </div>
+
+                                    </div>
+                                    <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+
+                                        <div class="block md:inline">
+                                            <label for="" class="block text-xs uppercase">Téléphone</label>
+                                            <input type="tel" v-model="father_tel" class="block border rounded-md p-2 border-gray-300 w-full">
+                                        </div>
+
+                                        <div class="block md:inline">
+                                            <label for="" class="block text-xs uppercase">Professsion</label>
+                                            <input type="text" v-model="father_title" class="block border rounded-md p-2 border-gray-300 w-full">
+                                        </div>
+
+                                        <div class="block md:inline">
+                                            <label for="" class="block text-xs uppercase">Téléphone</label>
+                                            <input type="tel" v-model="mother_tel" class="block border rounded-md p-2 border-gray-300 w-full" >
+                                        </div>
+
+                                        <div class="block md:inline">
+                                            <label for="" class="block text-xs uppercase">Professsion</label>
+                                            <input type="text" v-model="mother_title" class="block border rounded-md p-2 border-gray-300 w-full">
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+                                        <div class="block md:inline">
+                                            <label for="" class="block text-xs uppercase">Adresse</label>
+                                            <input type="text" v-model="formData.parent_address" class="block border rounded-md p-2 border-gray-300 w-full">
+                                        </div>
+                                    </div>
+                                    <div class="mt-10 text-right">
+                                        <div class="inline">
+                                            <span @click="secondLastTab" class="rounded-md px-3 py-2 ml-5 hover:cursor-pointer text-[#111827] hover:border"> <i class="fa fa-chevron-left"></i> Retour</span>
+                                            <span @click="showTab4" class="rounded-md px-3 py-2 ml-5 border  text-['#111827'] hover:cursor-pointer hover:bg-[#111827] hover:text-white hover:border-[#111827]"> <i class="fa fa-chevron-right"></i> Suivant</span>
+                                        </div>
+                                    </div>
+                                </div> -->
+
+                                    <!-- tab4 -->
+
+                                <div v-if="pageThree" class="mt-10" >
+                                    <h2 class="uppercase text-green-400 text-xs">Affectation de l'étudiant</h2>
+                                    
+                                    <h5 class="mt-3 text-red-500">Les champs obligatoires *</h5>
+
+                                    <div class="mt-10 md:grid grid-flow-col flex-stretch gap-10">
+                                        <div class="block md:inline">
+                                            <label for="" class="block text-xs uppercase">Année académique <span class="text-red-500">*</span></label>
+                                            <select v-model="studentData.academic_year_id" class="block border rounded p-3 border-gray-300 w-full" required>
+                                                <option v-for="academic_year in academicYearsList" :key="academic_year.id" :value="academic_year.id" >
+                                                    {{ academic_year.name }}
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="block md:inline">
+                                            <label for="" class="block text-xs uppercase">Promotion <span class="text-red-500">*</span></label>
+                                            <select v-model="studentData.promotion_id" class="block border rounded p-3 border-gray-300 w-full" required>
+                                                <option v-for="promotion in promotionsList" :key="promotion.id" :value="promotion.id" >
+                                                    {{ promotion.name }}
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        
 
                                     </div>
                                     
@@ -531,7 +792,7 @@
                 </div>
 
                 
-
+                <!-- list -->
                 <div v-if="showModal == false" class="flex">
                     <div class="">
                         <div class="rounded-md bg-white w-48 p-5 mt-2 ">
@@ -650,7 +911,7 @@ import Footer from "../../components/layouts/Footer.vue";
 
 // import axios from "axios";
 import {
-  getStudents,
+  getStudent,
   addStudent,
   showStudent,
   editStudent,
@@ -672,12 +933,14 @@ export default {
       pageOne: true,
       pageTwo: false,
       pageThree: false,
-      pageFour: false,
+    //   pageFour: false,
       pageProfile: false,
       students: false,
 
       academicYearsList: {},
       promotionsList: {},
+      parentsList: {},
+
       //form fields
       formData: {
         firstname: "",
@@ -695,15 +958,7 @@ export default {
         tel: "",
         email: "",
         promotion_id: "",
-        student_parent_id: "",
-        academic_year_id: "",
-        father_name: "",
-        mother_name: "",
-        father_title: "",
-        mother_title: "",
-        father_tel: "",
-        mother_tel: "",
-        parent_address: ""
+        student_parent_id: ""
       }
     };
   },
@@ -719,7 +974,7 @@ export default {
     fetchStudents() {
       getStudent()
         .then(response => {
-          this.students = response.data.students;
+          this.students = response.data.student;
         })
         .catch(error => {
           console.log(error);
@@ -751,30 +1006,30 @@ export default {
 
       showStudent(student)
         .then(response => {
-          this.studentData.id = student;
-          this.studentData.firstname = response.data.student.name;
-          this.studentData.lastname = response.data.student.lastname;
-          this.studentData.familyname = response.data.student.familyname;
-          this.studentData.gender = response.data.student.gender;
+            this.studentData.id = student;
+            this.studentData.firstname = response.data.student.name;
+            this.studentData.lastname = response.data.student.lastname;
+            this.studentData.familyname = response.data.student.familyname;
+            this.studentData.gender = response.data.student.gender;
 
-          this.studentData.email = response.data.student.email;
-          this.studentData.tel = response.data.student.tel;
-          this.studentData.country = response.data.student.country;
-          this.studentData.province = response.data.student.province;
-          this.studentData.city = response.data.student.city;
-          this.studentData.commune = response.data.student.commune;
-          this.studentData.quarter = response.data.student.quarter;
-          this.studentData.cel = response.data.student.cel;
+            this.studentData.email = response.data.student.email;
+            this.studentData.tel = response.data.student.tel;
+            this.studentData.country = response.data.student.country;
+            this.studentData.province = response.data.student.province;
+            this.studentData.city = response.data.student.city;
+            this.studentData.commune = response.data.student.commune;
+            this.studentData.quarter = response.data.student.quarter;
+            this.studentData.cel = response.data.student.cel;
 
-          this.studentData.place_of_birth = response.data.student.place_of_birth;
-          this.studentData.date_of_birth = response.data.student.date_of_birth;
-          this.studentData.promotion_id = response.data.promotion.id;
-          this.studentData.student_parent_id = response.data.parent.id;
-          this.studentData.academic_year_id = response.data.academic_year.id;
+            this.studentData.place_of_birth = response.data.student.place_of_birth;
+            this.studentData.date_of_birth = response.data.student.date_of_birth;
+            this.studentData.promotion_id = response.data.promotion.id;
+            this.studentData.student_parent_id = response.data.parent.id;
+            this.studentData.academic_year_id = response.data.academic_year.id;
         })
         .catch(errors => {
-          //toast notification
-          errorMessage(this.$toast, errors.response.data.message);
+            //toast notification
+            errorMessage(this.$toast, errors.response.data.message);
         });
     },
 
@@ -827,14 +1082,14 @@ export default {
       this.pageTwo = !this.pageTwo;
     },
 
-    showTab4() {
-      this.pageFour = !this.pageFour;
-      this.pageThree = !this.pageThree;
-    },
+    // showTab4() {
+    //   this.pageFour = !this.pageFour;
+    //   this.pageThree = !this.pageThree;
+    // },
 
     firstLastTab() {
+      this.pageTwo = !this.pageTwo;
       this.pageThree = !this.pageThree;
-      this.pageFour = !this.pageFour;
     },
 
     secondLastTab() {
@@ -848,62 +1103,37 @@ export default {
     },
 
     handleSubmit() {
-      console.log(
-        "1" +
-          this.pageOne +
-          "| 2" +
-          this.pageTwo +
-          "| 3" +
-          this.pageThree +
-          "| 4" +
-          this.pageFour
-      );
 
-      console.log(
-        this.firstName,
-        this.familyName,
-        this.lastName,
-        this.gender,
-        this.placeBirth,
-        this.dateBirth,
-        this.country,
-        this.province,
-        this.city,
-        this.commune,
-        this.quarter,
-        this.cel,
-        this.fatherName,
-        this.motherName,
-        this.fatherTitle,
-        this.motherTitle,
-        this.fatherTel,
-        this.motherTel,
-        this.parentAddress,
-        this.faculty,
-        this.department,
-        this.promotion
-      );
     },
 
     //option list
     optionList() {
-      //departments list
-      getAcademicYears()
-        .then(response => {
-          this.academicYearsList = response.data.academic_year;
-        })
-        .catch(error => {
-          console.log(error);
-        });
+        //departments list
+        getAcademicYears()
+            .then(response => {
+            this.academicYearsList = response.data.academic_year;
+            })
+            .catch(error => {
+                console.log(error);
+            });
 
-      //promotions list
-      getPromotions()
-        .then(response => {
-          this.promotionsList = response.data.promotions;
-        })
-        .catch(error => {
-          console.log(error);
-        });
+        //promotions list
+        getPromotions()
+            .then(response => {
+                this.promotionsList = response.data.promotion;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+        //parent list
+        getStudentParents()
+            .then(response => {
+                this.parentsList = response.data.parent;
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
   }
 };
