@@ -112,8 +112,25 @@ export function editAcademicYear(academic_year, AcademicYearData){
 }
 
 
+//students list
+export function getStudents(){
+    return axios.get('/student')
+}
 
+//student new
+export function addStudent(formData){
+    return axios.post('/student', formData)
+}
 
+//student Show
+export function showStudent(student){
+    return axios.get(`/student/${student}`)
+}
+
+//student update
+export function editStudent(student, studentData){    
+    return axios.put(`/student/${student}`, studentData)
+}
 
 
 // +++++++++++++++++++++++++++++++++++++++++++++optins list ++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -137,6 +154,16 @@ export function getLecturers(){
 //lecturers list
 export function getFaculties(){
     return axios.get('/faculty')
+}
+
+//parents list
+export function getStudentParents(){
+    return axios.get('/parent')
+}
+
+//parents list
+export function getAcademicYears(){
+    return axios.get('/academic_year')
 }
 
 

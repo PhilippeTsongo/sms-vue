@@ -275,7 +275,7 @@
                 </div>
 
 
-                <!-- modal form -->
+                <!--new modal form -->
                 <div v-if="showModal">
                     <div class="backdrop absolute md:fixed grid grid-flow-col bg-[#F5F7FB] rounded">
                             
@@ -337,41 +337,41 @@
                                     <div class="mt-10 md:grid grid-flow-col flex-stretch gap-10">
                                         <div class="block md:inline">
                                             <label for="" class="block text-xs uppercase">Nom <span class="text-red-500">*</span></label>
-                                            <input type="text" v-model="firstName" class="block border rounded-md p-2 border-gray-300 w-full" required >
+                                            <input type="text" v-model="formData.firstname" class="block border rounded-md p-2 border-gray-300 w-full" required >
                                         </div>
 
                                         <div class="block md:inline">
                                             <label for="" class="block text-xs uppercase">Post-nom <span class="text-red-500">*</span></label>
-                                            <input type="text"  v-model="familyName" class="block border rounded-md p-2 border-gray-300 w-full" required>
+                                            <input type="text"  v-model="formData.familyname" class="block border rounded-md p-2 border-gray-300 w-full" required>
                                         </div>
 
                                         <div class="block md:inline">
                                             <label for="" class="block text-xs uppercase">Prénom</label>
-                                            <input type="text" v-model="lastName" class="block border rounded-md p-2 border-gray-300 w-full">
+                                            <input type="text" v-model="formData.lastname" class="block border rounded-md p-2 border-gray-300 w-full">
                                         </div>
                                     </div>
                                     <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
                                         <div class="block md:inline">
                                             <label for="" class="block text-xs uppercase">Genre (Homme/Femme) <span class="text-red-500">*</span></label>
-                                            <select v-model="gender" class="block border rounded-md p-2 border-gray-300 w-full" required>
-                                                <option class="select" value="Homme">H</option>
-                                                <option class="select" value="Femme">F</option>
+                                            <select v-model="formData.gender" class="block border rounded-md p-2 border-gray-300 w-full" required>
+                                                <option class="select" value="H">H</option>
+                                                <option class="select" value="F">F</option>
                                             </select>
                                         </div>
 
                                         <div class="block md:inline">
                                             <label for="" class="block text-xs uppercase">Lieu de naissance</label>
-                                            <input type="text" v-model="placeBirth" class="block border rounded-md p-2 border-gray-300 w-full">
+                                            <input type="text" v-model="formData.place_of_birth" class="block border rounded-md p-2 border-gray-300 w-full">
                                         </div>
 
                                         <div class="block md:inline">
                                             <label for="" class="block text-xs uppercase">Date de naissance</label>
-                                            <input type="date" v-model="dateBirth" class="block border rounded-md p-2 border-gray-300 w-full" >
+                                            <input type="date" v-model="formData.date_of_birth" class="block border rounded-md p-2 border-gray-300 w-full" >
                                         </div>
                                     </div>
                                     <div class="mt-10 text-right">
                                         <div class="inline">
-                                            <span href="" @click="showTab2" class="rounded-md px-3 py-2 ml-5 border  text-['#111827'] hover:cursor-pointer hover:bg-[#111827] hover:text-white hover:border-[#111827]"> <i class="fa fa-chevron-right"></i> Suivant</span>
+                                            <span href="" @click="showTab2" class="rounded-md px-3 py-2 ml-5 border text-['#111827'] hover:cursor-pointer hover:bg-[#111827] hover:text-white hover:border-[#111827]"> <i class="fa fa-chevron-right"></i> Suivant</span>
                                         </div>
                                     </div>
                                 </div>
@@ -386,39 +386,39 @@
                                     <div class="mt-10 md:grid grid-flow-col flex-stretch gap-10">
                                         <div class="block md:inline">
                                             <label for="" class="block text-xs uppercase">Nationalité</label>
-                                            <input type="text" v-model="country" class="block border rounded-md p-2 border-gray-300 w-full" >
+                                            <input type="text" v-model="formData.country" class="block border rounded-md p-2 border-gray-300 w-full" >
                                         </div>
 
                                         <div class="block md:inline">
                                             <label for="" class="block text-xs uppercase">Province</label>
-                                            <input type="text" v-model="province" class="block border rounded-md p-2 border-gray-300 w-full">
-                                        </div>
+                                            <input type="text" v-model="formData.province" class="block border rounded-md p-2 border-gray-300 w-full">
+                                        </div> 
 
                                         <div class="block md:inline">
                                             <label for="" class="block text-xs uppercase">Ville</label>
-                                            <input type="text" v-model="city" class="block border rounded-md p-2 border-gray-300 w-full">
+                                            <input type="text" v-model="formData.city" class="block border rounded-md p-2 border-gray-300 w-full">
                                         </div>
                                     </div>
                                     <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
                                         <div class="block md:inline">
                                             <label for="" class="block text-xs uppercase">Commune</label>
-                                            <input type="text" v-model="commune" class="block border rounded-md p-2 border-gray-300 w-full">
+                                            <input type="text" v-model="formData.commune" class="block border rounded-md p-2 border-gray-300 w-full">
                                         </div>
 
                                         <div class="block md:inline">
                                             <label for="" class="block text-xs uppercase">Quartier</label>
-                                            <input type="text" v-model="quarter" class="block border rounded-md p-2 border-gray-300 w-full" >
+                                            <input type="text" v-model="formData.quarter" class="block border rounded-md p-2 border-gray-300 w-full" >
                                         </div>
 
                                         <div class="block md:inline">
                                             <label for="" class="block text-xs uppercase">Cellule</label>
-                                            <input type="text" v-model="cel" class="block border rounded-md p-2 border-gray-300 w-full" >
+                                            <input type="text" v-model="formData.cel" class="block border rounded-md p-2 border-gray-300 w-full" >
                                         </div>
                                     </div>
                                     <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
                                         <div class="block md:inline">
                                             <label for="" class="block text-xs uppercase">Email <span class="text-red-500">*</span></label>
-                                            <input type="email" v-model="email" class="block border rounded-md p-2 border-gray-300 w-full">
+                                            <input type="email" v-model="formData.email" class="block border rounded-md p-2 border-gray-300 w-full">
                                         </div>
                                     </div>
                                     <div class="mt-10 text-right">
@@ -473,7 +473,7 @@
                                     <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
                                         <div class="block md:inline">
                                             <label for="" class="block text-xs uppercase">Adresse</label>
-                                            <input type="text" v-model="parentAddress" class="block border rounded-md p-2 border-gray-300 w-full">
+                                            <input type="text" v-model="formData.parent_address" class="block border rounded-md p-2 border-gray-300 w-full">
                                         </div>
                                     </div>
                                     <div class="mt-10 text-right">
@@ -493,18 +493,26 @@
 
                                     <div class="mt-10 md:grid grid-flow-col flex-stretch gap-10">
                                         <div class="block md:inline">
-                                            <label for="" class="block text-xs uppercase">Faculté <span class="text-red-500">*</span></label>
-                                            <input type="text" v-model="faculty" class="block border rounded-md p-2 border-gray-300 w-full" required >
-                                        </div>
-
-                                        <div class="block md:inline">
-                                            <label for="" class="block text-xs uppercase">Departement <span class="text-red-500">*</span></label>
-                                            <input type="text" v-model="department" class="block border rounded-md p-2 border-gray-300 w-full" required>
+                                            <label for="" class="block text-xs uppercase">Année académique <span class="text-red-500">*</span></label>
+                                            <select v-model="formData.academic_year_id" class="block border rounded p-3 border-gray-300 w-full" required>
+                                                <option v-for="academic_year in academicYearsList" :key="academic_year.id" :value="academic_year.id" >
+                                                    {{ academic_year.name }}
+                                                </option>
+                                            </select>
                                         </div>
 
                                         <div class="block md:inline">
                                             <label for="" class="block text-xs uppercase">Promotion <span class="text-red-500">*</span></label>
-                                            <input type="text" v-model="promotion" class="block border rounded-md p-2 border-gray-300 w-full" required>
+                                            <select v-model="formData.promotion_id" class="block border rounded p-3 border-gray-300 w-full" required>
+                                                <option v-for="promotion in promotionsList" :key="promotion.id" :value="promotion.id" >
+                                                    {{ promotion.name }}
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="block md:inline">
+                                            <label for="" class="block text-xs uppercase">Téléphone<span class="text-red-500">*</span></label>
+                                            <input type="text" v-model="formData.tel" class="block border rounded-md p-2 border-gray-300 w-full">
                                         </div>
 
                                     </div>
@@ -521,6 +529,8 @@
 
                     </div>
                 </div>
+
+                
 
                 <div v-if="showModal == false" class="flex">
                     <div class="">
@@ -596,85 +606,21 @@
                                                 </tr>
                                             </thead>
                                             <tbody class="h-100 border-r border-b border-gray-100">
-                                                <tr class="">
+                                                <tr class="" v-for="student in students" :key="student.id">
                                                     <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-100">1</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-100">34562M23</td>
+                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-100">{{ student.student_number }}</td>
                                                     <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-b border-gray-100"> 
                                                         <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
                                                     </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100"> <button @click="showProfile">Philippe Tsongo</button> </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">G3</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Homme</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100"> <button @click="showProfile">{{ student.firstname + ' ' + student.lastname }}</button> </td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">{{ student.promotion.name }}</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">{{ student.gender}}</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">
 
-                                                </tr>
-                                                <tr class="bg-[#F5F7FB]">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-100">2</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-100">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-b border-gray-100"> 
-                                                        <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
+                                                        <button @click="dataStudent(student.id)" class="text-[#111827] border border-[#111827] w-full rounded-md px-3 py-2"> Edit</button>
+
                                                     </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Kambale Makuta</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">L1</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Homme</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
-
-                                                </tr>
-
-                                                <tr class="">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-100">3</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-100">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-b border-gray-100"> 
-                                                        <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
-                                                    </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Philippe Tsongo</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">G2</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Homme</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
-
-                                                </tr>
-                                                <tr class="bg-[#F5F7FB]">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-100">4</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-100">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-b border-gray-100"> 
-                                                        <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
-                                                    </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Jacob Kamate</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">L1</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Homme</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
-
-                                                </tr>
-
-                                                <tr class="">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-100">5</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-100">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-b border-gray-100"> 
-                                                        <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
-                                                    </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Kazadi Mbalala</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">G2</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Homme</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
-
-                                                </tr>
-
-                                                <tr class="bg-[#F5F7FB]">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-100">6</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-100">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-6 py-2 w-20 font-medium border-r border-b border-gray-100"> 
-                                                        <img src="../../../public/images/profiles/phil.jpeg" class=" rounded-full h-8 w-8" alt="">
-                                                    </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Musondolya Lea</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">G1</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Homme</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500"></td>
 
                                                 </tr>
                                             
@@ -702,127 +648,263 @@ import Header from "../../components/layouts/Header.vue";
 import Sidebar from "../../components/layouts/Sidebar.vue";
 import Footer from "../../components/layouts/Footer.vue";
 
+// import axios from "axios";
+import {
+  getStudents,
+  addStudent,
+  showStudent,
+  editStudent,
+  getAcademicYears,
+  getStudentParents,
+  getPromotions
+} from "../../jscore/init.js";
+import { successMessage, errorMessage } from "../../jscore/IoNotification.js";
+
 export default {
   name: "IndexStudent",
   components: { Head, Header, Sidebar, Footer },
 
   data() {
-        return {
-            text: "",
-            showModal: false,
-            pageOne: true,
-            pageTwo: false,
-            pageThree: false,
-            pageFour: false,
-            pageProfile: false,
+    return {
+      text: "",
+      showModal: false,
+      showModalEdit: false,
+      pageOne: true,
+      pageTwo: false,
+      pageThree: false,
+      pageFour: false,
+      pageProfile: false,
+      students: false,
 
-
-            //form fields
-            firstName: '',
-            familyName: '',
-            lastName: '',
-            gender: '',
-            placeBirth: '',
-            dateBirth: '',
-            country: '',
-            province: '',
-            city: '',
-            commune: '',
-            quarter: '',
-            cel: '',
-            email: '',
-            fatherName: '',
-            motherName: '',
-            fatherTitle: '',
-            motherTitle: '',
-            fatherTel: '',
-            motherTel: '',
-            parentAddress: '',
-            faculty: '',
-            department: '',
-            promotion: ''
-            
-
-        };
+      academicYearsList: {},
+      promotionsList: {},
+      //form fields
+      formData: {
+        firstname: "",
+        lastname: "",
+        familyname: "",
+        gender: "",
+        place_of_birth: "",
+        date_of_birth: "",
+        country: "",
+        province: "",
+        city: "",
+        commune: "",
+        quarter: "",
+        cel: "",
+        tel: "",
+        email: "",
+        promotion_id: "",
+        student_parent_id: "",
+        academic_year_id: "",
+        father_name: "",
+        mother_name: "",
+        father_title: "",
+        mother_title: "",
+        father_tel: "",
+        mother_tel: "",
+        parent_address: ""
+      }
+    };
   },
 
+  mounted() {
+    this.fetchStudents();
+
+    this.optionList();
+  },
   // show and close modal
   methods: {
-    
+    //Course list
+    fetchStudents() {
+      getStudent()
+        .then(response => {
+          this.students = response.data.students;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+
+    //new course
+    newStudent() {
+      addStudent(this.formData)
+        .then(response => {
+          //toast notification
+          successMessage(this.$toast, response.data.message);
+          //close the tab
+          this.showModal = !this.showModal;
+
+          //fetch List
+          this.fetchStudents();
+        })
+        .catch(errors => {
+          //toast notification
+          errorMessage(this.$toast, errors.response.data.message);
+        });
+    },
+
+    //new course
+    dataStudent(student) {
+      //open the tab
+      this.showModalEdit = !this.showModalEdit;
+
+      showStudent(student)
+        .then(response => {
+          this.studentData.id = student;
+          this.studentData.firstname = response.data.student.name;
+          this.studentData.lastname = response.data.student.lastname;
+          this.studentData.familyname = response.data.student.familyname;
+          this.studentData.gender = response.data.student.gender;
+
+          this.studentData.email = response.data.student.email;
+          this.studentData.tel = response.data.student.tel;
+          this.studentData.country = response.data.student.country;
+          this.studentData.province = response.data.student.province;
+          this.studentData.city = response.data.student.city;
+          this.studentData.commune = response.data.student.commune;
+          this.studentData.quarter = response.data.student.quarter;
+          this.studentData.cel = response.data.student.cel;
+
+          this.studentData.place_of_birth = response.data.student.place_of_birth;
+          this.studentData.date_of_birth = response.data.student.date_of_birth;
+          this.studentData.promotion_id = response.data.promotion.id;
+          this.studentData.student_parent_id = response.data.parent.id;
+          this.studentData.academic_year_id = response.data.academic_year.id;
+        })
+        .catch(errors => {
+          //toast notification
+          errorMessage(this.$toast, errors.response.data.message);
+        });
+    },
+
+    showStudentProfile(student) {
+      // When the "Data Profile" button is clicked, fetch the selected course profile
+      this.dataStudent(student);
+    },
+
+    //update course
+    updateStudent(student) {
+      editStudent(student, this.studentData)
+        .then(response => {
+          //toast notification
+          successMessage(this.$toast, response.data.message);
+          //close the tab
+          this.showModalEdit = !this.showModalEdit;
+          //fetch List
+          this.fetchStudents();
+        })
+        .catch(errors => {
+          //toast notification
+          errorMessage(this.$toast, errors.response.data.message);
+        });
+    },
+
     toggleModal() {
-        this.showModal = !this.showModal;
+      this.showModal = !this.showModal;
+    },
+
+    toogleModalEdit() {
+      this.showModalEdit = !this.showModalEdit;
     },
 
     closeToggleModal() {
       this.showModal = !this.showModal;
     },
 
-    showTab1(){
-        this.pageOne = !this.pageOne;
-        this.pageTwo = !this.pageTwo;
+    showTab1() {
+      this.pageOne = !this.pageOne;
+      this.pageTwo = !this.pageTwo;
     },
 
-    showTab2(){
-        this.pageTwo = !this.pageTwo;
-        this.pageOne = !this.pageOne;
+    showTab2() {
+      this.pageTwo = !this.pageTwo;
+      this.pageOne = !this.pageOne;
     },
 
-    showTab3(){
-        this.pageThree = !this.pageThree;
-        this.pageTwo = !this.pageTwo;
+    showTab3() {
+      this.pageThree = !this.pageThree;
+      this.pageTwo = !this.pageTwo;
     },
 
-    showTab4(){
-        this.pageFour = !this.pageFour;
-        this.pageThree = !this.pageThree;
+    showTab4() {
+      this.pageFour = !this.pageFour;
+      this.pageThree = !this.pageThree;
     },
 
-    firstLastTab(){
-        this.pageThree = !this.pageThree;
-        this.pageFour = !this.pageFour;
+    firstLastTab() {
+      this.pageThree = !this.pageThree;
+      this.pageFour = !this.pageFour;
     },
 
-    secondLastTab(){
-        this.pageTwo = !this.pageTwo;
-        this.pageThree = !this.pageThree;
+    secondLastTab() {
+      this.pageTwo = !this.pageTwo;
+      this.pageThree = !this.pageThree;
     },
 
     showProfile() {
-        this.pageProfile = !this.pageProfile;
-        console.log(this.pageProfile)
+      this.pageProfile = !this.pageProfile;
+      console.log(this.pageProfile);
     },
 
-    handleSubmit(){
-        console.log('1' + this.pageOne + '| 2' + this.pageTwo + '| 3' + this.pageThree + '| 4' + this.pageFour)
+    handleSubmit() {
+      console.log(
+        "1" +
+          this.pageOne +
+          "| 2" +
+          this.pageTwo +
+          "| 3" +
+          this.pageThree +
+          "| 4" +
+          this.pageFour
+      );
 
-        console.log(
-            this.firstName,
-            this.familyName,
-            this.lastName,
-            this.gender,
-            this.placeBirth,
-            this.dateBirth,
-            this.country,
-            this.province,
-            this.city,
-            this.commune,
-            this.quarter,
-            this.cel,
-            this.fatherName,
-            this.motherName,
-            this.fatherTitle,
-            this.motherTitle,
-            this.fatherTel,
-            this.motherTel,
-            this.parentAddress,
-            this.faculty,
-            this.department,
-            this.promotion,
+      console.log(
+        this.firstName,
+        this.familyName,
+        this.lastName,
+        this.gender,
+        this.placeBirth,
+        this.dateBirth,
+        this.country,
+        this.province,
+        this.city,
+        this.commune,
+        this.quarter,
+        this.cel,
+        this.fatherName,
+        this.motherName,
+        this.fatherTitle,
+        this.motherTitle,
+        this.fatherTel,
+        this.motherTel,
+        this.parentAddress,
+        this.faculty,
+        this.department,
+        this.promotion
+      );
+    },
 
+    //option list
+    optionList() {
+      //departments list
+      getAcademicYears()
+        .then(response => {
+          this.academicYearsList = response.data.academic_year;
+        })
+        .catch(error => {
+          console.log(error);
+        });
 
-        )
-    }   
-
+      //promotions list
+      getPromotions()
+        .then(response => {
+          this.promotionsList = response.data.promotions;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
   }
 };
 </script>
@@ -844,25 +926,24 @@ export default {
   letter-spacing: 1px;
 }
 
-.backdrop{
-    top: 0;
-    width: 100%;
-    height: 100%;
+.backdrop {
+  top: 0;
+  width: 100%;
+  height: 100%;
 }
 
 /* added */
-.register-form{
-    margin: 30px auto;
+.register-form {
+  margin: 30px auto;
 }
-label{
-    letter-spacing: 1px;
+label {
+  letter-spacing: 1px;
 }
 
 @media (max-width: 900px) {
-    .register-form{
-        width: 65%;
-        margin: 0% 5%;
-    }
+  .register-form {
+    width: 65%;
+    margin: 0% 5%;
+  }
 }
-
 </style>
