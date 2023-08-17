@@ -13,14 +13,14 @@
             <div class="content rounded-md bg-[#F5F7FB] mt-12">
     
                 <div class="mb-2 flex">
-                    <h1 class="flex-1 text-gray-300 uppercase text-xs"><i class="fa fa-users"></i> Facultés</h1>
+                    <h1 class="flex-1 text-gray-300 uppercase text-xs"><i class="fa fa-users"></i> Type de prévision budgetaire</h1>
                     
                     <div class="">
-                        <button v-if="showModal == false" class="border border-green text-green-500 bg-white py-1 px-2 rounded hover:text-white hover:bg-green-500 hover:text-white" @click="toggleModal"><i class="fa fa-plus-circle"></i> Nouvelle Faculté</button>
+                        <button v-if="showModal == false" class="border border-green text-green-500 bg-white py-1 px-2 rounded hover:text-white hover:bg-green-500 hover:text-white" @click="toggleModal"><i class="fa fa-plus-circle"></i> Nouvelle promotion</button>
                     </div>
                 </div>
               
-                <!--new modal -->
+                <!-- new modal -->
                 <div v-if="showModal">
                         <div class="grid grid-flow-col rounded absolute w-96 top-20 right-0 h-auto">
                             <div class> 
@@ -28,26 +28,34 @@
 
                                     <div class="flex py-5 w-full">
                                         <div class="title flex-1">
-                                            <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Nouvelle faculté</h2>
+                                            <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Type de prévision</h2>
                                         </div>
                                         <div class="">
                                             <button v-if="showModal" class="bg-white px-2 py-1 rounded text-red-500" @click="toggleModal"><i class="fa fa-xmark"></i> </button>
                                         </div>
                                     </div>
 
-                                    <form @submit.prevent="newFaculty">
+                                    <form @submit.prevent="newBudgetType">
 
                                         <div class="mt-5 pb-5">
-                                            <h2 class="uppercase text-green-500 text-xs">Informations de la faculté</h2>
+                                            <h2 class="uppercase text-green-500 text-xs">Informations du type de prévision</h2>
 
                                             <h5 class="mt-3 text-red-500">Les champs obligatoires *</h5>
                                             
                                             <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
                                                 <div class="block md:inline">
-                                                    <label for="" class="block text-xs uppercase">Nom <span class="text-red-500">*</span></label>
+                                                    <label for="" class="block text-xs uppercase">Nom du type de prévision <span class="text-red-500">*</span></label>
                                                     <input type="text" v-model="formData.name" class="block border rounded-md p-2 border-gray-300 w-full" required >
                                                 </div>
                                             </div>
+
+                                            <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+                                                <div class="block md:inline">
+                                                    <label for="" class="block text-xs uppercase">Description</label>
+                                                    <textarea v-model="formData.description" class="block border rounded-md p-2 border-gray-300 w-full"> </textarea>   
+                                                </div>
+                                            </div>
+                                            
                                             <div class="mt-10 text-center">
                                                 <button class="text-[#111827] border border-[#111827] w-full rounded-md px-3 py-2 hover:border-none hover:bg-green-500 hover:text-white"> <i class="fa fa-paper-plane-top"></i> Enregistrer</button>
                                             </div>
@@ -61,7 +69,8 @@
                         </div>
                 </div>
 
-                <!--edit modal -->
+
+                <!-- new modal -->
                 <div v-if="showModalEdit">
                         <div class="grid grid-flow-col rounded absolute w-96 top-20 right-0 h-auto">
                             <div class> 
@@ -69,27 +78,33 @@
 
                                     <div class="flex py-5 w-full">
                                         <div class="title flex-1">
-                                            <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Modifier la faculté</h2>
+                                            <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Modifiez le type de prévision</h2>
                                         </div>
                                         <div class="">
                                             <button v-if="showModalEdit" class="bg-white px-2 py-1 rounded text-red-500" @click="toggleModalEdit"><i class="fa fa-xmark"></i> </button>
                                         </div>
                                     </div>
 
-                                    <form @submit.prevent="updateFaculty(facultyData.id)">
+                                    <form @submit.prevent="updateBudgetType(budgetTypeData.id)">
 
                                         <div class="mt-5 pb-5">
-                                            <h2 class="uppercase text-green-500 text-xs">Informations de la faculté</h2>
+                                            <h2 class="uppercase text-green-500 text-xs">Informations du type de prévision</h2>
 
                                             <h5 class="mt-3 text-red-500">Les champs obligatoires *</h5>
                                             
                                             <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
                                                 <div class="block md:inline">
                                                     <label for="" class="block text-xs uppercase">Nom <span class="text-red-500">*</span></label>
-                                                    <input type="text" v-model="facultyData.name" class="block border rounded-md p-2 border-gray-300 w-full" required >
+                                                    <input type="text" v-model="budgetTypeData.name" class="block border rounded-md p-2 border-gray-300 w-full" required >
                                                 </div>
                                             </div>
 
+                                            <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+                                                <div class="block md:inline">
+                                                    <label for="" class="block text-xs uppercase">Description</label>
+                                                    <textarea v-model="budgetTypeData.description" class="block border rounded-md p-2 border-gray-300 w-full"> </textarea>   
+                                                </div>
+                                            </div>
                                             <div class="mt-10 text-center">
                                                 <button class="text-[#111827] border border-[#111827] w-full rounded-md px-3 py-2 hover:border-none hover:bg-green-500 hover:text-white"> <i class="fa fa-paper-plane-top"></i> Enregistrer</button>
                                             </div>
@@ -125,16 +140,16 @@
                                     <div> Passives </div> 
                                 </div>
                             </div>
-
                         </div>
                         <div>    
                             <div class="title mt-5">
                                 <h2 class="uppercase text-green-400"><i class="fa fa-list-ul"></i> Relatifs</h2>
                             </div>
                             <ul class="mt-5">
-                                <li class="py-2 px-2 w-100 mt-4 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white hover:border-[#111827] "><router-link :to="{ name: 'IndexFaculty'}"> <i class="fa-solid fa-rectangle-list"></i> Faculté</router-link></li>
-                                <li class="py-2 px-2 w-100 mt-4 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white hover:border-[#111827] "><router-link :to="{ name: 'IndexDepartment'}"> <i class="fa-solid fa-table-list"></i> Departement</router-link></li>
-                                <li class="py-2 px-2 w-100 mt-4 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white hover:border-[#111827] "><router-link :to="{ name: 'IndexPromotion'}"> <i class="fa-solid fa-list"></i> Promotion </router-link></li>
+                                <li class="py-2 px-2 w-100 mt-4 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white hover:border-[#111827] "><router-link :to="{ name: 'IndexFees'}"> <i class="fa-solid fa-rectangle-list"></i> Frais / Motif de paiement</router-link></li>
+                                <li class="py-2 px-2 w-100 mt-4 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white hover:border-[#111827] "><router-link :to="{ name: 'IndexAcademicYear'}"> <i class="fa-solid fa-rectangle-list"></i> Année académique</router-link></li>
+                                <li class="py-2 px-2 w-100 mt-4 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white hover:border-[#111827] "><router-link :to="{ name: 'IndexBudgetType'}"> <i class="fa-solid fa-rectangle-list"></i> Type de prévision du budget</router-link></li>
+
                             </ul>
 
                         </div>
@@ -143,7 +158,7 @@
                     <div class="flex-1 rounded-md bg-white pt-6 pl-6 pr-6 pb-2 ml-5 mt-2 w-100 ">
                         <div class="bg-[#111827]-100 flex">
                             <div class="title flex-1">
-                                <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Liste de facultés</h2>
+                                <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Liste de types de prévision budgetaire</h2>
                             </div>
 
                             <div class="" style="margin-top: -5px;">
@@ -163,26 +178,23 @@
                                             <thead class="bg-[#F5F7FB] ">
                                                 <tr class="">
                                                     <th scope="col" class=" px-3 py-3">#</th>
-                                                    <th scope="col" class=" px-3 py-3">Numéro</th>
-                                                    <th scope="col" class=" px-3 py-3">Nom</th>
-                                                    <th scope="col" class=" px-3 py-3">Statut</th>
+                                                    <th scope="col" class=" px-3 py-3">Nom du type de prévision</th>
+                                                    <th scope="col" class=" px-3 py-3">Description</th>
                                                     <th scope="col" class=" px-3 py-3">Action</th>
 
                                                 </tr>
                                             </thead>
                                             <tbody class="h-100 border-r border-b border-gray-200">
-                                                <tr v-for="faculty in faculties" :key="faculty.id"  class="">
+                                                <tr v-for="budget_type in budget_types" :key="budget_type.id" class="">
                                                     <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">1</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-200">{{ faculty.faculty_number }}</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">{{ faculty.name }}</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">Actif </td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">{{ budget_type.name }}</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">{{ budget_type.description }}</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">
-                                                        <button @click="dataFaculty(faculty.id)" class="text-[#111827] border border-[#111827] w-full rounded-md px-3 py-2"> Edit</button>
+                                                        <button @click="dataPromotion(budget_type.id)" class="text-[#111827] border border-[#111827] w-full rounded-md px-3 py-2"> Edit</button>
 
                                                     </td>
-
                                                 </tr>
-                                            
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -201,64 +213,58 @@
 
  </template>
  
- <script>
+<script>
 import Head from "../../components/layouts/head.vue";
 import Header from "../../components/layouts/Header.vue";
 import Sidebar from "../../components/layouts/Sidebar.vue";
 import Footer from "../../components/layouts/Footer.vue";
 
-
 // import axios from "axios";
-import {getFaculties, addFaculty, showFaculty, editFaculty} from '../../jscore/init.js';
+import {getBudgetType, addBudgetType, showBudgetType, editBudgetType } from '../../jscore/init.js';
 import {successMessage, errorMessage} from '../../jscore/IoNotification.js';
 
 
 export default {
-  name: "IndexFaculty",
+  name: "IndexBudgetType",
   components: { Head, Header, Sidebar, Footer },
 
   data() {
         return {
-            text: "Required field are marked *",
             showModal: false,
             showModalEdit: false,
             pageOne: true,
-            faculties: {},
-            facultyData: {},
 
+            budget_types: {},
+            budgetTypeData: {}, 
 
             //form fields
             formData: {
-                faculty_number: '',
                 name: '',
-                slug_name: '',
-            },
-            
+                description: ''
+            }
         };
   },
 
-    mounted(){
-        this.fetchFaculties();
-        
+  mounted(){
+        this.fetchBudgetTypes();
     },
 
-
     methods: {
-        //Course list
-        fetchFaculties(){
+        //budget type list
+        fetchBudgetTypes(){
 
-            getFaculties()
+            getBudgetType()
             .then(response => {
-                this.faculties = response.data.faculty;
+                this.budget_types = response.data.budget_type;
             })
             .catch(error => {
                 console.log(error);
             });
         },
 
-        //new course
-        newFaculty(){
-            addFaculty(this.formData)
+        //new budget typee
+        newBudgetType(){
+            addBudgetType(this.formData)
             .then(response => {
                 //toast notification
                 successMessage(this.$toast, response.data.message);
@@ -266,7 +272,7 @@ export default {
                 this.showModal = !this.showModal;
 
                 //fetch List
-                this.fetchFaculties();
+                this.fetchBudgetTypes();
             })
             .catch((errors) => {
                 //toast notification
@@ -274,17 +280,17 @@ export default {
             })
         },
 
-
-        //new course
-        dataFaculty(faculty){
+        //new budget type
+        dataBudgetType(budget_type){
             //open the tab    
             this.showModalEdit = !this.showModalEdit;
 
-            showFaculty(faculty)
+            showBudgetType(budget_type)
             .then(response => {
-                this.facultyData.id = faculty;
-                this.facultyData.name = response.data.faculty.name;
 
+                this.budgetTypeData.id = budget_type;
+                this.budgetTypeData.name = response.data.budget_type.name;
+                this.budgetTypeData.description = response.data.budget_type.description;
             })
             .catch((errors) => {
                 //toast notification
@@ -292,22 +298,22 @@ export default {
             });
         },
 
-        showFacultyProfile(faculty) {
+        showBudgetTypeProfile(budget_type) {
             // When the "Data Profile" button is clicked, fetch the selected course profile
-            this.dataCourse(faculty);
+            this.dataBudgetType(budget_type);
         },
 
-        //update course
-        updateFaculty(faculty){
+        //update budget type
+        updateBudgetType(budget_type){
 
-            editFaculty(faculty, this.facultyData)
+            editBudgetType(budget_type, this.budgetTypeData)
             .then(response => {
                 //toast notification
                 successMessage(this.$toast, response.data.message);
                 //close the tab  
                 this.showModalEdit = !this.showModalEdit;
                 //fetch List
-                this.fetchFaculties();
+                this.fetchBudgetTypes();
             })
             .catch((errors) => {
                 //toast notification
@@ -323,9 +329,8 @@ export default {
         toggleModalEdit(){
             this.showModalEdit = !this.showModalEdit;
         },
-
-    }
     
+    }
 };
 </script>
  

@@ -98,6 +98,8 @@
                             <ul class="mt-5">
                                 <li class="py-2 px-2 w-100 mt-4 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white hover:border-[#111827] "><router-link :to="{ name: 'IndexFees'}"> <i class="fa-solid fa-rectangle-list"></i> Frais / Motif de paiement</router-link></li>
                                 <li class="py-2 px-2 w-100 mt-4 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white hover:border-[#111827] "><router-link :to="{ name: 'IndexAcademicYear'}"> <i class="fa-solid fa-rectangle-list"></i> Année académique</router-link></li>
+                                <li class="py-2 px-2 w-100 mt-4 rounded bg-white border border-[#111827] text-center hover:bg-[#111827] hover:text-white hover:border-[#111827] "><router-link :to="{ name: 'IndexBudgetType'}"> <i class="fa-solid fa-rectangle-list"></i> Type de prévision du budget</router-link></li>
+
                             </ul>
 
                         </div>

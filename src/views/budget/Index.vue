@@ -36,34 +36,47 @@
                                     </div>
                                 </div>
 
-                                <form @submit.prevent="handleSubmit">
+                                <form @submit.prevent="newBudget">
 
                                     <div class="mt-5 pb-5">
                                         <h2 class="uppercase text-green-500 text-xs">Information du budget</h2>
 
                                         <h5 class="mt-3 text-red-500">Les champs obligatoires *</h5>
                                         
-                                        <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
-                                            <div class="block md:inline">
-                                                <label for="" class="block text-xs uppercase">Montant <span class="text-red-500">*</span></label>
-                                                <input type="text" v-model="amount" class="block border rounded-md p-2 border-gray-300 w-full" required >
-                                            </div>
-                                        </div>
 
                                         <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
                                             <div class="block md:inline">
                                                 <label for="" class="block text-xs uppercase">Type de budget <span class="text-red-500">*</span></label>
-                                                <select v-model="budget_type" class="block border rounded-md p-2 border-gray-300 w-full" required>
-                                                    <option value="Recette">Recette</option>
-                                                    <option value="Dépense">Dépense</option>
+                                                <select v-model="formData.budget_type_id" class="block border rounded-md p-2 border-gray-300 w-full" required>
+                                                    <option v-for="budget_type in budgetTypesList" :key="budget_type.id" :value="budet_type.id">
+                                                        {{ budget_type.name }}
+                                                    </option>
                                                 </select>
                                             </div>
                                         </div>
 
                                         <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
                                             <div class="block md:inline">
-                                                <label for="" class="block text-xs uppercase">Motif <span class="text-red-500">*</span></label>
-                                                <textarea v-model="motif" class="block border rounded-md p-2 border-gray-300 w-full"> </textarea>   
+                                                <label for="" class="block text-xs uppercase">Type de budget <span class="text-red-500">*</span></label>
+                                                <select v-model="formData.academic_year_id" class="block border rounded-md p-2 border-gray-300 w-full" required>
+                                                    <option v-for="academic_year in academicYearsList" :key="academic_year.id" :value="academic_year.id">
+                                                        {{ academic_year.start_date + ' - ' + academic_year.end_date }}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+                                            <div class="block md:inline">
+                                                <label for="" class="block text-xs uppercase">Montant <span class="text-red-500">*</span></label>
+                                                <input type="text" v-model="formData.amount" class="block border rounded-md p-2 border-gray-300 w-full" required >
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+                                            <div class="block md:inline">
+                                                <label for="" class="block text-xs uppercase">Description <span class="text-red-500">*</span></label>
+                                                <textarea v-model="formData.description" class="block border rounded-md p-2 border-gray-300 w-full"> </textarea>   
                                             </div>
                                         </div>
 
@@ -159,15 +172,6 @@
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200"> lorem Ipsum, Lors turn</td>
 
                                                 </tr>
-                                                <tr class="bg-[#F5F7FB]">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">2</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">Dépenses</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">100$ </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">1000$ </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">2022-2023 </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200"> lorem Ipsum, Lors turn</td>
-                                                </tr>
-                                            
                                             </tbody>
                                         </table>
                                     </div>
@@ -192,49 +196,147 @@ import Header from "../../components/layouts/Header.vue";
 import Sidebar from "../../components/layouts/Sidebar.vue";
 import Footer from "../../components/layouts/Footer.vue";
 
+// import axios from "axios";
+import {getBudget, addBudget, showBudget, editBudget, getAcademicYears, getBudgetTypes } from '../../jscore/init.js';
+import {successMessage, errorMessage} from '../../jscore/IoNotification.js';
+
+
 export default {
   name: "IndexBudget",
   components: { Head, Header, Sidebar, Footer },
 
-  data() {
+    data() {
         return {
             text: "Required field are marked *",
             showModal: false,
+            showModalEdit: false,
             pageOne: true,
+            budgets: {},
+            budgetData: {},
+
+            //select option 
+            budgetTypesList: {},
+            academicYearsList: {},
 
             //form fields
-            amount: '',
-            budget_type: '',
-            description: ''
+            formData: {
+                amount: '',
+                description: '',
+                budget_type_id: '',
+                academic_year_id: '',
+            }
         };
-  },
-
-  // show and close modal
-  methods: {
-    
-    toggleModal() {
-        this.showModal = !this.showModal;
     },
 
-    closeToggleModal() {
-      this.showModal = !this.showModal;
+    mounted() {
+        this.fetchBudgets();
+
+        this.optionList();
     },
 
-    handleSubmit(){
+    methods: {
+        //budget list
+        fetchBudgets() {
+        getBudget()
+            .then(response => {
+            this.budgets = response.data.budget;
+            })
+            .catch(error => {
+            console.log(error);
+            });
+        },
 
-        console.log(
-            this.amount,
-            this.budget_type,
-            this.description
-        )
-    }   
-    
+        //new budget
+        newBudget() {
+        addBudget(this.formData)
+            .then(response => {
+            //toast notification
+            successMessage(this.$toast, response.data.message);
+            //close the tab
+            this.showModal = !this.showModal;
 
-    // closeEvent() {
-    //     this.$emit('close')
-    // }
-  }
+            //fetch List
+            this.fetchBudgets();
+            })
+            .catch(errors => {
+            //toast notification
+            errorMessage(this.$toast, errors.response.data.message);
+            });
+        },
+
+        //new budget
+        dataBudget(budget) {
+            //open the tab
+            this.showModalEdit = !this.showModalEdit;
+
+            showBudget(budget)
+            .then(response => {
+                this.budgetData.id = budget;
+                this.budgetData.name = response.data.budget.name;
+                this.budgetData.description = response.data.budget.description;
+                this.budgetData.budget_type_id = response.data.budget_type.id;
+                this.budgetData.academic_year_id = response.data.academic_year.id;
+            })
+            .catch(errors => {
+            //toast notification
+            errorMessage(this.$toast, errors.response.data.message);
+            });
+        },
+
+        showBudgetProfile(budget) {
+        // When the "Data Profile" button is clicked, fetch the selected course profile
+        this.dataBudget(budget);
+        },
+
+        //update budget
+        updateBudget(budget) {
+        editBudget(budget, this.budgetData)
+            .then(response => {
+            //toast notification
+            successMessage(this.$toast, response.data.message);
+            //close the tab
+            this.showModalEdit = !this.showModalEdit;
+            //fetch List
+            this.fetchBudgets();
+            })
+            .catch(errors => {
+            //toast notification
+            errorMessage(this.$toast, errors.response.data.message);
+            });
+        },
+
+        //togle modal
+        toggleModal() {
+            this.showModal = !this.showModal;
+        },
+
+        toggleModalEdit() {
+            this.showModalEdit = !this.showModalEdit;
+        },
+
+        //option list
+        optionList() {
+            //academic year list
+            getAcademicYears()
+            .then(response => {
+                this.academicYearsList = response.data.academic_year;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+            //budget type list
+            getBudgetTypes()
+            .then(response => {
+                this.budgetTypesList = response.data.budget_type;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        }
+    }
 };
+  
 </script>
  
  <style>
@@ -255,22 +357,21 @@ export default {
 }
 
 /* added */
-.register-form{
-    margin: 30px auto;
+.register-form {
+  margin: 30px auto;
 }
-label{
-    letter-spacing: 1px;
+label {
+  letter-spacing: 1px;
 }
 
 @media (max-width: 900px) {
-    .register-form{
-        width: 65%;
-        margin: 0% 5%;
-    }
-    .close{
-        position: absolute;
-        margin-left: 100%;
-    }
+  .register-form {
+    width: 65%;
+    margin: 0% 5%;
+  }
+  .close {
+    position: absolute;
+    margin-left: 100%;
+  }
 }
-
 </style>

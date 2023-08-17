@@ -48,7 +48,14 @@
                                                     <input type="text" v-model="formData.name" class="block border rounded-md p-2 border-gray-300 w-full" required >
                                                 </div>
                                             </div>
-                                             <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+
+                                            <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+                                                <div class="block md:inline">
+                                                    <label for="" class="block text-xs uppercase">Description</label>
+                                                    <textarea v-model="expenseData.motif" class="block border rounded-md p-2 border-gray-300 w-full"> </textarea>   
+                                                </div>
+                                            </div>
+                                            <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
                                                 <div class="block md:inline">
                                                     <label for="" class="block text-xs uppercase">Departement <span class="text-red-500">*</span></label>
                                                     <select v-model="formData.department_id" class="block border rounded-md p-2 border-gray-300 w-full" required>
@@ -228,141 +235,139 @@ import Sidebar from "../../components/layouts/Sidebar.vue";
 import Footer from "../../components/layouts/Footer.vue";
 
 // import axios from "axios";
-import {getPromotion, addPromotion, showPromotion, editPromotion, getDepartments } from '../../jscore/init.js';
-import {successMessage, errorMessage} from '../../jscore/IoNotification.js';
-
-
+import {
+  getPromotion,
+  addPromotion,
+  showPromotion,
+  editPromotion,
+  getDepartments
+} from "../../jscore/init.js";
+import { successMessage, errorMessage } from "../../jscore/IoNotification.js";
 
 export default {
   name: "IndexPromotion",
   components: { Head, Header, Sidebar, Footer },
 
   data() {
-        return {
-            showModal: false,
-            showModalEdit: false,
-            pageOne: true,
+    return {
+      showModal: false,
+      showModalEdit: false,
+      pageOne: true,
 
-            promotions: {},
-            promotionData: {}, 
+      promotions: {},
+      promotionData: {},
 
-            //form fields
-            formData: {
-                number: '',
-                name: '',
-                slug_name: '',
-                department_id: ''
-            }
-        };
+    //   select list
+    departmentsList,
+
+      //form fields
+      formData: {
+        number: "",
+        name: "",
+        slug_name: "",
+        department_id: ""
+      }
+    };
   },
 
-  mounted(){
-        this.fetchPromotions();
-        
-        this.optionList();
+  mounted() {
+    this.fetchPromotions();
 
+    this.optionList();
+  },
+
+  methods: {
+    //promotion list
+    fetchPromotions() {
+      getPromotion()
+        .then(response => {
+          this.promotions = response.data.promotion;
+        })
+        .catch(error => {
+          console.log(error);
+        });
     },
 
+    //new promotion
+    newPromotion() {
+      addPromotion(this.formData)
+        .then(response => {
+          //toast notification
+          successMessage(this.$toast, response.data.message);
+          //close the tab
+          this.showModal = !this.showModal;
 
-    methods: {
-        //Course list
-        fetchPromotions(){
+          //fetch List
+          this.fetchPromotions();
+        })
+        .catch(errors => {
+          //toast notification
+          errorMessage(this.$toast, errors.response.data.message);
+        });
+    },
 
-            getPromotion()
-            .then(response => {
-                this.promotions = response.data.promotion;
-            })
-            .catch(error => {
-                console.log(error);
-            });
-        },
+    //new promotion
+    dataPromotion(promotion) {
+      //open the tab
+      this.showModalEdit = !this.showModalEdit;
 
-        //new course
-        newPromotion(){
-            addPromotion(this.formData)
-            .then(response => {
-                //toast notification
-                successMessage(this.$toast, response.data.message);
-                //close the tab    
-                this.showModal = !this.showModal;
+      showPromotion(promotion)
+        .then(response => {
+          this.promotionData.id = promotion;
+          this.promotionData.name = response.data.promotion.name;
+          this.promotionData.slug_name = response.data.promotion.slug_name;
 
-                //fetch List
-                this.fetchPromotions();
-            })
-            .catch((errors) => {
-                //toast notification
-                errorMessage(this.$toast, errors.response.data.message);
-            })
-        },
+          this.departmentData.department_id = response.data.department.id;
+        })
+        .catch(errors => {
+          //toast notification
+          errorMessage(this.$toast, errors.response.data.message);
+        });
+    },
 
+    showPromotionProfile(promotion) {
+      // When the "Data Profile" button is clicked, fetch the selected course profile
+      this.dataPromotion(promotion);
+    },
 
-        //new course
-        dataPromotion(promotion){
-            //open the tab    
-            this.showModalEdit = !this.showModalEdit;
+    //update promotion
+    updatePromotion(promotion) {
+      editPromotion(promotion, this.promotionData)
+        .then(response => {
+          //toast notification
+          successMessage(this.$toast, response.data.message);
+          //close the tab
+          this.showModalEdit = !this.showModalEdit;
+          //fetch List
+          this.fetchPromotions();
+        })
+        .catch(errors => {
+          //toast notification
+          errorMessage(this.$toast, errors.response.data.message);
+        });
+    },
 
-            showPromotion(promotion)
-            .then(response => {
+    //togle modal
+    toggleModal() {
+      this.showModal = !this.showModal;
+    },
 
-                this.promotionData.id = promotion;
-                this.promotionData.name = response.data.promotion.name;
-                this.promotionData.slug_name = response.data.promotion.slug_name;
+    toggleModalEdit() {
+      this.showModalEdit = !this.showModalEdit;
+    },
 
-                this.departmentData.department_id = response.data.department.id;
-            })
-            .catch((errors) => {
-                //toast notification
-                errorMessage(this.$toast, errors.response.data.message);
-            });
-        },
-
-        showPromotionProfile(promotion) {
-            // When the "Data Profile" button is clicked, fetch the selected course profile
-            this.dataPromotion(promotion);
-        },
-
-        //update course
-        updatePromotion(promotion){
-
-            editPromotion(promotion, this.promotionData)
-            .then(response => {
-                //toast notification
-                successMessage(this.$toast, response.data.message);
-                //close the tab  
-                this.showModalEdit = !this.showModalEdit;
-                //fetch List
-                this.fetchPromotions();
-            })
-            .catch((errors) => {
-                //toast notification
-                errorMessage(this.$toast, errors.response.data.message);
-            })
-        },
-
-        //togle modal
-        toggleModal(){
-            this.showModal = !this.showModal;
-        },
-
-        toggleModalEdit(){
-            this.showModalEdit = !this.showModalEdit;
-        },
-
-        //option list
-        optionList(){
-            //departments list
-            getDepartments()
-            .then(response => {
-                this.departmentsList = response.data.department;
-            })
-            .catch(error => {
-                console.log(error);
-            });
-
-           
-        }
-    
+    //option list
+    optionList() {
+      //departments list
+      getDepartments()
+        .then(response => {
+          this.departmentsList = response.data.department;
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
+  }
 };
 </script>
  
@@ -384,22 +389,21 @@ export default {
 }
 
 /* added */
-.register-form{
-    margin: 30px auto;
+.register-form {
+  margin: 30px auto;
 }
-label{
-    letter-spacing: 1px;
+label {
+  letter-spacing: 1px;
 }
 
 @media (max-width: 900px) {
-    .register-form{
-        width: 65%;
-        margin: 0% 5%;
-    }
-    .close{
-        position: absolute;
-        margin-left: 100%;
-    }
+  .register-form {
+    width: 65%;
+    margin: 0% 5%;
+  }
+  .close {
+    position: absolute;
+    margin-left: 100%;
+  }
 }
-
 </style>

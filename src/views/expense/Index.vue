@@ -51,7 +51,7 @@
 
                                             <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
                                                 <div class="block md:inline">
-                                                    <label for="" class="block text-xs uppercase">Motif <span class="text-red-500">*</span></label>
+                                                    <label for="" class="block text-xs uppercase">Motif</label>
                                                     <textarea v-model="expenseData.motif" class="block border rounded-md p-2 border-gray-300 w-full"> </textarea>   
                                                 </div>
                                             </div>

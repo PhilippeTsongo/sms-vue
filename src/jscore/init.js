@@ -152,8 +152,51 @@ export function editExpense(expense, expenseData){
     return axios.put(`/expense/${expense}`, expenseData)
 }
 
+//budget type list
+export function getBudgetType(){
+    return axios.get('/budget_type')
+}
 
-// +++++++++++++++++++++++++++++++++++++++++++++optins list ++++++++++++++++++++++++++++++++++++++++++++++++++
+//budget type new
+export function addBudgetType(formData){
+    return axios.post('/budget_type', formData)
+}
+
+//budget type Show
+export function showBudgetType(budget_type){
+    return axios.get(`/budget_type/${budget_type}`)
+}
+
+//budet type update
+export function editBudgetType(budget_type, budgetTypeData){    
+    return axios.put(`/budget_type/${budget_type}`, budgetTypeData)
+}
+
+//budget list
+export function getBudget(){
+    return axios.get('/budget')
+}
+
+//budget new
+export function addBudget(formData){
+    return axios.post('/budget', formData)
+}
+
+//budget Show
+export function showBudget(budget){
+    return axios.get(`/budget/${budget}`)
+}
+
+//budet update
+export function editBudget(budget, budgetData){    
+    return axios.put(`/budget/${budget}`, budgetData)
+}
+
+
+
+
+
+// +++++++++++++++++++++++++++++++++++++++++++++ SELECT OPTION LIST ++++++++++++++++++++++++++++++++++++++++++++++++++
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 //departments list
@@ -184,5 +227,11 @@ export function getStudentParents(){
 //parents list
 export function getAcademicYears(){
     return axios.get('/academic_year')
+}
+
+
+//budget type list
+export function getBudgetTypes(){
+    return axios.get('/budget_type')
 }
 

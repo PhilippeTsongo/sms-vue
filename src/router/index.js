@@ -52,6 +52,10 @@ import CreateBalance from '../views/balance/Create.vue'
 import IndexBudget from '../views/budget/Index.vue'
 import CreateBudget from '../views/budget/Create.vue'
 
+// Budget type
+import IndexBudgetType from '../views/budgetType/Index.vue'
+import CreateBudgetType from '../views/budgetType/Create.vue'
+
 // Activity
 import IndexActivity from '../views/activity/Index.vue'
 import CreateActivity from '../views/activity/Create.vue'
@@ -84,310 +88,326 @@ import CreateMark from '../views/mark/Create.vue'
 import IndexAcademicYear from '../views/academicYear/Index.vue'
 import CreateAcademicYear from '../views/academicYear/Create.vue'
 
-
-// Academic year
+// Parent year
 import IndexParent from '../views/parent/Index.vue'
 import CreateParent from '../views/parent/Create.vue'
 
 
+
+
+
+
+
 const routes = [
-  
-  //appIndex
-  {
-    path: '/',
-    name: 'home',
-    component: HomeView
-  },
 
-  //login
-  {
-    path: '/login',
-    name: 'login',
-    component: LoginView
-  },
+	//appIndex
+	{
+		path: '/',
+		name: 'home',
+		component: HomeView
+	},
 
-  //logout
-  {
-    path: '/logout',
-    name: 'logout',
-    component: LogoutView
-  },
+	//login
+	{
+		path: '/login',
+		name: 'login',
+		component: LoginView
+	},
 
-  //user
-  {
-    path: '/user',
-    name: 'IndexUser',
-    component: IndexUser
-  },
-  {
-    path: '/user/create',
-    name: 'CreateUser',
-    component: CreateUser
-  },
+	//logout
+	{
+		path: '/logout',
+		name: 'logout',
+		component: LogoutView
+	},
 
-  //about
-  {
-    path: '/about',
-    name: 'about',
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  },
+	//user
+	{
+		path: '/user',
+		name: 'IndexUser',
+		component: IndexUser
+	},
+	{
+		path: '/user/create',
+		name: 'CreateUser',
+		component: CreateUser
+	},
 
-  //student
-  {
-    path: '/student',
-    name: 'IndexStudent',
-    component: IndexStudent
-  },
-  {
-    path: '/student/create',
-    name: 'CreateStudent',
-    component: CreateStudent
-  },
+	//about
+	{
+		path: '/about',
+		name: 'about',
+		component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+	},
 
-  //staff
-  {
-    path: '/staff',
-    name: 'IndexStaff',
-    component: IndexStaff
-  },
-  {
-    path: '/staff/create',
-    name: 'CreateStaff',
-    component: CreateStaff
-  },
+	//student
+	{
+		path: '/student',
+		name: 'IndexStudent',
+		component: IndexStudent
+	},
+	{
+		path: '/student/create',
+		name: 'CreateStudent',
+		component: CreateStudent
+	},
 
-  //lecturer
-  {
-    path: '/lecturer',
-    name: 'IndexLecturer',
-    component: IndexLecturer
-  },
-  {
-    path: '/lecturer/create',
-    name: 'CreateLecturer',
-    component: CreateLecturer
-  },
+	//staff
+	{
+		path: '/staff',
+		name: 'IndexStaff',
+		component: IndexStaff
+	},
+	{
+		path: '/staff/create',
+		name: 'CreateStaff',
+		component: CreateStaff
+	},
 
-  //course
-  {
-    path: '/course',
-    name: 'IndexCourse',
-    component: IndexCourse
-  },
-  {
-    path: '/course/create',
-    name: 'CreateCourse',
-    component: CreateCourse
-  },
+	//lecturer
+	{
+		path: '/lecturer',
+		name: 'IndexLecturer',
+		component: IndexLecturer
+	},
+	{
+		path: '/lecturer/create',
+		name: 'CreateLecturer',
+		component: CreateLecturer
+	},
 
-  //activity
-  {
-    path: '/activity',
-    name: 'IndexActivity',
-    component: IndexActivity
-  },
-  {
-    path: '/activity/create',
-    name: 'CreateActivity',
-    component: CreateActivity
-  },
+	//course
+	{
+		path: '/course',
+		name: 'IndexCourse',
+		component: IndexCourse
+	},
+	{
+		path: '/course/create',
+		name: 'CreateCourse',
+		component: CreateCourse
+	},
 
-  //setup
-  {
-    path: '/setup',
-    name: 'IndexSetup',
-    component: IndexSetup
-  },
-  {
-    path: '/setup/create',
-    name: 'CreateSetup',
-    component: CreateSetup
-  },
+	//activity
+	{
+		path: '/activity',
+		name: 'IndexActivity',
+		component: IndexActivity
+	},
+	{
+		path: '/activity/create',
+		name: 'CreateActivity',
+		component: CreateActivity
+	},
 
-  //Fees
-  {
-    path: '/fees',
-    name: 'IndexFees',
-    component: IndexFees
-  },
-  {
-    path: '/fees/create',
-    name: 'CreateFees',
-    component: CreateFees
-  },
+	//setup
+	{
+		path: '/setup',
+		name: 'IndexSetup',
+		component: IndexSetup
+	},
+	{
+		path: '/setup/create',
+		name: 'CreateSetup',
+		component: CreateSetup
+	},
 
-  //finance
-  {
-    path: '/finance',
-    name: 'IndexFinance',
-    component: IndexFinance
-  },
-  {
-    path: '/finance/create',
-    name: 'CreateFinance',
-    component: CreateFinance
-  },
+	//Fees
+	{
+		path: '/fees',
+		name: 'IndexFees',
+		component: IndexFees
+	},
+	{
+		path: '/fees/create',
+		name: 'CreateFees',
+		component: CreateFees
+	},
 
-  //payment
-  {
-    path: '/payment',
-    name: 'IndexPayment',
-    component: IndexPayment
-  },
-  {
-    path: '/payment/create',
-    name: 'CreatePayment',
-    component: CreatePayment
-  },
+	//finance
+	{
+		path: '/finance',
+		name: 'IndexFinance',
+		component: IndexFinance
+	},
+	{
+		path: '/finance/create',
+		name: 'CreateFinance',
+		component: CreateFinance
+	},
 
-  //OtherRecepit
-  {
-    path: '/otherRecepit',
-    name: 'IndexOtherReceipt',
-    component: IndexOtherReceipt
-  },
-  {
-    path: '/otherRecepit/create',
-    name: 'CreateOtherReceipt',
-    component: CreateOtherReceipt
-  },
+	//payment
+	{
+		path: '/payment',
+		name: 'IndexPayment',
+		component: IndexPayment
+	},
+	{
+		path: '/payment/create',
+		name: 'CreatePayment',
+		component: CreatePayment
+	},
 
-  //Expense
-  {
-    path: '/expense',
-    name: 'IndexExpense',
-    component: IndexExpense
-  },
-  {
-    path: '/expense/create',
-    name: 'CreateExpense',
-    component: CreateExpense
-  },
+	//OtherRecepit
+	{
+		path: '/otherRecepit',
+		name: 'IndexOtherReceipt',
+		component: IndexOtherReceipt
+	},
+	{
+		path: '/otherRecepit/create',
+		name: 'CreateOtherReceipt',
+		component: CreateOtherReceipt
+	},
 
-  //staffPayment
-  {
-    path: '/staffPayment',
-    name: 'IndexStaffPayment',
-    component: IndexStaffPayment
-  },
-  {
-    path: '/staffPayment/create',
-    name: 'CreateStaffPayment',
-    component: CreateStaffPayment
-  },
+	//Expense
+	{
+		path: '/expense',
+		name: 'IndexExpense',
+		component: IndexExpense
+	},
+	{
+		path: '/expense/create',
+		name: 'CreateExpense',
+		component: CreateExpense
+	},
 
-  //balance
-  {
-    path: '/balance',
-    name: 'IndexBalance',
-    component: IndexBalance
-  },
-  {
-    path: '/balance/create',
-    name: 'CreateBalance',
-    component: CreateBalance
-  },
+	//staffPayment
+	{
+		path: '/staffPayment',
+		name: 'IndexStaffPayment',
+		component: IndexStaffPayment
+	},
+	{
+		path: '/staffPayment/create',
+		name: 'CreateStaffPayment',
+		component: CreateStaffPayment
+	},
 
-  //Budget
-  {
-    path: '/budget',
-    name: 'IndexBudget',
-    component: IndexBudget
-  },
-  {
-    path: '/budget/create',
-    name: 'CreateBudget',
-    component: CreateBudget
-  },
+	//balance
+	{
+		path: '/balance',
+		name: 'IndexBalance',
+		component: IndexBalance
+	},
+	{
+		path: '/balance/create',
+		name: 'CreateBalance',
+		component: CreateBalance
+	},
 
-  //faculty
-  {
-    path: '/faculty',
-    name: 'IndexFaculty',
-    component: IndexFaculty
-  },
-  {
-    path: '/faculty/create',
-    name: 'CreateFaculty',
-    component: CreateFaculty
-  },
+	//Budget
+	{
+		path: '/budget',
+		name: 'IndexBudget',
+		component: IndexBudget
+	},
+	{
+		path: '/budget/create',
+		name: 'CreateBudget',
+		component: CreateBudget
+	},
 
-  //department
-  {
-    path: '/department',
-    name: 'IndexDepartment',
-    component: IndexDepartment
-  },
-  {
-    path: '/faculty/create',
-    name: 'CreateDepartment',
-    component: CreateDepartment
-  },
+	//Budget type
+	{
+		path: '/budget/type',
+		name: 'IndexBudgetType',
+		component: IndexBudgetType
+	},
+	{
+		path: '/budget/type/create',
+		name: 'CreateBudgetType',
+		component: CreateBudgetType
+	},
 
-  //promotion
-  {
-    path: '/promotion',
-    name: 'IndexPromotion',
-    component: IndexPromotion
-  },
-  {
-    path: '/promotion/create',
-    name: 'CreatePromotion',
-    component: CreatePromotion
-  },
+	//faculty
+	{
+		path: '/faculty',
+		name: 'IndexFaculty',
+		component: IndexFaculty
+	},
+	{
+		path: '/faculty/create',
+		name: 'CreateFaculty',
+		component: CreateFaculty
+	},
 
-  //mark
-  {
-  path: '/mark',
-  name: 'IndexMark',
-  component: IndexMark
-  },
-  {
-    path: '/mark/create',
-    name: 'CreateMark',
-    component: CreateMark
-  },
+	//department
+	{
+		path: '/department',
+		name: 'IndexDepartment',
+		component: IndexDepartment
+	},
+	{
+		path: '/faculty/create',
+		name: 'CreateDepartment',
+		component: CreateDepartment
+	},
 
-  //Academic Year
-  {
-    path: '/academicYear',
-    name: 'IndexAcademicYear',
-    component: IndexAcademicYear
-  },
-  {
-    path: '/academicYear/create',
-    name: 'CreateAcademicYear',
-    component: CreateAcademicYear
-  },
+	//promotion
+	{
+		path: '/promotion',
+		name: 'IndexPromotion',
+		component: IndexPromotion
+	},
+	{
+		path: '/promotion/create',
+		name: 'CreatePromotion',
+		component: CreatePromotion
+	},
 
-  //Parent
-  {
-    path: '/parent',
-    name: 'IndexParent',
-    component: IndexParent
-  },
-  {
-    path: '/parent/create',
-    name: 'CreateParent',
-    component: CreateParent
-  },
-  
+	//mark
+	{
+		path: '/mark',
+		name: 'IndexMark',
+		component: IndexMark
+	},
+	{
+		path: '/mark/create',
+		name: 'CreateMark',
+		component: CreateMark
+	},
+
+	//Academic Year
+	{
+		path: '/academicYear',
+		name: 'IndexAcademicYear',
+		component: IndexAcademicYear
+	},
+	{
+		path: '/academicYear/create',
+		name: 'CreateAcademicYear',
+		component: CreateAcademicYear
+	},
+
+	//Parent
+	{
+		path: '/parent',
+		name: 'IndexParent',
+		component: IndexParent
+	},
+	{
+		path: '/parent/create',
+		name: 'CreateParent',
+		component: CreateParent
+	},
+
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes
+	history: createWebHistory(process.env.BASE_URL),
+	routes
 });
 
 
 // Example of Vue Router navigation guard
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requiresAuth) && !userIsAuthenticated) {
-    // Redirect to the login page or show a 403 Forbidden page
-    next({ name: 'login' });
-  } else {
-    next();
-  }
+	if (to.matched.some(record => record.meta.requiresAuth) && !userIsAuthenticated) {
+		// Redirect to the login page or show a 403 Forbidden page
+		next({ name: 'login' });
+	} else {
+		next();
+	}
 });
 
 export default router
