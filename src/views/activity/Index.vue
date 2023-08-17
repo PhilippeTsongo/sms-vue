@@ -156,47 +156,6 @@
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">Actif</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200"></td>
                                                 </tr>
-                                                <tr class="bg-[#F5F7FB]">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">1</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-200">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">TP</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200"> Web develpment </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500 text-center"> <span class="bg-green-500 text-white rounded-full p-1">40</span></td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200"></td>
-
-                                                </tr>
-
-                                                <tr class="">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">1</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-200">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">TP</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200"> Web develpment </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500 text-center"> <span class="bg-green-500 text-white rounded-full p-1">40</span></td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200"></td>
-
-                                                </tr>
-                                                <tr class="bg-[#F5F7FB]">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">1</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-200">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">TP</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200"> Web develpment </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500 text-center"> <span class="bg-green-500 text-white rounded-full p-1">40</span></td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200"></td>
-                                                </tr>
-                                                <tr class="">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">1</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-200">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">TP</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200"> Web develpment </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500 text-center"> <span class="bg-green-500 text-white rounded-full p-1">40</span></td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">Actif</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200"></td>
-                                                </tr>
-                                                
-                                            
                                             </tbody>
                                         </table>
                                     </div>

@@ -192,7 +192,47 @@ export function editBudget(budget, budgetData){
     return axios.put(`/budget/${budget}`, budgetData)
 }
 
+//logistic list
+export function getLogistic(){
+    return axios.get('/logistic')
+}
 
+//logistic new
+export function addLogistic(formData){
+    return axios.post('/logistic', formData)
+}
+
+//logistic Show
+export function showLogistic(logistic){
+    return axios.get(`/logistic/${logistic}`)
+}
+
+//logistic update
+export function editLogistic(logistic, logisticData){    
+    return axios.put(`/logistic/${logistic}`, logisticData)
+}
+
+
+
+//fee list
+export function getFee(){
+    return axios.get('/fee')
+}
+
+//fee new
+export function addFee(formData){
+    return axios.post('/fee', formData)
+}
+
+//fee Show
+export function showFee(fee){
+    return axios.get(`/fee/${fee}`)
+}
+
+//fee update
+export function editFee(fee, feeData){    
+    return axios.put(`/fee/${fee}`, feeData)
+}
 
 
 
@@ -229,9 +269,12 @@ export function getAcademicYears(){
     return axios.get('/academic_year')
 }
 
-
 //budget type list
 export function getBudgetTypes(){
     return axios.get('/budget_type')
 }
 
+//student list
+export function getStudents(){
+    return axios.get('/student')
+}

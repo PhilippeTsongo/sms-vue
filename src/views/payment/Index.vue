@@ -20,7 +20,7 @@
                     </div>
                 </div>
               
-                <!-- modal -->
+                <!-- new modal -->
                 <div v-if="showModal">
                     <div class="grid grid-flow-col rounded absolute w-3/4 right-0 top-10 h-auto">
                         <div class> 
@@ -35,51 +35,113 @@
                                     </div>
                                 </div>
 
-                                <form @submit.prevent="handleSubmit">
+                                <form @submit.prevent="newPayment()">
                                     <div class="mt-5 pb-5">
-                                        <h2 class="uppercase text-green-500 text-xs">Information de l'activité</h2>
+                                        <h2 class="uppercase text-green-500 text-xs">Information du paiement</h2>
                                         <h5 class="mt-3 text-red-500">Les champs obligatoires *</h5>
+                                        
                                         <div class="mt-5 md:grid grid-flow-col flex-stretch gap-5">
                                             <div class="block md:inline">
-                                                <label for="" class="block text-xs uppercase">Departemnt <span class="text-red-500">*</span></label>
-                                                <select v-model="department" class="block border rounded-md p-2 border-gray-300 w-full" required>
-                                                    <option value="Phil">Calculus 1</option>
-                                                    <option value="Luc">Web development</option>
-                                                </select>
-                                            </div>
-                                            <div class="block md:inline">
-                                                <label for="" class="block text-xs uppercase">Promotion <span class="text-red-500">*</span></label>
-                                                <select v-model="promotion" class="block border rounded-md p-2 border-gray-300 w-full" required>
-                                                    <option value="Phil">Calculus 1</option>
-                                                    <option value="Luc">Web development</option>
+                                                <label for="" class="block text-xs uppercase">Année académique <span class="text-red-500">*</span></label>
+                                                <select v-model="formData.academic_year_id" class="block border rounded-md p-2 border-gray-300 w-full" required>
+                                                    <option v-for="academic_year in academicYearsList" :key="academic_year.id" class="select" :value="academic_year.id">
+                                                        {{ academic_year.start_date }} {{ academic_year.end_date }}
+                                                    </option>
                                                 </select>
                                             </div>
                                         </div>
+                                        
                                         <div class="mt-5 md:grid grid-flow-col flex-stretch gap-5">
                                             <div class="block md:inline">
                                                 <label for="" class="block text-xs uppercase">Etudiant <span class="text-red-500">*</span></label>
-                                                <select v-model="student" class="block border rounded-md p-2 border-gray-300 w-full" required>
-                                                    <option value="TP">Philippe Tsongo</option>
-                                                    <option value="TP">Philippe THKV</option>
-                                                    <option value="TP">John Doe</option>
-                                                    <option value="TP">Jacques Museka</option>
-                                                    <option value="TP">Kambale Makusu</option>
+                                                <select v-model="formData.student_id" class="block border rounded-md p-2 border-gray-300 w-full" required>
+                                                    <option v-for="student in studentsList" :key="student.id" class="select" :value="student.id">
+                                                        {{student.firstname + ' ' + student.lastname + ' ' + student.familyname}}
+                                                    </option>
                                                 </select>
                                             </div>
 
                                             <div class="block md:inline">
-                                                <label for="" class="block text-xs uppercase">Motifs <span class="text-red-500">*</span></label>
-                                                <select v-model="payment_type" class="block border rounded-md p-2 border-gray-300 w-full" required>
-                                                    <option value="TP">Frais d'étude</option>
-                                                    <option value="TP">Frais stage</option>
-                                                    <option value="TP">Frais de participation aux examens</option>
+                                                <label for="" class="block text-xs uppercase">Frais <span class="text-red-500">*</span></label>
+                                                <select v-model="formData.fee_id" class="block border rounded-md p-2 border-gray-300 w-full" required>
+                                                    <option v-for="fee in feesList" :key="fee.id" class="select" :value="fee.id">
+                                                        {{fee.name}}
+                                                    </option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="mt-5 md:grid grid-flow-col flex-stretch gap-5">
                                             <div class="block md:inline">
                                                 <label for="" class="block text-xs uppercase">Montant <span class="text-red-500">*</span></label>
-                                                <input type="text" v-model="amount" class="block border rounded-md p-2 border-gray-300 w-full" required >
+                                                <input type="text" v-model="formData.amount" class="block border rounded-md p-2 border-gray-300 w-full" required >
+                                            </div>
+                                        </div>
+                                        <div class="text-left mt-5">
+                                            <button class="text-[#111827] border border-[#111827] rounded-md px-3 py-2 hover:bg-green-500 hover:border-green-500 hover:text-white"> <i class="fa fa-paper-plane-top"></i> Enregistrer</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- new modal -->
+                <div v-if="showModalEdit">
+                    <div class="grid grid-flow-col rounded absolute w-3/4 right-0 top-10 h-auto">
+                        <div class> 
+                            <div class="register-form rounded-md bg-white px-5 border-gray-900 shadow-xl md:absolute md:ml-auto md:mr-auto md:w-3/4 lg:ml-14">
+
+                                <div class="flex py-5 w-full">
+                                    <div class="title flex-1">
+                                        <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Modifiez le Paiement</h2>
+                                    </div>
+                                    <div class="">
+                                        <button v-if="showModal" class="bg-white px-2 py-1 rounded text-red-500" @click="toggleModal"><i class="fa fa-xmark"></i> </button>
+                                    </div>
+                                </div>
+
+                                <form @submit.prevent="updatePayment(paymentData.id)">
+                                    <div class="mt-5 pb-5">
+                                        <h2 class="uppercase text-green-500 text-xs">Information du paiement</h2>
+                                        <h5 class="mt-3 text-red-500">Les champs obligatoires *</h5>
+                                        
+                                        <div class="mt-5 md:grid grid-flow-col flex-stretch gap-5">
+                                            <div class="block md:inline">
+                                                <label for="" class="block text-xs uppercase">Année académique <span class="text-red-500">*</span></label>
+                                                <select v-model="paymentData.academic_year_id" class="block border rounded-md p-2 border-gray-300 w-full" required>
+                                                    <option v-for="academic_year in academicYearsList" :key="academic_year.id" class="select" :value="academic_year.id">
+                                                        {{ academic_year.start_date }} {{ academic_year.end_date }}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="mt-5 md:grid grid-flow-col flex-stretch gap-5">
+                                            <div class="block md:inline">
+                                                <label for="" class="block text-xs uppercase">Etudiant <span class="text-red-500">*</span></label>
+                                                <select v-model="paymentData.student_id" class="block border rounded-md p-2 border-gray-300 w-full" required>
+                                                    <option v-for="student in studentsList" :key="student.id" class="select" :value="student.id">
+                                                        {{student.firstname + ' ' + student.lastname + ' ' + student.familyname}}
+                                                    </option>
+                                                </select>
+                                            </div>
+
+                                            <div class="block md:inline">
+                                                <label for="" class="block text-xs uppercase">Frais <span class="text-red-500">*</span></label>
+                                                <select v-model="paymentData.fee_id" class="block border rounded-md p-2 border-gray-300 w-full" required>
+                                                    <option v-for="fee in feesList" :key="fee.id" class="select" :value="fee.id">
+                                                        {{fee.name}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="mt-5 md:grid grid-flow-col flex-stretch gap-5">
+                                            <div class="block md:inline">
+                                                <label for="" class="block text-xs uppercase">Montant <span class="text-red-500">*</span></label>
+                                                <input type="text" v-model="paymentData.amount" class="block border rounded-md p-2 border-gray-300 w-full" required >
                                             </div>
                                         </div>
                                         <div class="text-left mt-5">
@@ -157,44 +219,25 @@
                                                     <th scope="col" class="px-3 py-3">Nom & Post-nom</th>
                                                     <th scope="col" class="px-3 py-3">Departement/Promotion</th>
                                                     <th scope="col" class="px-3 py-3">Montant</th>
-                                                    <th scope="col" class="px-3 py-3">Type de paiement</th>
+                                                    <th scope="col" class="px-3 py-3">Frais</th>
                                                     <th scope="col" class="px-3 py-3">Date</th>
+                                                    <th scope="col" class="px-3 py-3">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody class="h-100 border-r border-gray-100">
-                                                <tr class="">
+                                                <tr v-for="payment in payments" :key="payment.id" class="">
                                                     <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-100">1</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-100">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Philippe Tsongo </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Computer Science/G2 </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">50 </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Frais d'études</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">12-12-2023</td>
-
+                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-100">{{ payment.payment_number }}</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">{{ payment.student.firstname + ' ' + payment.student.familyname + ' ' +payment.student.lastname }} </td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">{{ payment.promotion.name + ' / ' + payment.promotion.department.name}} </td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">{{ payment.amount }} </td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">{{ payment.fee.name}}</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">{{ payment.payment_date}}</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">
+                                                        <button @click="dataFee(payment.id)" class="text-[#111827] border border-[#111827] w-full rounded-md px-3 py-2"> Edit</button>
+                                                    </td>
                                                 </tr>
 
-                                                <tr class="">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-100">2</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-100">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Patrique Mugisho </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Computer Science/G1 </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">50 </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Frais d'études</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">12-12-2023</td>
-
-                                                </tr>
-                                                <tr class="bg-[#F5F7FB]">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-100">3</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-100">34562M23</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Archippe Nzanzu </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Computer Science/L2 </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100 text-green-500">150 </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">Frais d'études</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-100">12-12-2023</td>
-
-                                                </tr>
-                                                
-                                            
                                             </tbody>
                                         </table>
                                     </div>
@@ -219,6 +262,11 @@ import Header from "../../components/layouts/Header.vue";
 import Sidebar from "../../components/layouts/Sidebar.vue";
 import Footer from "../../components/layouts/Footer.vue";
 
+// import axios from "axios";
+import {getPayment, addPayment, showPayment, editPayment, getAcademicYears, getStudents} from '../../jscore/init.js';
+import {successMessage, errorMessage} from '../../jscore/IoNotification.js';
+
+
 export default {
   name: "IndexPayment",
   components: { Head, Header, Sidebar, Footer },
@@ -227,45 +275,141 @@ export default {
         return {
             text: "Required field are marked *",
             showModal: false,
+            showModalEdit: false,
             pageOne: true,
+            payments: {},
 
+            // section option
+            academicYearsList: {},
+            studentsList: {},
+            feesList: {},
 
             //form fields
-            number: '',
-            department: '',
-            promotion: '',
-            student: '',
-            payment_type: '',
-            montant: '',
+            academic_year_id: '',
+            student_id: '',
+            fee_id: '',
+            amount: '',
         };
   },
 
-  // show and close modal
-  methods: {
-    
-    toggleModal() {
-        this.showModal = !this.showModal;
+  mounted(){
+        this.fetchDepartments();
+        
+        this.optionList();
+
     },
 
-    closeToggleModal() {
-      this.showModal = !this.showModal;
-    },
 
-    handleSubmit(){
-        console.log('1' + this.pageOne)
+    methods: {
+        //payment list
+        fetchPayments(){
 
-        console.log(
-            this.number,
-            this.name,
-            this.description,
-        )
-    }   
+            getPayment()
+            .then(response => {
+                this.payments = response.data.payment;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        },
+
+        //new payment
+        newPayment(){
+            addPayment(this.formData)
+            .then(response => {
+                //toast notification
+                successMessage(this.$toast, response.data.message);
+                //close the tab    
+                this.showModal = !this.showModal;
+
+                //fetch List
+                this.fetchPayments();
+            })
+            .catch((errors) => {
+                //toast notification
+                errorMessage(this.$toast, errors.response.data.message);
+            })
+        },
+
+
+        //new payment
+        dataPayment(payment){
+            //open the tab    
+            this.showModalEdit = !this.showModalEdit;
+
+            showPayment(payment)
+            .then(response => {
+
+                console.log(payment);
+                this.paymentData.id = payment;
+                this.paymentData.amount = response.data.payment.amount;
+
+                this.paymentData.academic_year_id = response.data.academic_year.id;
+                this.paymentData.student_id = response.data.student.id;
+                this.paymentData.fee_id = response.data.fee.id;
+            })
+            .catch((errors) => {
+                //toast notification
+                errorMessage(this.$toast, errors.response.data.message);
+            });
+        },
+
+        showPaymentProfile(payment) {
+            // When the "Data Profile" button is clicked, fetch the selected payment profile
+            this.dataPayment(payment);
+        },
+
+        //update payment
+        updatePayment(payment){
+
+            editPayment(payment, this.paymentData)
+            .then(response => {
+                //toast notification
+                successMessage(this.$toast, response.data.message);
+                //close the tab  
+                this.showModalEdit = !this.showModalEdit;
+                //fetch List
+                this.fetchPayments();
+            })
+            .catch((errors) => {
+                //toast notification
+                errorMessage(this.$toast, errors.response.data.message);
+            })
+        },
+
+        //togle modal
+        toggleModal(){
+            this.showModal = !this.showModal;
+        },
+
+        toggleModalEdit(){
+            this.showModalEdit = !this.showModalEdit;
+        },
+
+        //option list
+        optionList(){
+            //academic year list
+            getAcademicYears()
+            .then(response => {
+                this.academicYearsList = response.data.academic_year;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+            //student list
+            getStudentsList()
+            .then(response => {
+                this.studentsList = response.data.student;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+           
+        }
     
-
-    // closeEvent() {
-    //     this.$emit('close')
-    // }
-  }
+    }
 };
 </script>
  

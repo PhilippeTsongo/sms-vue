@@ -13,7 +13,7 @@
             <div class="content rounded-md bg-[#F5F7FB] mt-12">
     
                 <div class="mb-2 flex">
-                    <h1 class="flex-1 text-gray-300 uppercase text-xs"><i class="fa fa-users"></i> Facultés</h1>
+                    <h1 class="flex-1 text-gray-300 uppercase text-xs"><i class="fa fa-users"></i> Logistique</h1>
                     
                     <div class="">
                         <button v-if="showModal == false" class="border border-green text-green-500 bg-white py-1 px-2 rounded hover:text-white hover:bg-green-500 hover:text-white" @click="toggleModal"><i class="fa fa-plus-circle"></i> Nouvelle Faculté</button>
@@ -28,17 +28,17 @@
 
                                     <div class="flex py-5 w-full">
                                         <div class="title flex-1">
-                                            <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Nouvelle faculté</h2>
+                                            <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Nouvelle logistique</h2>
                                         </div>
                                         <div class="">
                                             <button v-if="showModal" class="bg-white px-2 py-1 rounded text-red-500" @click="toggleModal"><i class="fa fa-xmark"></i> </button>
                                         </div>
                                     </div>
 
-                                    <form @submit.prevent="newFaculty">
+                                    <form @submit.prevent="newLogistic">
 
                                         <div class="mt-5 pb-5">
-                                            <h2 class="uppercase text-green-500 text-xs">Informations de la faculté</h2>
+                                            <h2 class="uppercase text-green-500 text-xs">Informations de la logistique</h2>
 
                                             <h5 class="mt-3 text-red-500">Les champs obligatoires *</h5>
                                             
@@ -46,6 +46,13 @@
                                                 <div class="block md:inline">
                                                     <label for="" class="block text-xs uppercase">Nom <span class="text-red-500">*</span></label>
                                                     <input type="text" v-model="formData.name" class="block border rounded-md p-2 border-gray-300 w-full" required >
+                                                </div>
+                                            </div>
+
+                                            <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+                                                <div class="block md:inline">
+                                                    <label for="" class="block text-xs uppercase">Quantité <span class="text-red-500">*</span></label>
+                                                    <input type="text" v-model="formData.quantity" class="block border rounded-md p-2 border-gray-300 w-full" required >
                                                 </div>
                                             </div>
                                             <div class="mt-10 text-center">
@@ -69,24 +76,31 @@
 
                                     <div class="flex py-5 w-full">
                                         <div class="title flex-1">
-                                            <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Modifier la faculté</h2>
+                                            <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Modifier la logistique</h2>
                                         </div>
                                         <div class="">
                                             <button v-if="showModalEdit" class="bg-white px-2 py-1 rounded text-red-500" @click="toggleModalEdit"><i class="fa fa-xmark"></i> </button>
                                         </div>
                                     </div>
 
-                                    <form @submit.prevent="updateFaculty(facultyData.id)">
+                                    <form @submit.prevent="updateLogistic(logisticData.id)">
 
                                         <div class="mt-5 pb-5">
-                                            <h2 class="uppercase text-green-500 text-xs">Informations de la faculté</h2>
+                                            <h2 class="uppercase text-green-500 text-xs">Informations de la logistique</h2>
 
                                             <h5 class="mt-3 text-red-500">Les champs obligatoires *</h5>
                                             
                                             <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
                                                 <div class="block md:inline">
                                                     <label for="" class="block text-xs uppercase">Nom <span class="text-red-500">*</span></label>
-                                                    <input type="text" v-model="facultyData.name" class="block border rounded-md p-2 border-gray-300 w-full" required >
+                                                    <input type="text" v-model="logisticData.name" class="block border rounded-md p-2 border-gray-300 w-full" required >
+                                                </div>
+                                            </div>
+
+                                            <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+                                                <div class="block md:inline">
+                                                    <label for="" class="block text-xs uppercase">Quantité <span class="text-red-500">*</span></label>
+                                                    <input type="text" v-model="logisticData.quantity" class="block border rounded-md p-2 border-gray-300 w-full" required >
                                                 </div>
                                             </div>
 
@@ -143,7 +157,7 @@
                     <div class="flex-1 rounded-md bg-white pt-6 pl-6 pr-6 pb-2 ml-5 mt-2 w-100 ">
                         <div class="bg-[#111827]-100 flex">
                             <div class="title flex-1">
-                                <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Liste de facultés</h2>
+                                <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Liste de logistiques</h2>
                             </div>
 
                             <div class="" style="margin-top: -5px;">
@@ -163,21 +177,19 @@
                                             <thead class="bg-[#F5F7FB] ">
                                                 <tr class="">
                                                     <th scope="col" class=" px-3 py-3">#</th>
-                                                    <th scope="col" class=" px-3 py-3">Numéro</th>
                                                     <th scope="col" class=" px-3 py-3">Nom</th>
-                                                    <th scope="col" class=" px-3 py-3">Statut</th>
+                                                    <th scope="col" class=" px-3 py-3">Quantité</th>
                                                     <th scope="col" class=" px-3 py-3">Action</th>
 
                                                 </tr>
                                             </thead>
                                             <tbody class="h-100 border-r border-b border-gray-200">
-                                                <tr v-for="faculty in faculties" :key="faculty.id"  class="">
+                                                <tr v-for="logistic in logistics" :key="logistic.id"  class="">
                                                     <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">1</td>
-                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-200">{{ faculty.faculty_number }}</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">{{ faculty.name }}</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">Actif </td>
+                                                    <td class="whitespace-nowrap  px-4 w-24 py-2 border-r border-b border-gray-200">{{ logistic.name }}</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">{{ logistic.quantity }}</td>
                                                     <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">
-                                                        <button @click="dataFaculty(faculty.id)" class="text-[#111827] border border-[#111827] w-full rounded-md px-3 py-2"> Edit</button>
+                                                        <button @click="dataLogistic(faculty.id)" class="text-[#111827] border border-[#111827] w-full rounded-md px-3 py-2"> Edit</button>
 
                                                     </td>
 
@@ -209,12 +221,12 @@ import Footer from "../../components/layouts/Footer.vue";
 
 
 // import axios from "axios";
-import {getFaculties, addFaculty, showFaculty, editFaculty} from '../../jscore/init.js';
+import {getLogistic, addLogistic, showLogistic, editLogistic } from '../../jscore/init.js';
 import {successMessage, errorMessage} from '../../jscore/IoNotification.js';
 
 
 export default {
-  name: "IndexFaculty",
+  name: "IndexLogistic",
   components: { Head, Header, Sidebar, Footer },
 
   data() {
@@ -223,42 +235,39 @@ export default {
             showModal: false,
             showModalEdit: false,
             pageOne: true,
-            faculties: {},
-            facultyData: {},
-
+            logistics: {},
+            logisticData: {},
 
             //form fields
             formData: {
-                faculty_number: '',
                 name: '',
-                slug_name: '',
+                quantity: '',
             },
             
         };
   },
 
     mounted(){
-        this.fetchFaculties();
+        this.fetch();
         
     },
 
-
     methods: {
-        //Faculty list
-        fetchFaculties(){
+        //Logistic list
+        fetchLogistics(){
 
-            getFaculties()
+            getLogistic()
             .then(response => {
-                this.faculties = response.data.faculty;
+                this.logistics = response.data.logistic;
             })
             .catch(error => {
                 console.log(error);
             });
         },
 
-        //new Faculty
-        newFaculty(){
-            addFaculty(this.formData)
+        //new logistic
+        newLogistic(){
+            addLogistic(this.formData)
             .then(response => {
                 //toast notification
                 successMessage(this.$toast, response.data.message);
@@ -266,7 +275,7 @@ export default {
                 this.showModal = !this.showModal;
 
                 //fetch List
-                this.fetchFaculties();
+                this.fetchLogistics();
             })
             .catch((errors) => {
                 //toast notification
@@ -275,16 +284,16 @@ export default {
         },
 
 
-        //new Faculty
-        dataFaculty(faculty){
+        //new logistic
+        dataLogistic(logistic){
             //open the tab    
             this.showModalEdit = !this.showModalEdit;
 
-            showFaculty(faculty)
+            showLogistic(logistic)
             .then(response => {
-                this.facultyData.id = faculty;
-                this.facultyData.name = response.data.faculty.name;
-
+                this.logisticData.id = logistic;
+                this.logisticData.name = response.data.logistic.name;
+                this.logisticData.quantity = response.data.logistic.quantity;
             })
             .catch((errors) => {
                 //toast notification
@@ -292,22 +301,22 @@ export default {
             });
         },
 
-        showFacultyProfile(faculty) {
-            // When the "Data Profile" button is clicked, fetch the selected course profile
-            this.dataFaculty(faculty);
+        showLogisticProfile(logistic) {
+            // When the "Data Profile" button is clicked, fetch the selected logistic profile
+            this.dataLogistic(logistic);
         },
 
-        //update Faculty
-        updateFaculty(faculty){
+        //update logistic
+        updateLogistic(logistic){
 
-            editFaculty(faculty, this.facultyData)
+            editLogistic(logistic, this.logisticData)
             .then(response => {
                 //toast notification
                 successMessage(this.$toast, response.data.message);
                 //close the tab  
                 this.showModalEdit = !this.showModalEdit;
                 //fetch List
-                this.fetchFaculties();
+                this.fetchlogistics();
             })
             .catch((errors) => {
                 //toast notification

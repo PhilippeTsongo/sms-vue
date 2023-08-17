@@ -255,9 +255,9 @@ export default {
                 description: ''
             }
         };
-  },
+    },
 
-  mounted(){
+    mounted(){
         this.fetchDepartments();
         
         this.optionList();
@@ -266,7 +266,7 @@ export default {
 
 
     methods: {
-        //Course list
+        //department list
         fetchDepartments(){
 
             getDepartment()
@@ -278,7 +278,7 @@ export default {
             });
         },
 
-        //new course
+        //new department
         newDepartment(){
             addDepartment(this.formData)
             .then(response => {
@@ -297,7 +297,7 @@ export default {
         },
 
 
-        //new course
+        //new department
         dataDepartment(department){
             //open the tab    
             this.showModalEdit = !this.showModalEdit;
@@ -319,11 +319,11 @@ export default {
         },
 
         showDepartmentProfile(department) {
-            // When the "Data Profile" button is clicked, fetch the selected course profile
+            // When the "Data Profile" button is clicked, fetch the selected department profile
             this.dataDepartment(department);
         },
 
-        //update course
+        //update department
         updateDepartment(department){
 
             editDepartment(department, this.departmentData)

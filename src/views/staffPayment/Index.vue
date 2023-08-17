@@ -275,42 +275,35 @@ export default {
   components: { Head, Header, Sidebar, Footer },
 
   data() {
-        return {
-            text: "Required field are marked *",
-            showModal: false,
-            pageOne: true,
+    return {
+      text: "Required field are marked *",
+      showModal: false,
+      pageOne: true,
 
-            //form fields
-            staff: '',
-            number: '',
-            amount: '',
-            reminder: '',
-            exceding: ''
-        };
+      //form fields
+      staff: "",
+      number: "",
+      amount: "",
+      reminder: "",
+      exceding: ""
+    };
   },
 
   // show and close modal
   methods: {
-    
     toggleModal() {
-        this.showModal = !this.showModal;
+      this.showModal = !this.showModal;
     },
 
     closeToggleModal() {
       this.showModal = !this.showModal;
     },
 
-    handleSubmit(){
-        console.log('1' + this.pageOne)
+    handleSubmit() {
+      console.log("1" + this.pageOne);
 
-        console.log(
-            this.number,
-            this.mark,
-            this.course,
-            this.activity
-        )
-    }   
-    
+      console.log(this.number, this.mark, this.course, this.activity);
+    }
 
     // closeEvent() {
     //     this.$emit('close')
@@ -337,22 +330,21 @@ export default {
 }
 
 /* added */
-.register-form{
-    margin: 30px auto;
+.register-form {
+  margin: 30px auto;
 }
-label{
-    letter-spacing: 1px;
+label {
+  letter-spacing: 1px;
 }
 
 @media (max-width: 900px) {
-    .register-form{
-        width: 65%;
-        margin: 0% 5%;
-    }
-    .close{
-        position: absolute;
-        margin-left: 100%;
-    }
+  .register-form {
+    width: 65%;
+    margin: 0% 5%;
+  }
+  .close {
+    position: absolute;
+    margin-left: 100%;
+  }
 }
-
 </style>

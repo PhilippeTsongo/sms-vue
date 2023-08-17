@@ -35,39 +35,130 @@
                                         </div>
                                     </div>
 
-                                    <form @submit.prevent="handleSubmit">
+                                    <form @submit.prevent="newFee()">
 
                                         <div class="mt-5 pb-5">
-                                            <h2 class="uppercase text-green-500 text-xs">Information de la dépense</h2>
+                                            <h2 class="uppercase text-green-500 text-xs">Information du frais</h2>
 
                                             <h5 class="mt-3 text-red-500">Les champs obligatoires *</h5>
                                             
                                             <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
                                                 <div class="block md:inline">
                                                     <label for="" class="block text-xs uppercase">Frais <span class="text-red-500">*</span></label>
-                                                    <input v-model="name" type="text" class="block border rounded-md p-2 border-gray-300 w-full">   
+                                                    <input v-model="formData.name" type="text" class="block border rounded-md p-2 border-gray-300 w-full">   
                                                 </div>
                                             </div>
                                             <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
                                                 <div class="block md:inline">
                                                     <label for="" class="block text-xs uppercase">Montant <span class="text-red-500">*</span></label>
-                                                    <input type="text" v-model="amount" class="block border rounded-md p-2 border-gray-300 w-full" required >
+                                                    <input type="text" v-model="formData.total_amount" class="block border rounded-md p-2 border-gray-300 w-full" required >
+                                                </div>
+                                            </div>
+
+                                            <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+                                                <div class="block md:inline">
+                                                    <label for="" class="block text-xs uppercase">Departement <span class="text-red-500">*</span></label>
+                                                    <select v-model="formData.department_id" class="block border rounded-md p-2 border-gray-300 w-full" required>
+                                                        <option v-for="department in departmentsList" :key="department.id" class="select" :value="department.id">
+                                                           {{department.name}}
+                                                        </option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
                                                 <div class="block md:inline">
-                                                    <label for="" class="block text-xs uppercase">Departemnt <span class="text-red-500">*</span></label>
-                                                    <select v-model="department" class="block border rounded-md p-2 border-gray-300 w-full" required>
-                                                        <option value="Computer Science">Computer Science</option>
-                                                        <option value="Law">Law</option>
+                                                    <label for="" class="block text-xs uppercase">Promotion <span class="text-red-500">*</span></label>
+                                                    <select v-model="feeData.promotion_id" class="block border rounded-md p-2 border-gray-300 w-full" required>
+                                                        <option v-for="promotion in promotionsList" :key="promotion.id" class="select" :value="promotion.id">
+                                                           {{promotion.name}}
+                                                        </option>
                                                     </select>
                                                 </div>
 
                                                 <div class="block md:inline">
+                                                    <label for="" class="block text-xs uppercase">Année académique <span class="text-red-500">*</span></label>
+                                                    <select v-model="feeData.academic_year_id" class="block border rounded-md p-2 border-gray-300 w-full" required>
+                                                        <option v-for="academic_year in academicYearsList" :key="academic_year.id" class="select" :value="academic_year.id">
+                                                           {{academic_year.name}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                
+                                            </div>
+
+                                            <div class="mt-10 text-center">
+                                                <button class="text-[#111827] border border-[#111827] w-full rounded-md px-3 py-2 hover:border-green-500 hover:bg-green-500 hover:text-white"> <i class="fa fa-paper-plane-top"></i> Enregistrer</button>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+
+                            </div>
+
+                        </div>
+                </div>
+
+                <!-- Edit modal -->
+                <div v-if="showModalEdit">
+                        <div class="grid grid-flow-col rounded absolute w-96 top-20 right-0 h-auto">
+                            <div> 
+                                <div class="register-form rounded-md bg-white px-5 border-gray-900 shadow-xl md:absolute md:ml-auto md:mr-auto md:w-3/4 lg:ml-14">
+
+                                    <div class="flex py-5 w-full">
+                                        <div class="title flex-1">
+                                            <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Modifiez le frais</h2>
+                                        </div>
+                                        <div class="">
+                                            <button v-if="showModalEdit" class="bg-white px-2 py-1 rounded text-red-500" @click="toggleModalEdit"><i class="fa fa-xmark"></i> </button>
+                                        </div>
+                                    </div>
+
+                                    <form @submit.prevent="updateFee(feeData.id)">
+
+                                        <div class="mt-5 pb-5">
+                                            <h2 class="uppercase text-green-500 text-xs">Information du frais</h2>
+
+                                            <h5 class="mt-3 text-red-500">Les champs obligatoires *</h5>
+                                            
+                                            <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+                                                <div class="block md:inline">
+                                                    <label for="" class="block text-xs uppercase">Frais <span class="text-red-500">*</span></label>
+                                                    <input v-model="feeData.name" type="text" class="block border rounded-md p-2 border-gray-300 w-full">   
+                                                </div>
+                                            </div>
+                                            <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+                                                <div class="block md:inline">
+                                                    <label for="" class="block text-xs uppercase">Montant <span class="text-red-500">*</span></label>
+                                                    <input type="text" v-model="feeData.total_amount" class="block border rounded-md p-2 border-gray-300 w-full" required >
+                                                </div>
+                                            </div>
+
+                                            <div class="block md:inline">
+                                                <label for="" class="block text-xs uppercase">Departement <span class="text-red-500">*</span></label>
+                                                <select v-model="feeData.department_id" class="block border rounded-md p-2 border-gray-300 w-full" required>
+                                                    <option v-for="department in departmentsList" :key="department.id" class="select" :value="department.id">
+                                                        {{department.name}}
+                                                    </option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mt-5 md:grid grid-flow-col flex-stretch gap-10">
+                                                <div class="block md:inline">
                                                     <label for="" class="block text-xs uppercase">Promotion <span class="text-red-500">*</span></label>
-                                                    <select v-model="promotion" class="block border rounded-md p-2 border-gray-300 w-full" required>
-                                                        <option value="L1">L1</option>
-                                                        <option value="L2">L2</option>
+                                                    <select v-model="feeData.promotion_id" class="block border rounded-md p-2 border-gray-300 w-full" required>
+                                                        <option v-for="promotion in promotionsList" :key="promotion.id" class="select" :value="promotion.id">
+                                                           {{promotion.name}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="block md:inline">
+                                                    <label for="" class="block text-xs uppercase">Année académique <span class="text-red-500">*</span></label>
+                                                    <select v-model="feeData.academic_year_id" class="block border rounded-md p-2 border-gray-300 w-full" required>
+                                                        <option v-for="academic_year in academicYearsList" :key="academic_year.id" class="select" :value="academic_year.id">
+                                                           {{academic_year.name}}
+                                                        </option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -146,40 +237,21 @@
                                                     <th scope="col" class=" px-3 py-3">Montant</th>
                                                     <th scope="col" class=" px-3 py-3">Departement</th>
                                                     <th scope="col" class=" px-3 py-3">Promotion</th>
-
+                                                    <th scope="col" class=" px-3 py-3">Annéé académique</th>
                                                 </tr>
                                             </thead>
                                             <tbody class="h-100 border-r border-b border-gray-200">
-                                                <tr class="">
+                                                <tr v-for="fee in fees" :key="fee.id" class="">
                                                     <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">1</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">Frais d' étude</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">300$ </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">Law</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">G2</td>
-                                                </tr>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">{{ fee.name }}</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">{{ fee.total_amount }} </td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">{{ fee.fee.name}}</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">{{ fee.promotion.name }}</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">{{ fee.academic_year.name }}</td>
+                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">
+                                                        <button @click="dataFee(faculty.id)" class="text-[#111827] border border-[#111827] w-full rounded-md px-3 py-2"> Edit</button>
 
-                                                <tr class="">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">1</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">Finance Studies</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">130$ </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">Computer Science</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">G2</td>
-                                                </tr>
-
-                                                <tr class="">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">3</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200"> Frais d'études</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">500$ </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">Soil surveying</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">L1</td>
-                                                </tr>
-
-                                                <tr class="">
-                                                    <td class="whitespace-nowrap  px-3 py-2 font-medium border-r border-b border-gray-200">4</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">Economics studies</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200 text-green-500">1500$ </td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">Droits</td>
-                                                    <td class="whitespace-nowrap  px-3 py-2 border-r border-b border-gray-200">G1</td>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -205,6 +277,12 @@ import Header from "../../components/layouts/Header.vue";
 import Sidebar from "../../components/layouts/Sidebar.vue";
 import Footer from "../../components/layouts/Footer.vue";
 
+
+// import axios from "axios";
+import {getFee, addFee, showFee, editFee, getDepartments, getPromotions, getAcademicYears} from '../../jscore/init.js';
+import {successMessage, errorMessage} from '../../jscore/IoNotification.js';
+
+
 export default {
     name: "IndexFees",
     components: { Head, Header, Sidebar, Footer },
@@ -213,43 +291,158 @@ export default {
         return {
             text: "Required field are marked *",
             showModal: false,
+            showModalEdit: false,
             pageOne: true,
+            fees: {},
+
+            // select option
+            feesList: {},
+            departmentsList: {},
+            promotionsList: {},
+            academicYearsList: {},
 
             //form fields
-            number: '',
-            name: '',
-            amount: '',
-            department: '',
-            promotion: ''
+            formData: {
+                name: '',
+                total_amount: '',
+                fee_id: '',
+                promotion_id: '',
+                academic_year_id: ''
+            }
+
         };
     },
 
-  // show and close modal
-  methods: {
-    
-    toggleModal() {
-        this.showModal = !this.showModal;
+    mounted(){
+        this.fetchFees();
+        
+        this.optionList();
+
     },
 
-    closeToggleModal() {
-      this.showModal = !this.showModal;
-    },
 
-    handleSubmit(){
-        console.log('1' + this.pageOne)
+    methods: {
+        //fee list
+        fetchFees(){
 
-        console.log(
-            this.number,
-            this.amount,
-            this.motif
-        )
-    }   
+            getFee()
+            .then(response => {
+                this.fees = response.data.fee;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        },
+
+        //new fee
+        newFee(){
+            addFee(this.formData)
+            .then(response => {
+                //toast notification
+                successMessage(this.$toast, response.data.message);
+                //close the tab    
+                this.showModal = !this.showModal;
+
+                //fetch List
+                this.fetchFees();
+            })
+            .catch((errors) => {
+                //toast notification
+                errorMessage(this.$toast, errors.response.data.message);
+            })
+        },
+
+
+        //new fee
+        dataFee(fee){
+            //open the tab    
+            this.showModalEdit = !this.showModalEdit;
+
+            showFee(fee)
+            .then(response => {
+
+                console.log(fee);
+                this.feeData.id = fee;
+                this.feeData.name = response.data.fee.name;
+                this.feeData.total_amount = response.data.fee.total_amount;
+
+                this.feeData.department_id = response.data.department.id;
+                this.feeData.promotion_id = response.data.promotion.id;
+                this.feeData.academic_year_id = response.data.academic_year.id;
+
+            })
+            .catch((errors) => {
+                //toast notification
+                errorMessage(this.$toast, errors.response.data.message);
+            });
+        },
+
+        showFeeProfile(fee) {
+            // When the "Data Profile" button is clicked, fetch the selected fee profile
+            this.dataFee(fee);
+        },
+
+        //update fee
+        updateFee(fee){
+            editFee(fee, this.feeData)
+            .then(response => {
+                //toast notification
+                successMessage(this.$toast, response.data.message);
+                //close the tab  
+                this.showModalEdit = !this.showModalEdit;
+                //fetch List
+                this.fetchFees();
+            })
+            .catch((errors) => {
+                //toast notification
+                errorMessage(this.$toast, errors.response.data.message);
+            })
+        },
+
+        //togle modal
+        toggleModal(){
+            this.showModal = !this.showModal;
+        },
+
+        toggleModalEdit(){
+            this.showModalEdit = !this.showModalEdit;
+        },
+
+        //option list
+        optionList(){
+            
+            //department list
+            getDepartments()
+            .then(response => {
+                this.departmentsList = response.data.department;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+            // promotion list
+            getPromotions()
+            .then(response => {
+                this.promotionsList = response.data.promotion;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+            
+            // academic year list
+            getAcademicYears()
+            .then(response => {
+                this.academicYearsList = response.data.academic_year;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+            
+           
+        }
     
-
-    // closeEvent() {
-    //     this.$emit('close')
-    // }
-  }
+    }
 };
 </script>
  

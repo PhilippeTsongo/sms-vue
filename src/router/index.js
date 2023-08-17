@@ -92,10 +92,9 @@ import CreateAcademicYear from '../views/academicYear/Create.vue'
 import IndexParent from '../views/parent/Index.vue'
 import CreateParent from '../views/parent/Create.vue'
 
-
-
-
-
+// Logistic
+import IndexLogistic from '../views/logistic/Index.vue'
+import CreateLogistic from '../views/logistic/Create.vue'
 
 
 const routes = [
@@ -390,6 +389,18 @@ const routes = [
 		path: '/parent/create',
 		name: 'CreateParent',
 		component: CreateParent
+	},
+
+	//logistic
+	{
+		path: '/logistic',
+		name: 'IndexLogistic',
+		component: IndexLogistic
+	},
+	{
+		path: '/logistic/create',
+		name: 'CreateLogistic',
+		component: CreateLogistic
 	},
 
 ]
