@@ -240,7 +240,7 @@
                             </div>
 
                             <div class="" style="margin-top: -5px;">
-                                <input  type="search" class="p-1 rounded-md border border-gray-200 hidden sm:inline"> 
+                                <input  v-model="searchTerm" @input="fetchResults"  type="search" class="p-1 rounded-md border border-gray-200 hidden sm:inline"> 
                             </div>
                             <div class="ml-5 p-1 rounded" style="margin-top: -5px; margin-right: -3px;">
                                 <a href="" class=""> <router-link :to="{}"> <i class="fa fa-print"></i></router-link></a>
