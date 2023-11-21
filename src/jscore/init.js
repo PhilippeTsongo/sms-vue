@@ -3,9 +3,20 @@
 import axios from 'axios';
 
 //login
-export function userLogin(credentials){
-    return axios.post('/login', credentials)
+// export function userLogin(credentials){
+//     return axios.post('/login', credentials)
+// }
+
+//logout
+export function userLogout(credentials){
+    return axios.post('/logout', credentials)
 }
+
+
+//auth data
+// export function authenticatedUser(){
+//     return axios.get('/authenticated_user')
+// }
 
 //courses list
 export function getCourses(){

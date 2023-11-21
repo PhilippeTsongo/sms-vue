@@ -13,7 +13,7 @@
             <div class="content rounded-md bg-[#F5F7FB] mt-12">
     
                 <div class="mb-2 flex">
-                    <h1 class="flex-1 text-gray-300 uppercase text-xs"><i class="fa fa-users"></i> Promotion</h1>
+                    <h1 class="flex-1 text-gray-300 uppercase text-xs"><i class="fa fa-users"></i> Classe</h1>
                     
                     <div class="">
                         <button v-if="showModal == false" class="border border-green text-green-500 bg-white py-1 px-2 rounded hover:text-white hover:bg-green-500 hover:text-white" @click="toggleModal"><i class="fa fa-plus-circle"></i> Nouvelle promotion</button>
@@ -28,7 +28,7 @@
 
                                     <div class="flex py-5 w-full">
                                         <div class="title flex-1">
-                                            <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Nouvelle promotion</h2>
+                                            <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Nouvelle classe</h2>
                                         </div>
                                         <div class="">
                                             <button v-if="showModal" class="bg-white px-2 py-1 rounded text-red-500" @click="toggleModal"><i class="fa fa-xmark"></i> </button>
@@ -38,7 +38,7 @@
                                     <form @submit.prevent="newPromotion">
 
                                         <div class="mt-5 pb-5">
-                                            <h2 class="uppercase text-green-500 text-xs">Informations de la promotions</h2>
+                                            <h2 class="uppercase text-green-500 text-xs">Informations de la classe</h2>
 
                                             <h5 class="mt-3 text-red-500">Les champs obligatoires *</h5>
                                             
@@ -171,7 +171,7 @@
                     <div class="flex-1 rounded-md bg-white pt-6 pl-6 pr-6 pb-2 ml-5 mt-2 w-100 ">
                         <div class="bg-[#111827]-100 flex">
                             <div class="title flex-1">
-                                <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Liste de promotions</h2>
+                                <h2 class="uppercase text-xl text-green-500"><i class="fa fa-list-ol"></i> Liste de classes</h2>
                             </div>
 
                             <div class="" style="margin-top: -5px;">
@@ -258,7 +258,7 @@ export default {
       promotionData: {},
 
     //   select list
-    departmentsList,
+    // departmentsList,
 
       //form fields
       formData: {
